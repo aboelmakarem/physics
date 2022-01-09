@@ -94,22 +94,100 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Invariance of Nature's Laws}
+  \frametitle{Unitary Transformations and Their Generators}
   \vspace{1mm}
-  Certain changes in the space-time coordinates used to describe a physical system can not change the state of the system or the laws governing its evolution. These changes are coordinate system space translations, rotations, motions with uniform velocities and shifts (translations) in time
-
-  In the new transformed coordinate system, the operators corresponding to dynamical variables and the kets corresponding to system state transform in a way such that they describe the same dynamical variables and states in the new transformed coordinates
-
-  For an operator $A$ with eigenkets $\ket{a_i}$, corresponding eigenvalues $a_i$ and a state ket $\ket{\psi}$, $A$, $\ket{a_i}$ and $\ket{\psi}$ transform to $A'$, $\ket{a_i'}$ and $\ket{\psi'}$ such that
+  Take any Hermitian operator $K$ and construct the transformation $U(\epsilon) = I + i \epsilon K$
   \begin{itemize}
-    \item $A \ket{a_i} = a_i \ket{a_i} \implies A' \ket{a_i'} = a_i \ket{a_i'} \implies$ eigenvalues do not change
-    \item If $\ket{\psi} = \Sigma_i c_i \ket{a_i}$ then $\ket{\psi'} = \Sigma_i c_i' \ket{a_i'}$ where $|c_i| = |c_i'| \implies \braket{\psi'}{a_i'} = \braket{\psi}{a_i}$ or else probability of getting an eigenvalue $a_i$ changes 
+    \item $\epsilon$ is a real number and $I$ is the identity operator, $U(\epsilon)$ is parametrized by $\epsilon$
+    \item Since $K = K^{\dagger} \implies U^{\dagger}(\epsilon) = I - i \epsilon K \implies U^{\dagger} U = I - \epsilon K^2$
+    \item For infinitesimal $\epsilon$: $U^{\dagger} U = I \implies U$ is unitary
+    \item This is only true because $K$ is Hermitian
   \end{itemize}
-  To satisfy these conditions, the states and operators are transformed using unitary transformations $U: U^{\dagger} U = I$
+  $U(\epsilon)$ is an infinitesimal unitary transformation that transforms all kets and operators and $K$ is the generator of this transformation
+  \begin{itemize}
+    \item For finite transformations: $U(s) = lim_{N \to \infty} (U({s \over N}))^{N} = lim_{N \to \infty} (I + i {s \over N} K)^{N} = \exp(i s K)$
+    \item $U^{\dagger}(s) = \exp(-isK) \implies U^{\dagger}(s) U(s) = I \implies U(s)$ is unitary
+  \end{itemize}
+  For any operator $A$ with eigenkets $\ket{a}$, a ket $\psi$ and a unitary transformation $U(s)$:
+  \begin{itemize}
+    \item The ket $\ket{\psi'} = U(s) \ket{\psi}$ is the transformation of $\ket{\psi}$ under the action of $U(s)$
+    \item There exists an operator $A'$ such that the eigenkets $\ket{a}$ of $A$ transform to kets $\ket{a'} = U(s) \ket{a}$ that are the eigenkets of $A'$ with the same eigenvalues: $A \ket{a_i} = a_i \ket{a_i} \implies A' \ket{a_i'} = a_i \ket{a_i'}$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Symmetry Transformations}
+  \vspace{1mm}
+  For an arbitrary operator $A$ with eigenkets $\ket{a}$, if a unitary transformation $U(s)$ transforms the kets $\psi$ such that
+  \begin{itemize}
+    \item If $\ket{\psi} = \Sigma_i c_i \ket{a_i}$ then $\ket{\psi'} = \Sigma_i c_i' \ket{a_i'}$ where $|c_i| = |c_i'| \implies |\braket{\psi'}{a_i'}| = |\braket{\psi}{a_i}|$ or else, the probability of observing an eigenvalue $a_i$ upon measurement changes upon a transformation
+  \end{itemize}
+  Then $U(s)$ is a symmetry transformation because all system measurements performed before and after the transformation yield outcomes with the same probabilities
+
+  For this to hold, $U(s)$ has to be a unitary transformation
   \begin{itemize}
     \item $\ket{a'} = U \ket{a}$ and $\ket{\psi'} = U \ket{\psi} \implies \braket{\psi'}{a'} = \bra{\psi U^{\dagger}}\ket{U \psi} = \braket{\psi}{a}$
-    \item $\ket{a'} = U \ket{a}$, since $A \ket{a_i'} = a_i \ket{a_i'}$ then $A' \ket{a_i'} = A' U \ket{a_i} = a_i U \ket{a_i} \implies U^{\dagger} A' U \ket{a_i} = a_i \ket{a_i}$
+    \item $A' \ket{a_i'} = a_i \ket{a_i'} = a_i U \ket{a_i} \implies A' U \ket{a_i} = a_i U \ket{a_i} \implies U^{\dagger} A' U \ket{a_i} = a_i \ket{a_i}$
     \item $U^{\dagger} A' U \ket{a_i} = a_i \ket{a_i}$ and $A \ket{a_i} = a_i \ket{a_i}$ for all $i \implies A = U^{\dagger} A' U \implies A' = U A U^{\dagger}$ 
+  \end{itemize}
+
+  In summary, any Hermitian operator $K$ can generate a symmetry transformation $U(s) = \exp(i s K)$
+  \begin{itemize}
+    \item Any ket $\ket{\psi}$ transforms to $\ket{\psi'} = U(s) \ket{\psi}$
+    \item An operator $A' = U A U^{\dagger}$ such that the eigenkets $\ket{a_i}$ of $A$ transform to eigenkets $\ket{a'_i}$ of $A'$ with the same eigenvalues $a_i$
+    \item The expansion coefficients of any ket $\ket{\psi}$ in any basis $\ket{a}$ are preserved: $\braket{\psi'}{a'} = \braket{\psi}{a}$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Coordinate System Transformations}
+  \vspace{1mm}
+  A transformation to the space-time coordinates used to describe a physical system can not change the state of the system or the laws governing its evolution. Nature is invariant under such transformations.
+  \begin{itemize}
+    \item A displacement in any spatial direction
+    \item A rotation about any spatial axis
+    \item A motion with uniform velocity in any spatial direction
+    \item A shift (translation) in time
+    \item Any combination of the above transformations in any order
+  \end{itemize}
+  For every space-time coordinate transformation $\tau$, there exists a unitary transformation $U(\tau)$ such that operators $A$ and kets $\psi$ transform to $U(\tau) A U^{\dagger}(\tau)$ and $U(\tau) \ket{\psi}$ respectively
+  \begin{itemize}
+    \item Since $U^{-1}(\tau) = U^{\dagger}(\tau) \implies U(\tau^{-1}) = U^{-1}(\tau) = U^{\dagger}(\tau)$
+  \end{itemize}
+  When using unitary transformations to transform kets, the transformed ket can differ from the original ket by a phase factor $\exp(i \delta)$ since it this does not change the kets 
+  \begin{itemize}
+    \item $\delta$ is independent of $A$ and $\psi$ for $U(\tau)$ to be linear
+  \end{itemize}
+  The position operator $X_i$ eigenkets $\ket{x_i} \implies X_i \ket{x_i} = x_i \ket{x_i} \implies \braket{x}{X_i \psi} = \bra{x X_i} \ket{\psi} = x_i \braket{x}{\psi} = x_i \psi$
+  \begin{itemize}
+    \item The action of the position operator $X_i$ on a ket $\ket{\psi}$ is to multiply it by the coordinate $x_i$: $X_i \ket{\psi} = x_i \ket{\psi}$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{System's Degrees of Freedom}
+  \vspace{1mm}
+  The degrees of freedom (DoF) required to describe a quantum mechanical system can be categorized according to whether they change upon the application of a space-time coordinate (STC) transformations
+  \begin{itemize}
+    \item Positional DoFs $x_i$: the DoFs that change upon the application of STC transformations
+    \item Internal DoFs $s_i$: the DoFs that are intrinsic to the system and do not change with STC applications 
+  \end{itemize}
+  In general, the state of the system $\ket{\psi}$ depends on all of its DoFs: $\ket{\psi} = \psi(x_1,x_2,...,x_n,s_1,s_2,...,s_m)$
+
+  The Hilbert space $H$ of the system's kets is the tensor product of the one-DoF Hilbert spaces $\{H_{x1},H_{x2},...,H_{xn},H_{s1},H_{s2},...,H_{sm}\}$ in each of which kets depend on only one DoF
+  \begin{itemize}
+    \item $H = H_{x1} \otimes H_{x2} \otimes ... \otimes H_{xn} \otimes H_{s1} \otimes H_{s2} \otimes ... \otimes H_{sm}$
+    \item Kets $\ket{\psi_{xi}}$ in $H_{xi}$ depend on $x_i$ only and kets $\ket{\psi_{sj}}$ in $H_{sj}$ depend on $s_j$
+    \end{itemize}
+    A system can be in an entangled or an unentangled state depending on its state $\ket{\psi}$ in $H$
+    \begin{itemize}
+    \item Unentangled state: $\ket{\psi}$ is the outer product of kets in $H_{xi}$ and $H_{sj}$ : $\ket{\psi} = \ket{\psi_{x1}} \otimes \ket{\psi_{x2}} \otimes ... \otimes \ket{\psi_{xn}} \otimes \ket{\psi_{s1}} \otimes \ket{\psi_{s2}} \otimes ... \otimes \ket{\psi_{sm}}$
+    \item Entangled state: $\ket{\psi}$ is a linear combination of the outer products of kets in $H_{xi}$ and $H_{sj}$
+  \end{itemize}
+  An operator acting $A_i$ on $H_{xi}$ ($H_{si}$) kets does not affect the kets of any other factor space $H_{xk}$ ($H_{sk}$) for $k \neq i$
+  \begin{itemize}
+    \item For unentangled states, $A_i$ acts on $\ket{\psi_{x_i}}$ and leaves all other factor kets unchanged
+    \item For entangled states, $A_i$ acts on the basis factor ket $\ket{e_i}$ and leaves all other basis factor kets unchanged
   \end{itemize}
 \end{frame}
 
@@ -137,27 +215,32 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Unitary Transformations}
+  \frametitle{Space Translation Generator}
   \vspace{1mm}
-  For a general continuous unitary transformation $U(s)$ that is parametrized by a real parameter $s$ such that $U(s = 0) = I$
+  For an infinitesimal translation in space $\epsilon$ in the $i$ direction: $x_j \to x_j + \delta_{ij} \epsilon$, $s_i \to s_i$. Upon transformation:
   \begin{itemize}
-    \item $U(s) = I + s {dU \over ds}|_{s = 0} + O(s^2)$
-    \item For infinitesimal values of $s$, $U(s) \to I + s {dU \over ds}|_{s = 0}$
-    \item $U(s) U^{\dagger}(s) = I \implies (I + s {dU \over ds}|_{s = 0})(I + s {dU^{\dagger} \over ds}|_{s = 0}) = I + s ({dU \over ds}|_{s = 0} +  {dU^{\dagger} \over ds}|_{s = 0}) + O(s^2)$
-    \item Then for infinitesimal $s$, $U(s) U^{\dagger}(s) = I$ only if ${dU \over ds}|_{s = 0} = iK$ and $K = K^{\dagger} \implies U(s) = I + i s K + O(s^2)$
+    \item $\ket{\psi} = \psi(x_j,s_j) \to \ket{\psi'} = \psi(x_j + \delta_{ij} \epsilon,s_j) = \psi(x_j,s_j) + \epsilon {\partial \psi \over \partial x_i} + O(\epsilon^2) \to \psi(x_j,s_j) + \epsilon {\partial \psi \over \partial x_i}$ as $\epsilon \to 0$
+    \item $\ket{\psi'} = [I + \epsilon {\partial \over \partial x_i}] \ket{\psi} = U(\epsilon) \ket{\psi}$ for $U(\epsilon) = I + {i \over \hbar} \epsilon P_i$ and $P_i = -i \hbar {\partial \over \partial x_i}$ 
+    \item $Q = \braket{\psi_1}{P_i \psi_2} = \int_{x_1} \int_{x_2} ... \int_{x_n} \int_{s_1} \int_{s_2} ... \int_{s_m} \psi^*_1 P_i \psi_2 dx_1 dx_2 ... dx_n ds_1 ds_2 ... ds_m = \int_{\Omega} \psi^*_1 P_i \psi_2 d\Omega$
+    \item $Q = -i \hbar \int_{\Omega} \psi^*_1 \psi_{2,i} d\Omega = -i \hbar \int_{\Omega} [(\psi^*_1 \psi_2)_{,i} - \psi^*_{1,i} \psi_2] d\Omega = S + T$ 
+    \item $S = -i \hbar \int_{x_{j \neq i}} \int_{s_k} (\psi^*_1 \psi_2)|^{x_i = \infty}_{x_i = -\infty} dx_j ds_k = 0$ if $\psi_1,\psi_2 \to 0$ as $x_i \to \pm \infty$
+    \item $T = i \hbar \int_{\Omega} \psi^*_{1,i} \psi_2 d\Omega \implies T^* = -i \hbar \int_{\Omega} \psi_{1,i} \psi^*_2 d\Omega = \int_{\Omega} \psi_2 P_i \psi^*_{1,i} d\Omega = \braket{\psi_2}{P_i \psi_1}$
+    \item Hence, $Q^* = T^* = \braket{\psi_2}{P_i \psi_1} \implies \braket{\psi_1}{P_i \psi_2}^* = \braket{\psi_2}{P_i \psi_1} \implies P_i$ is Hermitian
+    \item $P_i$ is Hermitian $\implies U(\epsilon) = I + {i \over \hbar} \epsilon P_i$ is a symmetry transformation
   \end{itemize}
-  $K$ is an operator that generates the entire family of transformations $U(s) \implies K$ is the transformation generator
+  $P_i$ is the generator of space translations and it preserves the system's state
   \begin{itemize}
-    \item For finite transformations: $U(s) = lim_{n \to \infty} U({s \over n})^n = lim_{n \to \infty} [I + i {s \over n} K]^n = \exp(isK)$
+    \item Only works for cartesian coordinates, generators of translations in other coordinate systems $P_\eta \neq -i \hbar {\partial \over \partial \eta}$
+    \item Space translation is a symmetry operation only if the translation is along a cartesian dimension
+    \item $[X_i,P_j]f = -i \hbar x_i {\partial f \over \partial x_j} + i \hbar {\partial \over \partial x_j} x_i f = i \hbar \delta_{ij} f \implies [X_i,P_j] = i \hbar \delta_{ij}$
   \end{itemize}
-  For every space-time coordinate transformation $\tau$, there exists a unitary transformation $U(\tau)$ such that operators $A$ and kets $\psi$ transform to $U(\tau) A U^{\dagger}(\tau)$ and $U(\tau) \ket{\psi}$ respectively
-  \begin{itemize}
-    \item Since $U^{-1}(\tau) = U^{\dagger}(\tau) \implies U(\tau^{-1}) = U^{-1}(\tau) = U^{\dagger}(\tau)$
-  \end{itemize}
-  When using unitary transformations to transform kets, the transformed ket can differ from the original ket by a phase factor $\exp(i \delta)$ since it this does not change the ket, 
-  \begin{itemize}
-    \item $\delta$ is independent of $A$ and $\psi$ for $U(\tau)$ to be linear
-  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Space Rotation Generator}
+  \vspace{1mm}
+  
+ 
 \end{frame}
 
 \begin{frame}
@@ -333,7 +416,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Dynamical Variables}
+  \frametitle{Position Operator Commutators}
   \vspace{1mm}
   The position operator $X_i$ multiplies any ket $\ket{\psi}$ by its space coordinate $x_i \implies X_i \ket{\psi} = x_i \ket{\psi}$. For any unitary transformation generator $K_j$
   \begin{itemize}
@@ -354,6 +437,42 @@
     \item $\ket{x'} = \exp(i \alpha J_j) \ket{x} = \ket{x + \alpha \epsilon_{plm} \delta_{jp} x_l e^m}$ where $e^j_p = \delta_{jp}$ and $e^m$ are unit vectors in $j$ and $m$ directions
     \item $X'_i \ket{x'} = (X_i + i \alpha [X_i,J_j])\ket{x'} = (x_i + \alpha \epsilon_{plm} \delta_{jp} x_l \delta_{mi})\ket{x'} + i \alpha [X_i,J_j] \ket{x'} \implies \alpha \epsilon_{jli} x_l + i \alpha [X_i,J_j] = 0$
     \item Hence, $[X_i,J_j] = i \epsilon_{jli} x_l I = i \epsilon_{ijl} X_l \implies [J_i,X_j] = i \epsilon_{ijl} X_l$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Position Operator Commutators II}
+  \vspace{1mm}
+  For a velocity transformation in $j$ direction, the generator is $G^t_j \implies X'_i = X_i + i \alpha [X_i,G^t_j] + O(\alpha^2)$
+  \begin{itemize}
+    \item $G^t_j$ is parametrized by $t$ because it transforms space coordinates to ones of a moving coordinate system at time $t$. It is assumed here that origins coincide at $t = 0$
+    \item $X'_i$ measures the position relative to the moving coordinates $\implies X_i \ket{x} = x_i \ket{x}$ and $X'_i \ket{x'} = x_i \ket{x'}$
+    \item $\ket{x'} = \exp(i \alpha G^t_j) \ket{x} = \ket{x + \alpha t e^j}$ where $e^j_p = \delta_{jp}$ is unit vector in $j$ direction
+    \item $X'_i \ket{x'} = (X_i + i \alpha [X_i,G^t_j])\ket{x'} = (x_i + \alpha t \delta_{ij})\ket{x'} + i \alpha [X_i,G^t_j] \ket{x'} \implies \alpha t \delta_{ij} + i \alpha [X_i,G^t_j] = 0$
+    \item Hence, $[X_i,G^t_j] = i \delta_{ij} t I$
+    \item $$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Rotation Generator and Spin}
+  \vspace{1mm}
+  Since $[J_i,X_j] = i \epsilon_{ijk} X_k,[J_i,P_j] = i \epsilon_{ijk} P_k$ and $[X_i,P_j] = i \delta_{ij} I$. For any $3$ operators $S_i,i = 1,2,3$ such that
+  \begin{itemize}
+    \item $[S_i,S_j] = i \epsilon_{ijk} S_k$ and $[S_i,X_j] = [S_i,P_j] = 0$
+    \item Then $J_k = \epsilon_{ijk} X_i P_j + S_k + c_k I$ where $c_k$ is a scalar satisfies all $J_i$ commutators conditions
+    \item $[J_i,X_j] = \epsilon_{lmi} [X_l P_m,X_j] + c_i [I,X_j] + [S_i,X_j] = \epsilon_{lmi} X_l [P_m,X_j] = -\epsilon_{lmi} X_l \delta_{mj} = \epsilon_{ijk} X_k$ 
+    \item $[J_i,P_j] = \epsilon_{lmi} [X_l P_m,P_j] + c_i [I,X_j] + [S_i,X_j] = \epsilon_{lmi} [X_l,P_j] P_m = \epsilon_{lmi} P_m \delta_{lj} = \epsilon_{ijk} P_k$
+    \item $[J_i,J_j] = \epsilon_{pqi} (\epsilon_{lmj} [X_p P_q,X_l P_m] + [X_p P_q,S_j] + c_j [X_p P_q,I]) + \epsilon_{lmj} [S_i,X_l P_m] + [S_i,S_j] + c_j [S_i,I] + c_i (\epsilon_{lmj} [I,X_l P_m] + [I,S_j] + [I,I])$
+    \item $[J_i,J_j] = \epsilon_{pqi} \epsilon_{lmj} \{X_p([P_q,X_l] P_m + X_l [P_q,P_m]) + (X_l [X_p ,P_m] + [X_p ,X_l] P_m)P_q\} + i \epsilon_{ijk} S_k$
+    \item $[J_i,J_j] = i \epsilon_{pqi} \epsilon_{lmj} \{-\delta_{ql} X_p P_m + \delta_{pm} X_l P_q\} + i \epsilon_{ijk} S_k = i \epsilon_{ijk} X_i P_j + i \epsilon_{ijk} S_k = J_k$ if and only if $c_i = 0$
+    \item Hence, $J_k = \epsilon_{ijk} X_i P_j + S_k$
+  \end{itemize}
+  Since $S_i$ commutes with $X_i$, then $S_i$ can be used to represent any degrees of freedom (DoF) that are independent of $X_i$. All such DoFs will be called spin DoFs
+  \begin{itemize}
+    \item The spin DoFs form a separate Hilbert space, the tensor product of which with the position DoFs is another Hilbert space with basis kets $\ket{x_1 x_2 ... x_n s_1 s_2 ... s_m}$
+    \item Operators acting on position DoFs commute with those acting on spin DoFs
+    \item No physical significance has been given to spin DoFs so far
   \end{itemize}
 \end{frame}
 
