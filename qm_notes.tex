@@ -72,9 +72,158 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+  \frametitle{Postulates of Quantum Mechanics}
+  \vspace{1mm}
+  The following statements are postulates of quantum mechanics and can not be derived from anything more fundamental. They can only be, and have extensively been, verified by experiments
+  \begin{itemize}
+    \item The state of a quantum mechanical system is represented by a ket $\ket{\psi}$ in a Hilbert space
+    \item All of the system's dynamical variables are represented by Hermitian operators
+    \begin{itemize}
+      \item Dynamical variables can be positions, linear momenta, angular momenta, energies, etc...
+    \end{itemize}
+    \item The measurement of a variable represented by an operator $A$ for a system in state $\ket{\psi}$ results in the observation of one of $A$'s eigenvalues
+    \item The probability of getting a measurement $a$ for a dynamical variable $A$ is proportional to the suare of the inner product of the system's ket $\ket{\psi}$ and $A$'s eigenket corresponding to its eigenvalue $a$
+    \item Upon performing a measurement, the system's state changes to the eigenket corresponding to the measurement outcome eigenvalue (wavefunction collapse)
+    \item The system evolves in time according to Schrodinger's equation $i \hbar {d \over dt} \ket{\psi} = H \ket{\psi}$
+    \begin{itemize}
+      \item $H$ is an operator called the Hamiltonian of the system and it depends on the nature of the system and its interactions with its environment
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quantum Mechanical Systems}
+  \vspace{1mm}
+  A Quantum Mechanical (QM) system consists of a number $N$ of particles. Each particle has up to $4$ degrees of freedom (DoF)
+  \begin{itemize}
+    \item Up to $3$ position DoFs for the $3$ spatial dimensons. These DoFs take values in infinite and continuous ranges
+    \item Up to $1$ spin DoF for the particle spin. This DoF takes values in a finite and discrete range 
+  \end{itemize}
+  Since the DoFs are dynamical variables themselves, there are Hermitian operators that represent them
+  \begin{itemize}
+    \item The operators $X_i, i = 1,2,3$ represent the $x,y$ and $z$ position DoFs of a particle
+    \item Because positions values are continuous, the eigenkets of $X_i$ are continuous
+    \item The operator $S$ represents the spin DoF of the particle
+    \item Because spin values are discrete, the eigenkets of $S$ are discrete
+    \end{itemize}
+  An N-particle system in $3D$ has $3N$ positions represented by operators $X_i, i = 1 \to 3N$ and $N$ spins represented by operators $S_i, i = 1 \to N$
+  \begin{itemize}
+    \item The Hilbert space containing the kets describing one-particle systems is spanned by kets $\ket{x_1 x_2 x_3 s}$ each corresponding to a particle position $(x_1,x_2,x_3)$ and spin $s$
+    \item The Hilbert space containing the kets describing N-particle systems is spanned by kets $\ket{x_1 x_2 ... x_{3N} s_1 s_2 ... s_N}$ each corresponding to the N particles being at positions $(x_1,x_{N+1},x_{2N+1}), (x_2,x_{N+2},x_{2N+2}), ..., (x_N,x_{2N},x_{3N})$ and having spins $s_1,s_2,...,s_N$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{...}
+  \vspace{1mm}
+  Any system ket $\ket{\psi}$ can be decomposed in the position-spin basis $\ket{x,s}$ where $x$ stands for all position variables and $s$ stands for all spin variables
+  \begin{itemize}
+    \item $\ket{\psi} = \Sigma^{M_1}_{i_1 = 1} ... \Sigma^{M_N}_{i_N = 1} \int_{x_1} ... \int_{x_{3N}} \psi(x_1,...,x_{3N},s_{i_1},...,s_{i_N}) \ket{x_1 ... x_{3N} s_1 ... s_N} dx_1 ... dx_{3N}$
+    \item Here, $M_1,M_2,...,M_N$ is the number of allowed spin values for particles $1,2,...,N$
+    \item Let $M = M_1 \times M_2 \times ... \times M_N$, $\int_{\Omega} = \int_{x_1} \int_{x_2} ... \int_{x_{3N}}$ and $d\Omega = dx_1 dx_2 ... dx_{3N}$
+    \item Hence $\ket{\psi} = \Sigma^{M}_{j = 1} \int_{\Omega} \psi(x_i,s_j) \ket{x_i,s_j} d\Omega$ where $x_i$ is a configuration in the $3N$-dimensional continuous position space and $s_j$ is a configuration in the $N$-dimensional discrete spin space
+    \item $\psi(x_i,s_j)$ is called the system's wave function. It is a function in all of the system's degrees of freedom
+    \item $\psi(x_i,s_j)$ is the projection of $\ket{\psi} on $\ket{x_i,s_j}$ is $\braket{x_i,s_j}{\psi} = \Sigma^{M}_{j = 1} \int_{\Omega} \psi(x_l,s_m) \braket{x_i,s_j}{x_l,s_m} d\Omega = \psi(x_i,s_j)$
+  \end{itemize}
+  The operators $X_i$ and $S_i$ will be chosen such that any ket $\ket{x_i,s_j}$ is a simultaneous eigenket for all of them
+  \begin{itemize}
+    \item This is required in order to allow the system's particles to have defined positions and spins simultaneously
+    \item Otherwise, particles in certain positions will have a distribution of spins and vice-versa which is inconsistent with positions and spins being independent DoFs
+    \item Hence, the commutators $[X_i,X_j] = [X_i,S_j] = [S_i,S_j] = 0$ for all $i$ and $j$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{...}
+  \vspace{1mm}
+  For the position operator $X_k$ to have the ket $\ket{x_i,s_j}$ as an eigenket, $X_k \ket{x_i,s_j} = x_k \ket{x_i,s_j}$
+  \begin{itemize}
+    \item $x_k$ is the value of the $k^{th}$ spatial coordinate when the system particles are in the state $\ket{x_i,s_j}$
+    \item Consequently, $\braket{x_i,s_j}{X_k \psi} = \bra{x_i,s_j X_k} \ket{\psi} = x_k \braket{x_i,s_j}{\psi} = x_k \psi(x_i,s_j)$
+    \item Hence, the position operator $X_k$ acts on a ket $\ket{\psi}$ by multiplying it by the $k^{th}$ coordinate: $X_k \ket{\psi} = x_k \ket{\psi}$
+    \item This is consistent with the commutation requirement $[X_i,X_j] = 0$ since $[X_i,X_j] = x_i x_j - x_j x_i = 0$
+    \item The position operators do not depend on the spin DoF and they do not affect it
+  \end{itemize}
+  Similarly, for the spin operator $S_k$ to have the ket $\ket{x_i,s_j}$ as an eigenket, $S_k \ket{x_i,s_j} = s_k \ket{x_i,s_j}$
+  \begin{itemize}
+    \item $s_k$ is the value of the $k^{th}$ spin when the system particles are in the state $\ket{x_i,s_j}$
+    \item Consequently, $\braket{x_i,s_j}{S_k \psi} = \bra{x_i,s_j S_k} \ket{\psi} = s_k \braket{x_i,s_j}{\psi} = s_k \psi(x_i,s_j)$
+    \item Hence, the spin operator $S_k$ acts on a ket $\ket{\psi}$ by multiplying it by the $k^{th}$ spin: $S_k \ket{\psi} = s_k \ket{\psi}$
+    \item This is consistent with the commutation requirement $[S_i,S_j] = 0$ since $[S_i,S_j] = s_i s_j - s_j s_i = 0$
+    \item The spin operators do not depend on the position DoFs and they do not affect them
+  \end{itemize}
+  Since all position and spin eigenvalues are real, the position-spin commutation requirement is satisfied
+  \begin{itemize}
+    \item $[X_i,S_j] = 0$ since $[X_i,S_j] = x_i s_j - s_j x_i = 0$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{QM System Kets}
+  \vspace{1mm}
+  Spin DoFs do not correspond to any physical spin for any particles and they do not have a classical analog
+  \begin{itemize}
+    \item Experimentally, particles in QM systems exhibit an intrinsic angular momentum that is not associated with their orbital angular momenta
+    \item It is an angular momentum because spinning particles interact with magnetic fields the same way as particles with orbital angular momenta 
+    \item The intrinsic angular momentum is called spin and it is a particle property like mass and charge
+    \item Unlike mass and charge however, a particle's spin can change over time as in interacts with other particles and external electromagnetic fields
+    \item It will be shown later that spin DoF takes one of $M$ discrete values. Let these values be $s_1,s_2,...,s_M$
+    \item The number $M$ of allowable spin DoF values and their values $s_1,s_2,...,s_M$ depend on the nature of the system's particles
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Spin Axis}
+  \vspace{1mm}
+  For every particle in a QM system, there are $3$ real numbers, $n_x$, $n_y$ and $n_z$ such that
+  \begin{itemize}
+    \item $n_x^2 + n_y^2 + n_z^2 = 1 \implies n_x, n_y, n_z$ are the components of a unit vector in $3D$ called spin axis
+    \item Given $3$ Hermitian operators $S_x,S_y$ and $S_z$, the Hermitian operator $S_n = n.S = n_x S_x + n_y S_y + n_z S_z$
+    \item $S_n$ has $M$ eigenvalues equal to $s_1,s_2,...,s_M$, the $M$ spin DoF allowable values 
+    \item Other system particles have different spin axes. $S_n$ is the spin operator about $(n_x,n_y,n_z)$ direction
+    \item The operators $S_x,S_y$ and $S_z$ are fixed and they depend only on the particle's nature
+    \item $S_x,S_y$ and $S_z$ are the spin operators about the $x$, $y$ and $z$ axes respectively
+  \end{itemize}
+  The particle does not spin about any axis, hence, the spin axis is only a conceptual direction that causes the combination $S_n = n.S$ to give an operator with eigenvalues $\{s_1,s_2,...,s_M\}$
+  \begin{itemize}
+    \item However, a coordinate system rotation causes the spin axis components $n_i$ to change (vector rotation)
+  \end{itemize}
+  Any function $f$ in the DoFs of a particle can be written as $f(x,y,z,s) = f(x_j,s)$ if all DoFs are continuous
+  \begin{itemize}
+    \item If one of the DoFs $(s)$ is discrete, $f$ can be expressed as a column vector $f = [f_1(x_j),f_2(x_j),...,f_M(x_j)]^T$
+    \item Where $f_i(x_j) = f(x_j,s = s_i)$ is a function in the continuous DoFs $(x_j)$ when the discrete DoF is equal to $s_i$
+  \end{itemize}
+  The choice of how to write a function is a matter of taste but in QM literature, the vector of functions is the preferred choice
+\end{frame}
+
+\begin{frame}
+  \frametitle{Spin Axis}
+  \vspace{1mm}
+  For every particle in a QM system, there are $3$ real numbers, $n_x$, $n_y$ and $n_z$ such that
+  \begin{itemize}
+    \item $n_x^2 + n_y^2 + n_z^2 = 1 \implies n_x, n_y, n_z$ are the components of a unit vector in $3D$ called spin axis
+    \item Given $3$ Hermitian operators $S_x,S_y$ and $S_z$, the Hermitian operator $S_n = n.S = n_x S_x + n_y S_y + n_z S_z$
+    \item $S_n$ has $M$ eigenvalues equal to $s_1,s_2,...,s_M$, the $M$ spin DoF allowable values 
+    \item Other system particles have different spin axes. $S_n$ is the spin operator about $(n_x,n_y,n_z)$ direction
+    \item The operators $S_x,S_y$ and $S_z$ are fixed and they depend only on the particle's nature
+    \item $S_x,S_y$ and $S_z$ are the spin operators about the $x$, $y$ and $z$ axes respectively
+  \end{itemize}
+  The particle does not spin about any axis, hence, the spin axis is only a conceptual direction that causes the combination $S_n = n.S$ to give an operator with eigenvalues $\{s_1,s_2,...,s_M\}$
+  \begin{itemize}
+    \item However, a coordinate system rotation causes the spin axis components $n_i$ to change (vector rotation)
+  \end{itemize}
+  Any function $f$ in the DoFs of a particle can be written as $f(x,y,z,s) = f(x_j,s)$ if all DoFs are continuous
+  \begin{itemize}
+    \item If one of the DoFs $(s)$ is discrete, $f$ can be expressed as a column vector $f = [f_1(x_j),f_2(x_j),...,f_M(x_j)]^T$
+    \item Where $f_i(x_j) = f(x_j,s = s_i)$ is a function in the continuous DoFs $(x_j)$ when the discrete DoF is equal to $s_i$
+  \end{itemize}
+  The choice of how to write a function is a matter of taste but in QM literature, the vector of functions is the preferred choice
+\end{frame}
+
+\begin{frame}
   \frametitle{Mathematical Framework of Quantum Mechanics}
   \vspace{1mm}
-  A Quantum Mechanical system consists of a number $N$ of particles and its state is represented by a number $M$ of kets $\ket{\psi_i} : i = 1 ... M$, all in the same Hilbert space $H_x$ (position Hilbert space)
+  The state of a QM system is represented by a number $M$ of kets $\ket{\psi_i} : i = 1 ... M$, all in the same Hilbert space $H_x$ (position Hilbert space)
   \begin{itemize}
     \item $H_x$ is spanned by position eigenkets $\ket{x_j}$ such that the function $\psi_i(x_j,t) = \braket{x_j}{\psi_i(t)}$
     \item Each function $\psi_i(x_j,t)$ is a function in the spatial coordinates of all the particles and time where $x_j = \{x_1,y_1,z_1,x_2,y_2,z_2,...,x_N,y_N,z_N\}$, $j$ runs from $1$ to $3N$
@@ -85,27 +234,6 @@
   \begin{itemize}
     \item For a given $x_j$, the spinor is a time varying ket in the finite-dimensional spin Hilbert space $H_s$
     \item The spinor itself is a ket in $H$ space, the tensor product of $H_x$ and $H_s$: $H = H_x \otimes H_s$
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Postulates of Quantum Mechanics}
-  \vspace{1mm}
-  The following statements are postulates of quantum mechanics and can not be derived from anything more fundamental. They can only be, and have extensively been, verified by experiments
-  \begin{itemize}
-    \item All of the system's dynamical variables are represented by Hermitian operators
-    \begin{itemize}
-      \item The position variables are represented by position operators $X_i$
-      \item The linear momentum variables are represented by linear momentum operators $P_i$
-      \item The spin variables are represented by spin operators $S_i$
-    \end{itemize}
-    \item The measurement of a variable represented by an operator $A$ for a system in state $\ket{\psi}$ results in the observation of one of $A$'s eigenvalues
-    \item The probability of getting a measurement $a$ for a dynamical variable $A$ is proportional to the inner product of the system's ket $\ket{\psi}$ and $A$'s eigenket corresponding to its eigenvalue $a$
-    \item Upon performing a measurement, the system's state changes to the eigenket corresponding to the measurement outcome eigenvalue (wavefunction collapse)
-    \item The system evolves in time according to Schrodinger's equation $i \hbar {d \over dt} \ket{\psi} = H \ket{\psi}$
-    \begin{itemize}
-      \item $H$ is an operator called the Hamiltonian of the system and it is a function in the position $X$ and the momentum $P$ operators
-    \end{itemize}
   \end{itemize}
 \end{frame}
 
@@ -173,10 +301,6 @@
   When using unitary transformations to transform kets, the transformed ket can differ from the original ket by a phase factor $\exp(i \delta)$ since it this does not change the kets 
   \begin{itemize}
     \item $\delta$ is independent of $A$ and $\psi$ for $U(\tau)$ to be linear
-  \end{itemize}
-  The position operator $X_i$ eigenkets $\ket{x_i} \implies X_i \ket{x_i} = x_i \ket{x_i} \implies \braket{x}{X_i \psi} = \bra{x X_i} \ket{\psi} = x_i \braket{x}{\psi} = x_i \psi$
-  \begin{itemize}
-    \item The action of the position operator $X_i$ on a ket $\ket{\psi}$ is to multiply it by the coordinate $x_i$: $X_i \ket{\psi} = x_i \ket{\psi}$
   \end{itemize}
 \end{frame}
 
