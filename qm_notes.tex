@@ -417,17 +417,17 @@
 \begin{frame}
   \frametitle{Space Translation Generator}
   \vspace{1mm}
-  An infinitesimal translation $\epsilon$ in space in the $i$ direction changes the space coordinates but does not change spin direction ($S_n = S_{n'}$ for any spin operator in the direction $\hat{n}' = \hat{n}$)
+  An infinitesimal translation $\epsilon$ in space in the $i$ direction changes the space coordinates but does not change spin direction ($S^n = S^{n'}$ for any spin operator in the direction $\hat{n}' = \hat{n}$) $\implies \ket{\psi'} = U_{xi}(\epsilon) U_{si}(\epsilon) \ket{\psi}$
   \begin{itemize}
-    \item The transformed spinors $\ket{\psi'} = U_i(\epsilon) D_i(\epsilon) \ket{\psi} = U_i(\epsilon) I \ket{\psi} \implies T = 0$
-    \item The spinor components change such that $\psi'_k(x') = \psi_k(x + \epsilon e^i)$ where $e^i$ is the unit vector in $i$ direction
-    \item $\psi'_k(x') = \psi_k(x) + \epsilon {\partial \over \partial x_i} \psi_k(x) + O(\epsilon^2) = [I + \epsilon {\partial \over \partial x_i}] \psi_k \implies {i \over \hbar} \epsilon P_i = \epsilon {\partial \over \partial x_i} \implies P_i = -i \hbar {\partial \over \partial x_i}$
+    \item The transformed kets $\ket{\psi'} = U_{xi}(\epsilon) U_{si}(\epsilon) \ket{\psi} = U_{xi}(\epsilon) I \ket{\psi} \implies D_i = 0$
+    \item The wave functions $\psi_s$ change such that $\psi'_s(x') = \psi_s(x + \epsilon e^i)$ where $e^i$ is the unit vector in $i$ direction
+    \item $\psi'_s(x') = \psi_s(x) + \epsilon {\partial \over \partial x_i} \psi_s(x) + O(\epsilon^2) = [I + \epsilon {\partial \over \partial x_i}] \psi_s \implies {i \over \hbar} \epsilon P_i = \epsilon {\partial \over \partial x_i} \implies P_i = -i \hbar {\partial \over \partial x_i}$
     \item $P_i = -i \hbar {\partial \over \partial x_i}$ is the generator of infinitesimal translations in $i$ direction
     \item For an N-particle system, $P_i = -i \hbar \Sigma^{N -1}_{j = 0} {\partial \over \partial x_{3j + i}}$ because the $i^{th}$ coordinate ($x_{3j + i}$) of all particles change
     \item It can be shown that $\bra{\psi_1}\ket{P_i \psi_2} = \bra{P_i \psi_1} \ket{\psi_2} \implies P_i$ is Hermitian 
     \item $P_i$ is Hermitian $\implies U_i(\epsilon) = I + {i \over \hbar} \epsilon P_i$ is a symmetry transformation that preserves the system state
     \item Space translation is a symmetry operation only if the translation is along a cartesian coordinate dimension $\implies P_i$ is the generator of translation only in cartesian coordinates, for other coordinate systems $P_\eta \neq -i \hbar {\partial \over \partial \eta}$
-    \item The finite translation transformation in the $i$ direction is $U_i(s) = \exp(s {\partial \over \partial x_i})$
+    \item The finite translation transformation in the $i$ direction is $U_i(\alpha) = \exp(\alpha {\partial \over \partial x_i})$
     \item $[X_i,P_j]f = -i \hbar x_i {\partial f \over \partial x_j} + i \hbar {\partial \over \partial x_j} x_i f = i \hbar \delta_{ij} f \implies [X_i,P_j] = i \hbar \delta_{ij}$
   \end{itemize}
 \end{frame}
@@ -435,20 +435,20 @@
 \begin{frame}
   \frametitle{Space Rotation Generator}
   \vspace{1mm}
-  A rotation by an infinitesimal angle $\alpha$ in space about the $i$ axis changes the space coordinates and the spin direction ($S_n \neq S_{n'}$ for any spin operator in the direction $\hat{n}$ because $\hat{n}' \neq \hat{n}$)
+  A rotation by an infinitesimal angle $\alpha$ in space about the $i$ axis changes the space coordinates and the spin direction ($S^n \neq S^{n'}$ for any spin operator in the direction $\hat{n}$ because $\hat{n}' \neq \hat{n}$) $\implies \ket{\psi'} = U_{xi}(\epsilon) U_{si}(\epsilon) \ket{\psi}$
   \begin{itemize}
-    \item The spinor components change such that $\psi'_k(x') = \psi_k(x + \alpha \epsilon_{ilm} x_l e^m e^i)$, $e^p$ is the unit vector in $p$ direction
-    \item $\psi'_k(x') = \psi_k(x) + \alpha \epsilon_{ilm} x_l {\partial \over \partial x_m} \psi_k(x_j) + O(\alpha^2) = [I + \alpha \epsilon_{ilm} x_l {\partial \over \partial x_m}] \psi_k \implies {i \over \hbar} \alpha L_i = \alpha \epsilon_{ilm} x_l {\partial \over \partial x_m}$
-    \item $L_i = -i \hbar \epsilon_{ilm} x_l {\partial \over \partial x_m}$ is the generator of infinitesimal rotations about $i$ axis for spinor components
+    \item The wave functions $\psi_s$ change such that $\psi'_s(x') = \psi_s(x + \alpha \epsilon_{ilm} x_l e^m e^i)$, $e^p$ is the unit vector in $p$ direction
+    \item $\psi'_s(x') = \psi_s(x) + \alpha \epsilon_{ilm} x_l {\partial \over \partial x_m} \psi_s(x_j) + O(\alpha^2) = [I + \alpha \epsilon_{ilm} x_l {\partial \over \partial x_m}] \psi_s \implies {i \over \hbar} \alpha L_i = \alpha \epsilon_{ilm} x_l {\partial \over \partial x_m}$
+    \item $L_i = -i \hbar \epsilon_{ilm} x_l {\partial \over \partial x_m}$ is the generator of infinitesimal rotations about $i$ axis for wave functions $\psi_s(x_i)$
     \item Since $P_i = -i \hbar {\partial \over \partial x_m}$, then $L_i = \epsilon_{ilm} X_l P_m$
     \item N-particle system $L_i = \Sigma^{N -1}_{j = 0} \epsilon_{(3j + i)lm} X_l P_m$ because coordinates of all particles rotate about the $i^{th}$ axis
     \item It can be shown that $\bra{\psi_1}\ket{L_i \psi_2} = \bra{L_i \psi_1} \ket{\psi_2} \implies L_i$ is Hermitian 
     \item $L_i$ is Hermitian $\implies U_i(\alpha) = I + {i \over \hbar} \alpha L_i$ is a symmetry transformation that preserves the system state
-    \item The finite rotation transformation about $i$ axis is $U_i(s) = \exp(s \epsilon_{ilm} x_l {\partial \over \partial x_m})$
+    \item The finite rotation transformation about $i$ axis is $U_i(\beta) = \exp(\beta \epsilon_{ilm} x_l {\partial \over \partial x_m})$
     \item $[X_i,L_j] = [X_i,\epsilon_{jlm} X_l P_m] = \epsilon_{jlm} (X_i X_l P_m - X_l P_m X_i) = \epsilon_{jlm} X_l [X_i,P_m] = \epsilon_{jlm} X_l \delta_{im} i \hbar = i \hbar \epsilon_{ijl} X_l$
-    \item The form of the discrete generator $T_i$ is still to be determined $\implies \ket{\psi'} = [I + {i \over \hbar} \alpha L_i] D_i(\alpha) \ket{\psi}$
+    \item The form of the spin transform $U_{si}$ is still to be determined $\implies \ket{\psi'} = [I + {i \over \hbar} \alpha L_i] U_{si}(\alpha) \ket{\psi}$
     \begin{itemize}
-      \item The overall transformation is $U_i(\alpha) D_i(\alpha) = [I + {i \over \hbar} \alpha L_i] [I + {i \over \hbar} \alpha T_i] = [I + {i \over \hbar} \alpha (L_i + T_i)] = [I + {i \over \hbar} \alpha J_i]$ where $J_i = L_i + T_i$
+      \item The overall transformation is $U_{xi}(\alpha) U_{si}(\alpha) = [I + {i \over \hbar} \alpha L_i] [I + {i \over \hbar} \alpha D_i] = [I + {i \over \hbar} \alpha (L_i + D_i)] = [I + {i \over \hbar} \alpha J_i]$ where $J_i = L_i + D_i$
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -456,20 +456,20 @@
 \begin{frame}
   \frametitle{Commutators of IT Generators}
   \vspace{1mm}
-  Take two invarance transformations $\exp(i s_1 K_1)$ and $\exp(i s_2 K_2)$, and let $U_{12}$ be the product of the transformations and their inverses
+  Take two invarance transformations $\exp(i \alpha_1 K_1)$ and $\exp(i \alpha_2 K_2)$, and let $U_{12}$ be the product of the transformations and their inverses
   \begin{itemize}
-    \item $U_{12} = \exp(i s_1 K_1) \exp(i s_2 K_2) \exp(-i s_1 K_1) \exp(-i s_2 K_2)$
-    \item By expanding $U$ in powers of $s_i$ and keeping only up to the second order terms, $U_{12} \approx I + s_1 s_2 [K_2,K_1]$
+    \item $U_{12} = \exp(i \alpha_1 K_1) \exp(i \alpha_2 K_2) \exp(-i \alpha_1 K_1) \exp(-i \alpha_2 K_2)$
+    \item By expanding $U$ in powers of $\alpha_i$ and keeping only up to the second order terms, $U_{12} \approx I + \alpha_1 \alpha_2 [K_2,K_1]$
   \end{itemize}
-  The infinitesimal transformation $U_{12} \approx I + s_1 s_2 [K_2,K_1]$ is equivalent to the application of $10$ invariance transformations (IT) up to an arbitrary phase factor $\exp(i \delta)$
+  The infinitesimal transformation $U_{12} \approx I + \alpha_1 \alpha_2 [K_2,K_1]$ is equivalent to the application of $10$ invariance transformations (IT) up to an arbitrary phase factor $\exp(i \delta)$
   \begin{itemize}
-    \item $U_{12} = \exp(i \delta) \Pi_{i = 1}^{10} \exp(i \alpha_j K_j) \approx \exp(i \delta) (I + i \Sigma_{j = 1}^{10} \alpha_j K_j)$ for infinitesimal $s_1$ and $s_2$
-    \item $(1 - i \delta)(I + s_1 s_2 [K_2,K_1]) = I + i \Sigma_{j = 1}^{10} \alpha_j K_j \implies [K_2,K_1] =  i \Sigma_{j = 1}^{10} {\alpha_j \over s_1 s_2} K_j + i \delta I$
-    \item Hence, the commutator of any two generators is a linear combination of all other IT generators
+    \item $U_{12} = \exp(i \delta) \Pi_{i = 1}^{10} \exp(i \beta_j K_j) \approx \exp(i \delta) (I + i \Sigma_{j = 1}^{10} \beta_j K_j)$ for infinitesimal $\alpha_1$ and $\alpha_2$
+    \item $(1 - i \delta)(I + \alpha_1 \alpha_2 [K_2,K_1]) = I + i \Sigma_{j = 1}^{10} \beta_j K_j \implies [K_2,K_1] =  i \Sigma_{j = 1}^{10} {\beta_j \over \alpha_1 \alpha_2} K_j + i \delta I$
+    \item Hence, the commutator of any two IT generators is a linear combination of all other IT generators
     \item Since this derivation does not depend on particular generators, it holds for the general case of any two IT generators
     \item The extra term $i \delta I$ is a multiple of identity that accounts for any phase factors
   \end{itemize}
-  This is only true because the IT generators are independent of the transformation parameter $s$, otherwise, the relationship between commutators and generators would be non-linear
+  This is only true because the IT generators are independent of the transformation parameter $\alpha$, otherwise, the relationship between commutators and generators would be non-linear
 \end{frame}
 
 \begin{frame}
@@ -487,8 +487,8 @@
     \item Hence, $R^{-1}_{i} R^{-1}_{j} R_i R_j = I + {\epsilon_1 \epsilon_2 \over \hbar^2} [M^j,M^i]$ up to a second order in $\epsilon$
     \item But $[M^i,M^j] = i \hbar \epsilon_{ijk} M^k \implies R^{-1}_{i} R^{-1}_{j} R_i R_j = I - i {\epsilon_1 \epsilon_2 \over \hbar} \epsilon_{ijk} M^k$
     \item Since $R_{k}(-\epsilon_1 \epsilon_2) = I - i {\epsilon_1 \epsilon_2 \over \hbar} M^k \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = U(\tau(-\epsilon_{ijk} R_k,0,0,0))$
-    \item Hence, $[J_j,J_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [J_j,J_i] = -i \epsilon_{ijk} J_k + i \delta I \implies [J_i,J_j] = i \epsilon_{ijk} J_k + i \delta I$
-    \item $[J_i,J_j] = i \epsilon_{ijk} J_k + i \delta I = -[J_j,J_i] = -i \epsilon_{jik} J_k - i \delta I = i \epsilon_{ijk} J_k - i \delta I \implies \delta = 0 \implies [J_i,J_j] = i \epsilon_{ijk} J_k$
+    \item Hence, $[J_j,J_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [J_j,J_i] = -i \epsilon_{ijk} J_k + i \delta I \implies [J_i,J_j] = i \epsilon_{ijk} J_k - i \delta I$
+    \item $[J_i,J_j] = i \epsilon_{ijk} J_k - i \delta I = -[J_j,J_i] = -i \epsilon_{jik} J_k + i \delta I = i \epsilon_{ijk} J_k + i \delta I \implies \delta = 0 \implies [J_i,J_j] = i \epsilon_{ijk} J_k$
   \end{itemize}
 \end{frame}
 
@@ -592,18 +592,18 @@
   \begin{itemize}
     \item $[P_i,P_j] = - \hbar^2 ({\partial \over \partial} x_i {\partial \over \partial x_j} - {\partial \over \partial x_j} {\partial \over \partial x_i}) = 0 \implies [P_i,P_j] = 0$ as derived from the IT commutator relations
   \end{itemize}
-  For space rotation generators, $[J_i,J_j] = i \epsilon_{ijk} J_k$, $J_i = L_i + T_i$ and
+  For space rotation generators, $[J_i,J_j] = i \epsilon_{ijk} J_k$, $J_i = L_i + D_i$ and
   \begin{itemize}
-    \item $[L_i,T_j] = 0$, $L_i = \epsilon_{ilm} X_l P_m$ and $[X_i,L_j] = i \hbar \epsilon_{ijl} X_l$
+    \item $[L_i,D_j] = 0$, $L_i = \epsilon_{ilm} X_l P_m$ and $[X_i,L_j] = i \hbar \epsilon_{ijl} X_l$
     \item $[P_i,L_j] = [P_i,\epsilon_{jlm} X_l P_m] = \epsilon_{jlm} (P_i X_l P_m - X_l P_m P_i) = \epsilon_{jlm} [P_i,X_l] P_m = -\epsilon_{jlm} P_m \delta_{il} i \hbar = i \hbar \epsilon_{ijl} P_l$
     \item $[L_i,L_j] = \epsilon_{ilm} [X_l P_m,L_j] = \epsilon_{ilm} (X_l [P_m,L_j] + [X_l,L_j] P_m) = i \hbar \epsilon_{ilm} (\epsilon_{mjq} X_l P_q + \epsilon_{ljq} X_q P_m)$
     \item $[L_i,L_j] = i \hbar (X_i P_j - X_j P_i)$ and $\epsilon_{ijk} L_k = \epsilon_{ijk} \epsilon_{klm} X_l P_m = X_i P_j - X_j P_i$, then $[L_i,L_j] = i \epsilon_{ijk} L_k$
-    \item $[J_i,J_j] = [L_i + T_i,L_j + T_j] = [L_i,L_j] + [T_i,L_j] + [L_i,T_j] + [T_i,T_j] = i \epsilon_{ijk} L_k + [T_i,T_j] = i \epsilon_{ijk} (L_k + T_k)$
-    \item Then, $[T_i,T_j] = i \epsilon_{ijk} T_k$
+    \item $[J_i,J_j] = [L_i + D_i,L_j + D_j] = [L_i,L_j] + [D_i,L_j] + [L_i,D_j] + [D_i,D_j] = i \epsilon_{ijk} L_k + [D_i,D_j] = i \epsilon_{ijk} (L_k + D_k)$
+    \item Then, $[D_i,D_j] = i \epsilon_{ijk} D_k$
   \end{itemize}
-  This result is independent of the fact that $T_i$ is a discrete operator, it holds true even if $T_i$ is a continuous one
+  This result is true whether $D_i$ is a discrete or a continuous generator
   \begin{itemize}
-    \item $[X_i,L_j] = i \hbar \epsilon_{ijl} X_l \implies [X_i,J_j] = [X_i,L_j + T_j] = i \hbar \epsilon_{ijl} X_l + [X_i,T_j]$
+    \item $[X_i,L_j] = i \hbar \epsilon_{ijl} X_l \implies [X_i,J_j] = [X_i,L_j + D_j] = i \hbar \epsilon_{ijl} X_l + [X_i,D_j]$
   \end{itemize}
 \end{frame}
 
