@@ -105,55 +105,57 @@
     \item The operator $S$ represents the spin DoF of the particle
     \item Continuous/discrete DoFs have continuous/discrete eigenkets
     \end{itemize}
-  An N-particle system in $3D$ has $3N$ positions represented by operators $X_i, i = 1 \to 3N$ and $N$ spins represented by operators $S_i, i = 1 \to N$
+  % An N-particle system in $3D$ has $3N$ positions represented by operators $X_i, i = 1 \to 3N$ and $N$ spins represented by operators $S_i, i = 1 \to N$
+  The Hilbert space containing the kets describing one-particle systems is spanned by kets $\ket{x_1 x_2 x_3 s}$ each corresponding to a particle position $(x_1,x_2,x_3)$ and spin $s$
   \begin{itemize}
-    \item The Hilbert space containing the kets describing one-particle systems is spanned by kets $\ket{x_1 x_2 x_3 s}$ each corresponding to a particle position $(x_1,x_2,x_3)$ and spin $s$
-    \item The Hilbert space containing the kets describing N-particle systems is spanned by kets $\ket{x_1 x_2 ... x_{3N} s_1 s_2 ... s_N}$ each corresponding to the N particles being at positions $(x_1,x_{N+1},x_{2N+1}), (x_2,x_{N+2},x_{2N+2}), ..., (x_N,x_{2N},x_{3N})$ and having spins $s_1,s_2,...,s_N$
+    \item In general, the system's state ket $\ket{\psi}$ is a linear combination of the kets $\ket{x_1 x_2 x_3 s}$
+    \item The abstract ket $\ket{x_1 x_2 x_3 s}$ will be denoted by $\ket{x,s}$
+    \item The following development will be for a single particle systems, multi-particle systems will be handled later on
+    % \item The Hilbert space containing the kets describing N-particle systems is spanned by kets $\ket{x_1 x_2 ... x_{3N} s_1 s_2 ... s_N}$ each corresponding to the N particles being at positions $(x_1,x_{N+1},x_{2N+1}), (x_2,x_{N+2},x_{2N+2}), ..., (x_N,x_{2N},x_{3N})$ and having spins $s_1,s_2,...,s_N$
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Kets of QM Systems}
   \vspace{1mm}
-  Any system ket $\ket{\psi}$ can be decomposed in the position-spin basis $\ket{x,s}$ where $x$ stands for all position variables and $s$ stands for all spin variables
+  Any system ket $\ket{\psi}$ can be decomposed in the position-spin basis $\ket{x,s}$ where $x$ stands for all position variables and $s$ stands for the spin variable
   \begin{itemize}
-    \item $\ket{\psi} = \int_x \int_s \psi(x_1,...,x_{3N},s_1,...,s_N) \ket{x_1 ... x_{3N} s_1 ... s_N} dx ds$
-    \item Here, $\int_x .. dx$ and $\int_s .. ds$ are integrations over all position/spin DoFs, let $\int_{\Omega} ... d\Omega = \int_x \int_s ... dx ds$
+    \item $\ket{\psi} = \int_x \int_s \psi(x,s) \ket{x,s} dx ds$
+    \item Here, $\int_x .. dx_i$ and $\int_s .. ds$ are integrations over all position/spin DoFs, let $\int_{\Omega} ... d\Omega = \int_x \int_s ... dx ds$
     \item Integrals become sums if any of the DoFs turn out to be discrete
-    \item Hence $\ket{\psi} = \int_{\Omega} \psi(x_i,s_j) \ket{x_i,s_j} d\Omega$ where $x_i$ is a configuration in the $3N$-dimensional position space and $s_j$ is a configuration in the $N$-dimensional spin space
-    \item $\psi(x_i,s_j)$ is called the system's wave function. It is a function in all of the system's degrees of freedom
-    \item $\psi(x_i,s_j)$ is the projection of $\ket{\psi} on $\ket{x_i,s_j}$: $\braket{x_i,s_j}{\psi} = \int_{\Omega} \psi(x_l,s_m) \braket{x_i,s_j}{x_l,s_m} d\Omega = \psi(x_i,s_j)$
+    \item Hence $\ket{\psi} = \int_{\Omega} \psi(x,s) \ket{x,s} d\Omega$ where $x$ is a point in the $3$-dimensional position space and $s$ is a point in the $1$-dimensional spin space
+    \item $\psi(x,s)$ is called the system's wave function. It is a function in all of the system's degrees of freedom
+    \item $\psi(x,s)$ is the projection of $\ket{\psi}$ on $\ket{x,s}$: $\braket{x,s}{\psi} = \int_{\Omega} \psi(x',s') \braket{x,s}{x',s'} d\Omega = \psi(x,s)$
   \end{itemize}
-  The operators $X_i$ and $S_i$ will be chosen such that any ket $\ket{x_i,s_j}$ is a simultaneous eigenket for all of them
+  The operators $X_i$ and $S$ will be chosen such that any ket $\ket{x,s}$ is a simultaneous eigenket for all of them
   \begin{itemize}
     \item This is required in order to allow the system's particles to have defined positions and spins simultaneously
     \item Otherwise, particles in certain positions will have a distribution of spins and vice-versa which is inconsistent with positions and spins being independent DoFs
-    \item Hence, the commutators $[X_i,X_j] = [X_i,S_j] = [S_i,S_j] = 0$ for all $i$ and $j$
+    \item Hence, the commutators $[X_i,X_j] = [X_i,S] = 0$ for all $i$ and $j$
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Position and Spin Operators}
   \vspace{1mm}
-  For the position operator $X_k$ to have the ket $\ket{x_i,s_j}$ as an eigenket, $X_k \ket{x_i,s_j} = x_k \ket{x_i,s_j}$
+  For the position operator $X_k$ to have the ket $\ket{x,s}$ as an eigenket, $X_k \ket{x,s} = x_k \ket{x,s}$
   \begin{itemize}
-    \item $x_k$ is the value of the $k^{th}$ spatial coordinate when the system particles are in the state $\ket{x_i,s_j}$
-    \item Consequently, $\braket{x_i,s_j}{X_k \psi} = \bra{x_i,s_j X_k} \ket{\psi} = x_k \braket{x_i,s_j}{\psi} = x_k \psi(x_i,s_j)$
+    \item $x_k$ is the value of the $k^{th}$ spatial coordinate when the system is in the state $\ket{x,s}$
+    \item Consequently, $\braket{x,s}{X_k \psi} = \bra{x,s X_k} \ket{\psi} = x_k \braket{x,s}{\psi} = x_k \psi(x,s)$
     \item Hence, the position operator $X_k$ acts on a ket $\ket{\psi}$ by multiplying it by the $k^{th}$ coordinate: $X_k \ket{\psi} = x_k \ket{\psi}$
     \item This is consistent with the commutation requirement $[X_i,X_j] = 0$ since $[X_i,X_j] = x_i x_j - x_j x_i = 0$
     \item The position operators do not depend on the spin DoF and they do not affect it
   \end{itemize}
-  Similarly, for the spin operator $S_k$ to have the ket $\ket{x_i,s_j}$ as an eigenket, $S_k \ket{x_i,s_j} = s_k \ket{x_i,s_j}$
+  Similarly, for the spin operator $S$ to have the ket $\ket{x,s}$ as an eigenket, $S \ket{x,s} = s \ket{x,s}$
   \begin{itemize}
-    \item $s_k$ is the value of the $k^{th}$ spin when the system particles are in the state $\ket{x_i,s_j}$
-    \item Consequently, $\braket{x_i,s_j}{S_k \psi} = \bra{x_i,s_j S_k} \ket{\psi} = s_k \braket{x_i,s_j}{\psi} = s_k \psi(x_i,s_j)$
-    \item Hence, the spin operator $S_k$ acts on a ket $\ket{\psi}$ by multiplying it by the $k^{th}$ spin: $S_k \ket{\psi} = s_k \ket{\psi}$
-    \item This is consistent with the commutation requirement $[S_i,S_j] = 0$ since $[S_i,S_j] = s_i s_j - s_j s_i = 0$
+    \item $s$ is the value of the spin when the system is in the state $\ket{x,s}$
+    \item Consequently, $\braket{x,s}{S \psi} = \bra{x,s S} \ket{\psi} = s \braket{x,s}{\psi} = s \psi(x,s)$
+    \item Hence, the spin operator $S$ acts on a ket $\ket{\psi}$ by multiplying it by the spin: $S \ket{\psi} = s \ket{\psi}$
     \item The spin operators do not depend on the position DoFs and they do not affect them
   \end{itemize}
   Since all position and spin eigenvalues are real, the position-spin commutation requirement is satisfied
   \begin{itemize}
-    \item $[X_i,S_j] = 0$ since $[X_i,S_j] = x_i s_j - s_j x_i = 0$
+    \item $[X_i,S] = 0$ since $[X_i,S] = x_i s - s x_i = 0$
   \end{itemize}
 \end{frame}
 
@@ -180,15 +182,15 @@
 \begin{frame}
   \frametitle{Spin Axis}
   \vspace{1mm}
-  Let the spin operator for a given spin axis $\hat{n}$ for particle $i$ be $S^n_i$
+  Let the spin operator for a given spin axis $\hat{n}$ for the particle be $S^n$
   \begin{itemize}
-    \item If the system's ket $\psi$ is an eigenket of $S^n_i$, we say that the spin axis of the particle $i$ is $\hat{n}$
+    \item If the system's ket $\psi$ is an eigenket of $S^n$, we say that the spin axis of the particle is $\hat{n}$
     % \item The forms of $S_x, S_y$ and $S_z$ depend on the particle's nature and will be determinated later
     % \item Form the operator $S_n = n.S = n_x S_x + n_y S_y + n_z S_z$, this is the spin operator in the $\hat{n}$ direction
-    \item If not, then particle $i$ spins about some other axis which can be obtained by varying $n_x,n_y$ and $n_z$ until the $\ket{\psi}$ becomes an eigenket of $S^n_i$ 
-    \item For multiple-particle systems, the spin operators for different particles commute regardless of the spin axes since the spin DoFs are independent $[S^{n_i}_i,S^{n_j}_j] = 0$
+    \item If not, then particle spins about some other axis which can be obtained by varying $n_x,n_y$ and $n_z$ until the $\ket{\psi}$ becomes an eigenket of $S^n$ 
+    % \item For multiple-particle systems, the spin operators for different particles commute regardless of the spin axes since the spin DoFs are independent $[S^{n_i}_i,S^{n_j}_j] = 0$
     % \item For spin axes in the $x,y$ and $z$ directions, the $i^{th}$ particle spin operators are $S^x_i,S^y_i$ and $S^z_i$ respectively
-    \item For any $\hat{n}$, $S^n_i$ has $M$ eigenvalues equal to $s_1,s_2,...,s_M$, the $M$ spin DoF allowable values for particle $i$
+    \item For any $\hat{n}$, $S^n$ has $M$ eigenvalues equal to $s_1,s_2,...,s_M$, the $M$ spin DoF allowable values for the particle
     \item As $\hat{n}$ changes, the eigenkets corresponding to the $M$ eigenvalues change 
     \item A coordinate system rotation causes the spin axis components $n_i$ to change (vector rotation)
     \item This is not the case for a coordinate system translation or a time shift where the spin axis remains the same
@@ -325,29 +327,27 @@
   \end{itemize}
   Upon applying an STC transformation $\tau$, the system ket $\ket{\psi}$ transform to ket $\ket{\psi'} = U(\tau) \ket{\psi}$
   \begin{itemize}
-    \item The kets $\ket{x_i,s_j}$ transform to $\ket{x'_i,s'_j}$ where $x'_i = \tau_x(x_i)$ and $s'_i = \tau_s(x_i)$
-    \item To preserve the system state: $\braket{x'_i,s'_j}{\psi'} = \braket{x_i,s_j}{\psi}$ for all $x_i$ and $s_i$ (preserve all measurement probabilities)
-    \item $\ket{\psi'} = U(\tau) \ket{\psi} \implies \braket{x'_i,s'_j}{\psi'} = \braket{x'_i,s'_j}{U(\tau) \psi} \implies \psi'(x'_i,s'_j) = [U(\tau) \psi](x'_i,s'_j)$
-    \item But $\psi'(x'_i,s'_j) = \braket{x'_i,s'_j}{\psi'} = \braket{x_i,s_j}{\psi} = \psi(x_i,s_j) = \psi'(\tau_x(x_i),\tau_s(x_i)) = \psi(\tau^{-1}_x(x'_i),\tau^{-1}_s(x'_i))$ 
+    \item The kets $\ket{x,s}$ transform to $\ket{x',s'}$ where $x' = \tau_x(x)$ and $s' = \tau_s(x)$
+    \item To preserve the system state: $\braket{x',s'}{\psi'} = \braket{x,s}{\psi}$ for all $x$ and $s$ (preserve all measurement probabilities)
+    \item $\ket{\psi'} = U(\tau) \ket{\psi} \implies \braket{x',s'}{\psi'} = \braket{x',s'}{U(\tau) \psi} \implies \psi'(x',s') = [U(\tau) \psi](x',s')$
+    \item But $\psi'(x',s') = \braket{x',s'}{\psi'} = \braket{x,s}{\psi} = \psi(x,s) = \psi'(\tau_x(x),\tau_s(x)) = \psi(\tau^{-1}_x(x'),\tau^{-1}_s(x'))$ 
     \item Then $\ket{\psi'} = U(\tau) \ket{\psi} \implies \psi'(x'_i,s'_j) = [U(\tau) \psi](x'_i,s'_j) = \psi(\tau^{-1}_x(x'_i),\tau^{-1}_s(x'_i))$
-    \item 
+    \item Hence, the kets transform in a direction opposite to the coordinate system transformation to preserve their values
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Coordinate System Transformations III}
   \vspace{1mm}
-  Hence, the kets transform in a direction opposite to the coordinate system transformation to preserve their values.
+  The transformation $\tau$ depends only on the position $x$ variables of the wave function and not on the spin variables $s$ because every point in space-time is transformed by $\tau$ while the particles' spins are not
 
-  The transformation $\tau$ depends only on the position $x_i$ variables of the wave function and not on the spin variables $s_i$ Because every point in space-time is transformed by $\tau$ while the particles' spins are not
-
-  Let $\psi_s(x_i)$ denote the system's wave function $\psi(x_i,s_j)$ evaluated at the spin configuration $s$. The application of an STC transformation changes the system kets in two ways
+  Let $\psi_s(x)$ denote the system's wave function $\psi(x,s)$ evaluated at the spin $s$. The application of an STC transformation changes the system kets in two ways
   \begin{itemize}
-    \item The functions $\psi_s(x_i)$ transform such that their values at one space-time point after transformation are reassigned to the values they had to the same space-time point before transformation $\psi'_s(x'_i) = [U(\tau) \psi_s](x_i) = \psi_s(\tau^{-1}(x_i))$
+    \item The functions $\psi_s(x)$ transform such that their values at one space-time point after transformation are reassigned to the values they had to the same space-time point before transformation $\psi'_s(x') = [U(\tau) \psi_s](x) = \psi_s(\tau^{-1}(x))$
     \item This is required to preseve the particle's position DoFs and all dynamical variables depending on them
-    \item Otherwise, a measurement of a dynamical variable on a particle in spin configuration $s$ would yield different outcomes after transformation since the transformation of the function $\psi_s(x_i)$ does not preserve its values
+    \item Otherwise, a measurement of a dynamical variable on a particle in spin configuration $s$ would yield different outcomes after transformation since the transformation of the function $\psi_s(x)$ does not preserve its values
     \item The spins also get reassigned so that $\psi_s$ becomes $\psi_{s'}$
-    \item This is required to preserve the particles' spin DoFs after the transformation 
+    \item This is required to preserve the particle's spin DoFs after the transformation 
     \item Otherwise, a particle in an eigenket state of a spin operator $S^n$ in the $\hat{n}$ direction would not necessarily remain and eigenket for the operator $S_{n'}$ in the transformed direction $\hat{n}' = \tau(\hat{n})$
   \end{itemize}
 \end{frame}
@@ -357,31 +357,34 @@
   \vspace{1mm}
   Both position and spin reassignments are linear combinations of the position and spin values before transformation with combination coefficients depending on $\tau$
   \begin{itemize}
-    \item In addition, position reassignments are spin-independent and spin reassignments are position-independent
-    \item Otherwise, upon an STC-transformation, two particles with the same spin in different positions would end up with different spins or two particles in the same position but with different spins would end up in different positions
+    \item Prepare a particle in position $x$ and with spin $s$ and apply the STC transformation $\tau$ to its system
+    \item Prepare another particle in position $x$ and with spin $s'$ and apply $\tau$ to its system
+    \item Prepare a third particle in position $x'$ and with spin $s$ and apply $\tau$ to its system
+    \item In all cases, the transformation should not change the particle's position or spin in the new STC system
+    \item Hence, upon transformation, the position reassignments are spin-independent and spin reassignments are position-independent
     \item This suggests that $U(\tau)$ can be broken down into $U_x(\tau)$ and $U_s(\tau) : U(\tau) = U_x(\tau) U_s(\tau) = U_s(\tau) U_x(\tau)$
-    \item Here, $U_x(\tau)$ transforms $\psi_s(x_i)$ to $\psi_s(x'_i)$ while $U_s(\tau)$ transforms $\psi_s(x_i)$ to $\psi_{s'}(x'_i)$ 
+    \item Here, $U_x(\tau)$ transforms $\psi_s(x)$ to $\psi_s(x')$ while $U_s(\tau)$ transforms $\psi_s(x)$ to $\psi_{s'}(x)$ 
   \end{itemize}
   Hence, the most general effect of an STC transformation on a ket $\ket{\psi}$ is to take it to $\ket{\psi'}$ such that
   \begin{itemize}
     \item $\ket{\psi'} = U_x(\tau) U_s(\tau) \ket{\psi} = U_s(\tau) U_x(\tau) \ket{\psi}$, $U_x(\tau)$ and $U_s(\tau)$ commute because they act on $\ket{\psi}$ DoFs independently 
-    \item $\psi'_s(x'_i) = [U_x(\tau) \psi_s](x'_i) = \psi_s(\tau^{-1}(x_i))$
+    \item $\psi'_s(x') = [U_x(\tau) \psi_s](x') = \psi_s(\tau^{-1}(x))$
     \item $U_s(\tau)$ forms linear combinations of $\psi_s$ functions but does not change each of them independently
-    \item $U_x(\tau)$ is a continuous transformation because position DoFs are continuous (a fact of nature)
-    \item The continuity/discreteness nature of spin DoFs dictate the nature of $U_s(\tau)$ transformation. If it is discrete, it will be an (an $M \times M$ matrix)
+    % \item $U_x(\tau)$ is a continuous transformation because position DoFs are continuous (a fact of nature)
+    % \item The continuity/discreteness nature of spin DoFs dictate the nature of $U_s(\tau)$ transformation. If it is discrete, it will be an (an $M \times M$ matrix)
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Coordinate System Transformations V}
   \vspace{1mm}
-  For continuous STC transformations $\tau(s)$ parametrized by a single parameter $\alpha$, $U_x(\tau) = U_x(\alpha)$ and $U_s(\tau) = U_s(\alpha)$
+  For an STC transformations $\tau(\alpha)$ parametrized by a single continuous parameter $\alpha$, $U_x(\tau) = U_x(\alpha)$ and $U_s(\tau) = U_s(\alpha)$
   \begin{itemize}
     \item Multiple-parameters transformations are the compositions of multiple single-parameter transformation
     \item $U_x(\alpha) = I + \alpha {d U_x \over d\alpha}|_{\alpha = 0} + O(\alpha^2)$ and $U_s(\alpha) = I + \alpha {d U_s \over d\alpha}|_{\alpha = 0} + O(\alpha^2)$
     \item For infinitesimal $\alpha = \epsilon \to 0: U_x(\epsilon) = I + {i \over \hbar} \epsilon K$ and $U_s(\epsilon) = I + {i \over \hbar} \epsilon D$
     \item $K = -i \hbar {d U_x \over d\alpha}|_{\alpha = 0}$ and $D = -i \hbar {d U_s \over d\alpha}|_{\alpha = 0}$ are the Hermitian generators of $U_s(\alpha)$ and $U_s(\alpha)$
-    \item $K$ is a continuous generator while $D$ may be a discrete ($M \times M$ matrix) generator
+    % \item $K$ is a continuous generator while $D$ may be a discrete ($M \times M$ matrix) generator
     \item $\ket{\psi'} = U_x(\epsilon) U_s(\epsilon) \ket{\psi} = (I + {i \over \hbar} \epsilon K)(I + {i \over \hbar} \epsilon T) \ket{\psi} = (I + {i \over \hbar} \epsilon (K + D)) \ket{\psi} = (I + {i \over \hbar} \epsilon V) \ket{\psi}$
     \item $V = K + D$ is the generator of the overall infinitesimal transformation
     \item For finite $\alpha$: $U_x(\alpha) = lim_{N \to \infty} U_x({\alpha \over N})^{N} = lim_{N \to \infty} [I + {i \over \hbar} {\alpha \over N} K]^{N} = \exp({i \over \hbar} \alpha K)$
@@ -423,7 +426,7 @@
     \item The wave functions $\psi_s$ change such that $\psi'_s(x') = \psi_s(x + \epsilon e^i)$ where $e^i$ is the unit vector in $i$ direction
     \item $\psi'_s(x') = \psi_s(x) + \epsilon {\partial \over \partial x_i} \psi_s(x) + O(\epsilon^2) = [I + \epsilon {\partial \over \partial x_i}] \psi_s \implies {i \over \hbar} \epsilon P_i = \epsilon {\partial \over \partial x_i} \implies P_i = -i \hbar {\partial \over \partial x_i}$
     \item $P_i = -i \hbar {\partial \over \partial x_i}$ is the generator of infinitesimal translations in $i$ direction
-    \item For an N-particle system, $P_i = -i \hbar \Sigma^{N -1}_{j = 0} {\partial \over \partial x_{3j + i}}$ because the $i^{th}$ coordinate ($x_{3j + i}$) of all particles change
+    % \item For an N-particle system, $P_i = -i \hbar \Sigma^{N -1}_{j = 0} {\partial \over \partial x_{3j + i}}$ because the $i^{th}$ coordinate ($x_{3j + i}$) of all particles change
     \item It can be shown that $\bra{\psi_1}\ket{P_i \psi_2} = \bra{P_i \psi_1} \ket{\psi_2} \implies P_i$ is Hermitian 
     \item $P_i$ is Hermitian $\implies U_i(\epsilon) = I + {i \over \hbar} \epsilon P_i$ is a symmetry transformation that preserves the system state
     \item Space translation is a symmetry operation only if the translation is along a cartesian coordinate dimension $\implies P_i$ is the generator of translation only in cartesian coordinates, for other coordinate systems $P_\eta \neq -i \hbar {\partial \over \partial \eta}$
@@ -441,15 +444,13 @@
     \item $\psi'_s(x') = \psi_s(x) + \alpha \epsilon_{ilm} x_l {\partial \over \partial x_m} \psi_s(x_j) + O(\alpha^2) = [I + \alpha \epsilon_{ilm} x_l {\partial \over \partial x_m}] \psi_s \implies {i \over \hbar} \alpha L_i = \alpha \epsilon_{ilm} x_l {\partial \over \partial x_m}$
     \item $L_i = -i \hbar \epsilon_{ilm} x_l {\partial \over \partial x_m}$ is the generator of infinitesimal rotations about $i$ axis for wave functions $\psi_s(x_i)$
     \item Since $P_i = -i \hbar {\partial \over \partial x_m}$, then $L_i = \epsilon_{ilm} X_l P_m$
-    \item N-particle system $L_i = \Sigma^{N -1}_{j = 0} \epsilon_{(3j + i)lm} X_l P_m$ because coordinates of all particles rotate about the $i^{th}$ axis
+    % \item N-particle system $L_i = \Sigma^{N -1}_{j = 0} \epsilon_{(3j + i)lm} X_l P_m$ because coordinates of all particles rotate about the $i^{th}$ axis
     \item It can be shown that $\bra{\psi_1}\ket{L_i \psi_2} = \bra{L_i \psi_1} \ket{\psi_2} \implies L_i$ is Hermitian 
     \item $L_i$ is Hermitian $\implies U_i(\alpha) = I + {i \over \hbar} \alpha L_i$ is a symmetry transformation that preserves the system state
     \item The finite rotation transformation about $i$ axis is $U_i(\beta) = \exp(\beta \epsilon_{ilm} x_l {\partial \over \partial x_m})$
     \item $[X_i,L_j] = [X_i,\epsilon_{jlm} X_l P_m] = \epsilon_{jlm} (X_i X_l P_m - X_l P_m X_i) = \epsilon_{jlm} X_l [X_i,P_m] = \epsilon_{jlm} X_l \delta_{im} i \hbar = i \hbar \epsilon_{ijl} X_l$
     \item The form of the spin transform $U_{si}$ is still to be determined $\implies \ket{\psi'} = [I + {i \over \hbar} \alpha L_i] U_{si}(\alpha) \ket{\psi}$
-    \begin{itemize}
-      \item The overall transformation is $U_{xi}(\alpha) U_{si}(\alpha) = [I + {i \over \hbar} \alpha L_i] [I + {i \over \hbar} \alpha D_i] = [I + {i \over \hbar} \alpha (L_i + D_i)] = [I + {i \over \hbar} \alpha J_i]$ where $J_i = L_i + D_i$
-    \end{itemize}
+    \item The overall transformation is $U_{xi}(\alpha) U_{si}(\alpha) = [I + {i \over \hbar} \alpha L_i] [I + {i \over \hbar} \alpha S_i] = [I + {i \over \hbar} \alpha (L_i + S_i)] = [I + {i \over \hbar} \alpha J_i]$ where $J_i = L_i + S_i$
   \end{itemize}
 \end{frame}
 
@@ -592,18 +593,19 @@
   \begin{itemize}
     \item $[P_i,P_j] = - \hbar^2 ({\partial \over \partial} x_i {\partial \over \partial x_j} - {\partial \over \partial x_j} {\partial \over \partial x_i}) = 0 \implies [P_i,P_j] = 0$ as derived from the IT commutator relations
   \end{itemize}
-  For space rotation generators, $[J_i,J_j] = i \epsilon_{ijk} J_k$, $J_i = L_i + D_i$ and
+  For space rotation generators, $[J_i,J_j] = i \epsilon_{ijk} J_k$, $J_i = L_i + S_i$ and
   \begin{itemize}
-    \item $[L_i,D_j] = 0$, $L_i = \epsilon_{ilm} X_l P_m$ and $[X_i,L_j] = i \hbar \epsilon_{ijl} X_l$
+    \item $[L_i,S_j] = 0$, $L_i = \epsilon_{ilm} X_l P_m$ and $[X_i,L_j] = i \hbar \epsilon_{ijl} X_l$
     \item $[P_i,L_j] = [P_i,\epsilon_{jlm} X_l P_m] = \epsilon_{jlm} (P_i X_l P_m - X_l P_m P_i) = \epsilon_{jlm} [P_i,X_l] P_m = -\epsilon_{jlm} P_m \delta_{il} i \hbar = i \hbar \epsilon_{ijl} P_l$
     \item $[L_i,L_j] = \epsilon_{ilm} [X_l P_m,L_j] = \epsilon_{ilm} (X_l [P_m,L_j] + [X_l,L_j] P_m) = i \hbar \epsilon_{ilm} (\epsilon_{mjq} X_l P_q + \epsilon_{ljq} X_q P_m)$
     \item $[L_i,L_j] = i \hbar (X_i P_j - X_j P_i)$ and $\epsilon_{ijk} L_k = \epsilon_{ijk} \epsilon_{klm} X_l P_m = X_i P_j - X_j P_i$, then $[L_i,L_j] = i \epsilon_{ijk} L_k$
-    \item $[J_i,J_j] = [L_i + D_i,L_j + D_j] = [L_i,L_j] + [D_i,L_j] + [L_i,D_j] + [D_i,D_j] = i \epsilon_{ijk} L_k + [D_i,D_j] = i \epsilon_{ijk} (L_k + D_k)$
-    \item Then, $[D_i,D_j] = i \epsilon_{ijk} D_k$
+    \item $[J_i,J_j] = [L_i + S_i,L_j + S_j] = [L_i,L_j] + [S_i,L_j] + [L_i,S_j] + [S_i,S_j] = i \epsilon_{ijk} L_k + [S_i,S_j] = i \epsilon_{ijk} (L_k + S_k)$
+    \item Then, $[S_i,S_j] = i \epsilon_{ijk} S_k$
   \end{itemize}
-  This result is true whether $D_i$ is a discrete or a continuous generator
+  This result is true whether $S_i$ is a discrete or a continuous generator
   \begin{itemize}
-    \item $[X_i,L_j] = i \hbar \epsilon_{ijl} X_l \implies [X_i,J_j] = [X_i,L_j + D_j] = i \hbar \epsilon_{ijl} X_l + [X_i,D_j]$
+    \item $[X_i,L_j] = i \hbar \epsilon_{ijl} X_l \implies [X_i,J_j] = [X_i,L_j + S_j] = i \hbar \epsilon_{ijl} X_l + [X_i,S_j]$
+    \item $S_i$ are generators that handle the transformation of spin wave functions $\psi_s(x)$, they are related to the spin operator $S^n$ in the $\hat{n}$ direction as it will be derived
   \end{itemize}
 \end{frame}
 
@@ -620,37 +622,36 @@
   \end{itemize}
   For a space rotation about $j$ axis, the generator is $J_j \implies X'_i = X_i + {i \over \hbar} \alpha [X_i,J_j] + O(\alpha^2)$
   \begin{itemize}
+    \item A point $x$ transforms to $x + \alpha r \times e^j \implies x_k \to x_k + \alpha \epsilon_{lmk} x_l e^j_m$ where $e^j$ is the unit vector in $j$ direction upon a rotation by an infinitesimal angle $\alpha$
     \item $X'_i$ measures the position relative to the rotated coordinates $\implies X_i \ket{x} = x_i \ket{x}$ and $X'_i \ket{x'} = x_i \ket{x'}$
-    \item $\ket{x'} = \exp({i \over \hbar} \alpha J_j) \ket{x} = \ket{x - \alpha \epsilon_{jlm} x_l e^m e^j}$ where $e^j_p = \delta_{mp}$ and $e^m$ are unit vectors in $j$ and $m$ directions
-    \item $X'_i \ket{x'} = (X_i + {i \over \hbar} \alpha [X_i,J_j])\ket{x'} = (x_i - \alpha \epsilon_{lpi} x_l \delta_{jp})\ket{x'} + {i \over \hbar} \alpha [X_i,J_j] \ket{x'} \implies -\alpha \epsilon_{lji} x_l + {i \over \hbar} \alpha [X_i,J_j] = 0$
+    \item $\ket{x'} = \exp({i \over \hbar} \alpha J_j) \ket{x} = \ket{x_k - \alpha \epsilon_{lmk} x_l \delta_{jm}}$ since $e^j_m = \delta_{jm}$ (opposite direction transformation)
+    \item $X'_i \ket{x'} = (X_i + {i \over \hbar} \alpha [X_i,J_j])\ket{x'} = (x_i - \alpha \epsilon_{lmi} x_l \delta_{mj})\ket{x'} + {i \over \hbar} \alpha [X_i,J_j] \ket{x'} \implies -\alpha \epsilon_{lji} x_l + {i \over \hbar} \alpha [X_i,J_j] = 0$
     \item Hence, $[X_i,J_j] = -i \hbar \epsilon_{lji} x_l I = i \hbar \epsilon_{ijl} X_l \implies [J_i,X_j] = i \hbar \epsilon_{ijl} X_l$
   \end{itemize}
-  But $[X_i,J_j] = i \hbar \epsilon_{ijl} X_l + [X_i,T_j] = i \hbar \epsilon_{ijl} X_l \implies [X_i,T_j] = 0$ 
-  \begin{itemize}
-    \item 
-  \end{itemize}
+  But $[X_i,J_j] = i \hbar \epsilon_{ijl} X_l + [X_i,S_j] = i \hbar \epsilon_{ijl} X_l \implies [X_i,S_j] = 0$ 
 \end{frame}
 
-\begin{frame}
-  \frametitle{Position Operator Commutators II}
-  \vspace{1mm}
-  For a velocity transformation in $j$ direction, the generator is $G^t_j \implies X'_i = X_i + i \alpha [X_i,G^t_j] + O(\alpha^2)$
-  \begin{itemize}
-    \item $G^t_j$ is parametrized by $t$ because it transforms space coordinates to ones of a moving coordinate system at time $t$. It is assumed here that origins coincide at $t = 0$
-    \item $X'_i$ measures the position relative to the moving coordinates $\implies X_i \ket{x} = x_i \ket{x}$ and $X'_i \ket{x'} = x_i \ket{x'}$
-    \item $\ket{x'} = \exp(i \alpha G^t_j) \ket{x} = \ket{x + \alpha t e^j}$ where $e^j_p = \delta_{jp}$ is unit vector in $j$ direction
-    \item $X'_i \ket{x'} = (X_i + i \alpha [X_i,G^t_j])\ket{x'} = (x_i + \alpha t \delta_{ij})\ket{x'} + i \alpha [X_i,G^t_j] \ket{x'} \implies \alpha t \delta_{ij} + i \alpha [X_i,G^t_j] = 0$
-    \item Hence, $[X_i,G^t_j] = i \delta_{ij} t I$
-    \item $$
-  \end{itemize}
-\end{frame}
+% \begin{frame}
+%   \frametitle{Position Operator Commutators II}
+%   \vspace{1mm}
+%   For a velocity transformation in $j$ direction, the generator is $G^t_j \implies X'_i = X_i + i \alpha [X_i,G^t_j] + O(\alpha^2)$
+%   \begin{itemize}
+%     \item $G^t_j$ is parametrized by $t$ because it transforms space coordinates to ones of a moving coordinate system at time $t$. It is assumed here that origins coincide at $t = 0$
+%     \item $X'_i$ measures the position relative to the moving coordinates $\implies X_i \ket{x} = x_i \ket{x}$ and $X'_i \ket{x'} = x_i \ket{x'}$
+%     \item $\ket{x'} = \exp(i \alpha G^t_j) \ket{x} = \ket{x + \alpha t e^j}$ where $e^j_p = \delta_{jp}$ is unit vector in $j$ direction
+%     \item $X'_i \ket{x'} = (X_i + i \alpha [X_i,G^t_j])\ket{x'} = (x_i + \alpha t \delta_{ij})\ket{x'} + i \alpha [X_i,G^t_j] \ket{x'} \implies \alpha t \delta_{ij} + i \alpha [X_i,G^t_j] = 0$
+%     \item Hence, $[X_i,G^t_j] = i \delta_{ij} t I$
+%     \item $$
+%   \end{itemize}
+% \end{frame}
 
 \begin{frame}
-  \frametitle{Rotation Generator and Spin}
+  \frametitle{Rotation Generator and Spin***}
   \vspace{1mm}
-  Since $[J_i,X_j] = i \epsilon_{ijk} X_k,[J_i,P_j] = i \epsilon_{ijk} P_k$ and $[X_i,P_j] = i \delta_{ij} I$. For any $3$ operators $S_i,i = 1,2,3$ such that
+  The rotation generator $J_k = L_k + S_k = \epsilon_{ijk} X_i P_j + S_k$
   \begin{itemize}
-    \item $[S_i,S_j] = i \epsilon_{ijk} S_k$ and $[S_i,X_j] = [S_i,P_j] = 0$
+    \item It was shown that $[J_i,X_j] = i \epsilon_{ijk} X_k,[J_i,P_j] = i \epsilon_{ijk} P_k$, $[X_i,P_j] = i \delta_{ij} I$ and $[S_i,S_j] = i \epsilon_{ijk} S_k$
+    \item $[S_i,X_j] = [S_i,L_j] = 0$ \implies [S_i,L_j] = \epsilon_{jlm} [S_i,X_l P_m] = \epsilon_{jlm} (X_l [S_i,P_m] + [S_i,X_l] P_m) = \epsilon_{jlm} X_l [S_i,P_m]$
     \item Then $J_k = \epsilon_{ijk} X_i P_j + S_k + c_k I$ where $c_k$ is a scalar satisfies all $J_i$ commutators conditions
     \item $[J_i,X_j] = \epsilon_{lmi} [X_l P_m,X_j] + c_i [I,X_j] + [S_i,X_j] = \epsilon_{lmi} X_l [P_m,X_j] = -\epsilon_{lmi} X_l \delta_{mj} = \epsilon_{ijk} X_k$ 
     \item $[J_i,P_j] = \epsilon_{lmi} [X_l P_m,P_j] + c_i [I,X_j] + [S_i,X_j] = \epsilon_{lmi} [X_l,P_j] P_m = \epsilon_{lmi} P_m \delta_{lj} = \epsilon_{ijk} P_k$
