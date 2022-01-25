@@ -450,7 +450,7 @@
     \item The finite rotation transformation about $i$ axis is $U_i(\beta) = \exp(\beta \epsilon_{ilm} x_l {\partial \over \partial x_m})$
     \item $[X_i,L_j] = [X_i,\epsilon_{jlm} X_l P_m] = \epsilon_{jlm} (X_i X_l P_m - X_l P_m X_i) = \epsilon_{jlm} X_l [X_i,P_m] = \epsilon_{jlm} X_l \delta_{im} i \hbar = i \hbar \epsilon_{ijl} X_l$
     \item The form of the spin transform $U_{si}$ is still to be determined $\implies \ket{\psi'} = [I + {i \over \hbar} \alpha L_i] U_{si}(\alpha) \ket{\psi}$
-    \item The overall transformation is $U_{xi}(\alpha) U_{si}(\alpha) = [I + {i \over \hbar} \alpha L_i] [I + {i \over \hbar} \alpha S_i] = [I + {i \over \hbar} \alpha (L_i + S_i)] = [I + {i \over \hbar} \alpha J_i]$ where $J_i = L_i + S_i$
+    \item The overall transformation is $U_{xi}(\alpha) U_{si}(\alpha) = [I + {i \over \hbar} \alpha L_i] [I + {i \over \hbar} \alpha D_i] = [I + {i \over \hbar} \alpha (L_i + D_i)] = [I + {i \over \hbar} \alpha J_i]$ where $J_i = L_i + D_i$
   \end{itemize}
 \end{frame}
 
@@ -593,19 +593,19 @@
   \begin{itemize}
     \item $[P_i,P_j] = - \hbar^2 ({\partial \over \partial} x_i {\partial \over \partial x_j} - {\partial \over \partial x_j} {\partial \over \partial x_i}) = 0 \implies [P_i,P_j] = 0$ as derived from the IT commutator relations
   \end{itemize}
-  For space rotation generators, $[J_i,J_j] = i \epsilon_{ijk} J_k$, $J_i = L_i + S_i$ and
+  For space rotation generators, $[J_i,J_j] = i \epsilon_{ijk} J_k$, $J_i = L_i + D_i$ and
   \begin{itemize}
-    \item $[L_i,S_j] = 0$, $L_i = \epsilon_{ilm} X_l P_m$ and $[X_i,L_j] = i \hbar \epsilon_{ijl} X_l$
+    \item $[L_i,D_j] = 0$, $L_i = \epsilon_{ilm} X_l P_m$ and $[X_i,L_j] = i \hbar \epsilon_{ijl} X_l$
     \item $[P_i,L_j] = [P_i,\epsilon_{jlm} X_l P_m] = \epsilon_{jlm} (P_i X_l P_m - X_l P_m P_i) = \epsilon_{jlm} [P_i,X_l] P_m = -\epsilon_{jlm} P_m \delta_{il} i \hbar = i \hbar \epsilon_{ijl} P_l$
     \item $[L_i,L_j] = \epsilon_{ilm} [X_l P_m,L_j] = \epsilon_{ilm} (X_l [P_m,L_j] + [X_l,L_j] P_m) = i \hbar \epsilon_{ilm} (\epsilon_{mjq} X_l P_q + \epsilon_{ljq} X_q P_m)$
     \item $[L_i,L_j] = i \hbar (X_i P_j - X_j P_i)$ and $\epsilon_{ijk} L_k = \epsilon_{ijk} \epsilon_{klm} X_l P_m = X_i P_j - X_j P_i$, then $[L_i,L_j] = i \epsilon_{ijk} L_k$
-    \item $[J_i,J_j] = [L_i + S_i,L_j + S_j] = [L_i,L_j] + [S_i,L_j] + [L_i,S_j] + [S_i,S_j] = i \epsilon_{ijk} L_k + [S_i,S_j] = i \epsilon_{ijk} (L_k + S_k)$
-    \item Then, $[S_i,S_j] = i \epsilon_{ijk} S_k$
+    \item $[J_i,J_j] = [L_i + D_i,L_j + D_j] = [L_i,L_j] + [D_i,L_j] + [L_i,D_j] + [D_i,D_j] = i \epsilon_{ijk} L_k + [D_i,D_j] = i \epsilon_{ijk} (L_k + D_k)$
+    \item Then, $[D_i,D_j] = i \epsilon_{ijk} D_k$
   \end{itemize}
-  This result is true whether $S_i$ is a discrete or a continuous generator
+  This result is true whether $D_i$ is a discrete or a continuous generator
   \begin{itemize}
-    \item $[X_i,L_j] = i \hbar \epsilon_{ijl} X_l \implies [X_i,J_j] = [X_i,L_j + S_j] = i \hbar \epsilon_{ijl} X_l + [X_i,S_j]$
-    \item $S_i$ are generators that handle the transformation of spin wave functions $\psi_s(x)$, they are related to the spin operator $S^n$ in the $\hat{n}$ direction as it will be derived
+    \item $[X_i,L_j] = i \hbar \epsilon_{ijl} X_l \implies [X_i,J_j] = [X_i,L_j + D_j] = i \hbar \epsilon_{ijl} X_l + [X_i,D_j]$
+    \item $D_i$ are generators that handle the transformation of spin wave functions $\psi_s(x)$, they are related to the spin operator $S^n$ in the $\hat{n}$ direction as it will be derived
   \end{itemize}
 \end{frame}
 
@@ -628,43 +628,52 @@
     \item $X'_i \ket{x'} = (X_i + {i \over \hbar} \alpha [X_i,J_j])\ket{x'} = (x_i - \alpha \epsilon_{lmi} x_l \delta_{mj})\ket{x'} + {i \over \hbar} \alpha [X_i,J_j] \ket{x'} \implies -\alpha \epsilon_{lji} x_l + {i \over \hbar} \alpha [X_i,J_j] = 0$
     \item Hence, $[X_i,J_j] = -i \hbar \epsilon_{lji} x_l I = i \hbar \epsilon_{ijl} X_l \implies [J_i,X_j] = i \hbar \epsilon_{ijl} X_l$
   \end{itemize}
-  But $[X_i,J_j] = i \hbar \epsilon_{ijl} X_l + [X_i,S_j] = i \hbar \epsilon_{ijl} X_l \implies [X_i,S_j] = 0$ 
+  But $[X_i,J_j] = i \hbar \epsilon_{ijl} X_l + [X_i,D_j] = i \hbar \epsilon_{ijl} X_l \implies [X_i,D_j] = 0$ 
 \end{frame}
 
-% \begin{frame}
-%   \frametitle{Position Operator Commutators II}
-%   \vspace{1mm}
-%   For a velocity transformation in $j$ direction, the generator is $G^t_j \implies X'_i = X_i + i \alpha [X_i,G^t_j] + O(\alpha^2)$
-%   \begin{itemize}
-%     \item $G^t_j$ is parametrized by $t$ because it transforms space coordinates to ones of a moving coordinate system at time $t$. It is assumed here that origins coincide at $t = 0$
-%     \item $X'_i$ measures the position relative to the moving coordinates $\implies X_i \ket{x} = x_i \ket{x}$ and $X'_i \ket{x'} = x_i \ket{x'}$
-%     \item $\ket{x'} = \exp(i \alpha G^t_j) \ket{x} = \ket{x + \alpha t e^j}$ where $e^j_p = \delta_{jp}$ is unit vector in $j$ direction
-%     \item $X'_i \ket{x'} = (X_i + i \alpha [X_i,G^t_j])\ket{x'} = (x_i + \alpha t \delta_{ij})\ket{x'} + i \alpha [X_i,G^t_j] \ket{x'} \implies \alpha t \delta_{ij} + i \alpha [X_i,G^t_j] = 0$
-%     \item Hence, $[X_i,G^t_j] = i \delta_{ij} t I$
-%     \item $$
-%   \end{itemize}
-% \end{frame}
+\begin{frame}
+  \frametitle{Spin Transformation Generator}
+  \vspace{1mm}
+  The spin transformation generator $D_i$ has the following properties
+  \begin{itemize}
+    \item $[D_i,L_j] = 0$ (by definition) and $[X_i,D_j] = 0, [D_i,D_j] = i \epsilon_{ijk} D_k$ (proven)
+    \item Then $0 = \epsilon_{jlm} [D_i,X_l P_m] = \epsilon_{jlm} (X_l [S_i,P_m] + [S_i,X_l] P_m) = \epsilon_{jlm} (0 + X_l [S_i,P_m]) \implies [S_i,P_m] = 0$
+  \end{itemize}
+  For a state $\ket{\psi}$ that is an eigenket of the spin operator $S^n$ with axis $\hat{n}$, after applying an infinitesimal STC rotation with an angle $\alpha$ about the $k$ axis
+  \begin{itemize}
+    \item The state $\ket{\psi}$ transforms to $\ket{\psi'} = U_x(\alpha) U_s(\alpha) \ket{\psi} = [I + {i \over \hbar} \alpha L_k][I + {i \over \hbar} \alpha D_k] \ket{\psi}$
+    \item The axis $\hat{n}$ transforms to $\hat{n}' = T_k(\alpha) \hat{n} = [I + {i \over \hbar} \alpha M^k] \hat{n}$
+    \item The operator $S^n$ transforms to $S^{n'} = U(\alpha) S^{n} U^{\dagger}(\alpha) = U_x(\alpha) U_s(\alpha) S^{n} U^{\dagger}_s(\alpha) U^{\dagger}_x(\alpha)$
+    \item Since $U_x(\alpha)$ does not affect the spin DoFs and their operators, then $U_x(\alpha) U_s(\alpha) S^{n} U^{\dagger}_s(\alpha) U^{\dagger}_x(\alpha) = U_s(\alpha) S^{n} U^{\dagger}_s(\alpha) U_x(\alpha) U^{\dagger}_x(\alpha) = U_s(\alpha) S^{n} U^{\dagger}_s(\alpha) \implies S^{n'} = U_s(\alpha) S^{n} U^{\dagger}_s(\alpha)$
+    \item This guarantees that if $S^n \ket{\psi} = s \ket{\psi}$ then $S^{n'} \ket{\psi'} = s \ket{\psi'}$ as required by a symmetry transformation
+    \item $S^{n'} = [I + {i \over \hbar} \alpha D_k] S^{n} [I - {i \over \hbar} \alpha D_k] = S_n + {i \over \hbar} \alpha [D_k,S^n] + {\alpha^2 \over \hbar^2} D_k S^n D_k$
+  \end{itemize}
+\end{frame}
 
 \begin{frame}
-  \frametitle{Rotation Generator and Spin***}
+  \frametitle{Spin Transformation Generator II***}
   \vspace{1mm}
-  The rotation generator $J_k = L_k + S_k = \epsilon_{ijk} X_i P_j + S_k$
+  $S^n$ depends on the spin axis direction $\hat{n}$, assuming a linear dependence: $S^n = n_i S^i$ where $S^i$ are Hermitian operators
   \begin{itemize}
-    \item It was shown that $[J_i,X_j] = i \epsilon_{ijk} X_k,[J_i,P_j] = i \epsilon_{ijk} P_k$, $[X_i,P_j] = i \delta_{ij} I$ and $[S_i,S_j] = i \epsilon_{ijk} S_k$
-    \item $[S_i,X_j] = [S_i,L_j] = 0$ \implies [S_i,L_j] = \epsilon_{jlm} [S_i,X_l P_m] = \epsilon_{jlm} (X_l [S_i,P_m] + [S_i,X_l] P_m) = \epsilon_{jlm} X_l [S_i,P_m]$
-    \item Then $J_k = \epsilon_{ijk} X_i P_j + S_k + c_k I$ where $c_k$ is a scalar satisfies all $J_i$ commutators conditions
-    \item $[J_i,X_j] = \epsilon_{lmi} [X_l P_m,X_j] + c_i [I,X_j] + [S_i,X_j] = \epsilon_{lmi} X_l [P_m,X_j] = -\epsilon_{lmi} X_l \delta_{mj} = \epsilon_{ijk} X_k$ 
-    \item $[J_i,P_j] = \epsilon_{lmi} [X_l P_m,P_j] + c_i [I,X_j] + [S_i,X_j] = \epsilon_{lmi} [X_l,P_j] P_m = \epsilon_{lmi} P_m \delta_{lj} = \epsilon_{ijk} P_k$
-    \item $[J_i,J_j] = \epsilon_{pqi} (\epsilon_{lmj} [X_p P_q,X_l P_m] + [X_p P_q,S_j] + c_j [X_p P_q,I]) + \epsilon_{lmj} [S_i,X_l P_m] + [S_i,S_j] + c_j [S_i,I] + c_i (\epsilon_{lmj} [I,X_l P_m] + [I,S_j] + [I,I])$
-    \item $[J_i,J_j] = \epsilon_{pqi} \epsilon_{lmj} \{X_p([P_q,X_l] P_m + X_l [P_q,P_m]) + (X_l [X_p ,P_m] + [X_p ,X_l] P_m)P_q\} + i \epsilon_{ijk} S_k$
-    \item $[J_i,J_j] = i \epsilon_{pqi} \epsilon_{lmj} \{-\delta_{ql} X_p P_m + \delta_{pm} X_l P_q\} + i \epsilon_{ijk} S_k = i \epsilon_{ijk} X_i P_j + i \epsilon_{ijk} S_k = J_k$ if and only if $c_i = 0$
-    \item Hence, $J_k = \epsilon_{ijk} X_i P_j + S_k$
+    \item For spin axes in $x,y$ and $z$ directions, the spin operators are $S^x,S_y$ and $S_z$
+    \item $\hat{n}' = [I + {i \over \hbar} \alpha M^k] \hat{n} \implies S^{n'} = \hat{n}_i' S^i = [\delta_{ij} + {i \over \hbar} \alpha M^k_{ij}] \hat{n}_j S^i = \hat{n}_i S^i + {i \over \hbar} \alpha M^k_{ij} \hat{n}_j S^i = S^n + {i \over \hbar} \alpha M^k_{ij} \hat{n}_j S^i$
+    \item By comparison $[D_k,S^n] = M^k_{ij} \hat{n}_j S^i = i \hbar \epsilon_{ijk} \hat{n}_j S^i$
+    \item For spin about axis $p$: $[D_k,S^p] = i \hbar \epsilon_{ijk} \delta_{pj} S^i = i \hbar \epsilon_{ipk} S^i = -i \hbar \epsilon_{kpi} S^i$
+    \item But $[D_k,D_p] = i \epsilon_{kpl} D_l$, this suggests that $D_p = -i \hbar S^p$
   \end{itemize}
-  Since $S_i$ commutes with $X_i$, then $S_i$ can be used to represent any degrees of freedom (DoF) that are independent of $X_i$. All such DoFs will be called spin DoFs
+\end{frame}
+
+\begin{frame}
+  \frametitle{Position Operator Commutators II***}
+  \vspace{1mm}
+  For a velocity transformation in $j$ direction, the generator is $G^t_j \implies X'_i = X_i + i \alpha [X_i,G^t_j] + O(\alpha^2)$
   \begin{itemize}
-    \item The spin DoFs form a separate Hilbert space, the tensor product of which with the position DoFs is another Hilbert space with basis kets $\ket{x_1 x_2 ... x_n s_1 s_2 ... s_m}$
-    \item Operators acting on position DoFs commute with those acting on spin DoFs
-    \item No physical significance has been given to spin DoFs so far
+    \item $G^t_j$ is parametrized by $t$ because it transforms space coordinates to ones of a moving coordinate system at time $t$. It is assumed here that origins coincide at $t = 0$
+    \item $X'_i$ measures the position relative to the moving coordinates $\implies X_i \ket{x} = x_i \ket{x}$ and $X'_i \ket{x'} = x_i \ket{x'}$
+    \item $\ket{x'} = \exp(i \alpha G^t_j) \ket{x} = \ket{x + \alpha t e^j}$ where $e^j_p = \delta_{jp}$ is unit vector in $j$ direction
+    \item $X'_i \ket{x'} = (X_i + i \alpha [X_i,G^t_j])\ket{x'} = (x_i + \alpha t \delta_{ij})\ket{x'} + i \alpha [X_i,G^t_j] \ket{x'} \implies \alpha t \delta_{ij} + i \alpha [X_i,G^t_j] = 0$
+    \item Hence, $[X_i,G^t_j] = i \delta_{ij} t I$
+    \item $$
   \end{itemize}
 \end{frame}
 
@@ -674,11 +683,34 @@
   The time rate of change of the expectation of any operator $A$ is
   \begin{itemize}
     \item $\dot{\expval{A}} = {d \over dt} \expval{A}{\psi(t)} = ({d \over dt} \bra{\psi}) A \ket{\psi} + \bra{\psi} A ({d \over dt} \ket{\psi})$
+    \item A time translation of $\alpha$ transforms $\ket{\psi(t)} \to \ket{\psi'(t)} = \exp({i \over \hbar} \alpha H) \ket{\psi(t)} \implies \ket{\psi'(t)} = \ket{\psi(t - \alpha)}$ 
+    \item Then $\exp({i \over \hbar} \alpha H) \ket{\psi(t)} = \ket{\psi(t - \alpha)}$, at $\alpha = t: $\exp({i \over \hbar} t H) \ket{\psi(t)} = \ket{\psi(0)}$
+    \item $\ket{\psi(t)} = \exp({-i \over \hbar} t H) \ket{\psi(0)} \implies {d \over dt} \ket{\psi(t)} = {-i \over \hbar} H \exp({-i \over \hbar} t H) \ket{\psi(0)} = {-i \over \hbar} H \ket{\psi(t)}$
+    \item $i \hbar {d \over dt} \ket{\psi(t)} = H \ket{\psi(t)}$ which is Schrodinger equation
+    \item The above derivation can be used in place of postulating that system's evolution follows Schrodinger's equation 
     \item $\dot{\expval{A}} = ({i \over \hbar} \bra{\psi} H^{\dagger}) A \ket{\psi} + \bra{\psi} A ({-i \over \hbar} H \ket{\psi}) = {i \over \hbar} \expval {H^{\dagger} A - A H}{\psi} = {i \over \hbar} \expval {[H,A]}{\psi}$
   \end{itemize}
   Hence, if the dynamical variables $b$ and $a$ are related such that $b = {da \over dt} \implies B = {i \over \hbar} [H,A]$
   \begin{itemize}
     \item For the case of the position operator $X_i$, the velocity operator $V_i = {i \over \hbar} [H,X_i]$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Rotation Generator and Spin***}
+  \vspace{1mm}
+  The rotation generator $J_k = L_k + S_k = \epsilon_{ijk} X_i P_j + S_k$
+  \begin{itemize}
+    \item It was shown that $[J_i,X_j] = i \epsilon_{ijk} X_k,[J_i,P_j] = i \epsilon_{ijk} P_k$ and $[X_i,P_j] = i \delta_{ij} I$
+    \item Also $[S_i,S_j] = i \epsilon_{ijk} S_k$ and $[S_i,X_j] = [S_i,L_j] = \epsilon_{jlm} [S_i,X_l P_m] = 0$
+    \item Then $0 = \epsilon_{jlm} [S_i,X_l P_m] = \epsilon_{jlm} (X_l [S_i,P_m] + [S_i,X_l] P_m) = \epsilon_{jlm} (0 + X_l [S_i,P_m]) \implies [S_i,P_m] = 0$
+    \item $[G_i,P_j] = i \delta_{ij} M I = M [X_i,P_j] \implies G_i = M X_i$
+  \end{itemize}  
+  Let $\ket{\psi}$ be the ket for a single-particle system where the particle spins about the $i$ axis. An STC rotation about the $i$ axis, generated by $J_i$, does not rotate the $i$ axis itself 
+  \begin{itemize}
+    \item The particle still spins about the $i$ axis after rotation
+    \item The rotated system ket $\ket{\psi'} = [I + {i \over \hbar} \alpha J_i] \ket{\psi} = \ket{\psi} + {i \over \hbar} \alpha L_i \ket{\psi} + {i \over \hbar} \alpha S_i \ket{\psi}$
+    \item The spin DoFs form a separate Hilbert space, the tensor product of which with the position DoFs is another Hilbert space with basis kets $\ket{x_1 x_2 ... x_n s_1 s_2 ... s_m}$
   \end{itemize}
 \end{frame}
 
