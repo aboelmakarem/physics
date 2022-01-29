@@ -92,76 +92,13 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Quantum Mechanical Systems}
+  \frametitle{Quantum Mechanical Systems: Degrees of Freedom}
   \vspace{1mm}
   A Quantum Mechanical (QM) system consists of a number $N$ of particles. Each particle has up to $4$ degrees of freedom (DoF)
   \begin{itemize}
     \item Up to $3$ position DoFs for the $3$ spatial dimensons and up to $1$ spin DoF.
     \item All DoFs will be assumed to take values in infinite and continuous ranges until proven otherwise
   \end{itemize}
-  Since the DoFs are dynamical variables themselves, there are Hermitian operators that represent them
-  \begin{itemize}
-    \item The operators $X_i, i = 1,2,3$ represent the $x,y$ and $z$ position DoFs of a particle
-    \item The operator $S$ represents the spin DoF of the particle
-    \item Continuous/discrete DoFs have continuous/discrete eigenkets
-    \end{itemize}
-  % An N-particle system in $3D$ has $3N$ positions represented by operators $X_i, i = 1 \to 3N$ and $N$ spins represented by operators $S_i, i = 1 \to N$
-  The Hilbert space containing the kets describing one-particle systems is spanned by kets $\ket{x_1 x_2 x_3 s}$ each corresponding to a particle position $(x_1,x_2,x_3)$ and spin $s$
-  \begin{itemize}
-    \item In general, the system's state ket $\ket{\psi}$ is a linear combination of the kets $\ket{x_1 x_2 x_3 s}$
-    \item The abstract ket $\ket{x_1 x_2 x_3 s}$ will be denoted by $\ket{x,s}$
-    \item The following development will be for a single particle systems, multi-particle systems will be handled later on
-    % \item The Hilbert space containing the kets describing N-particle systems is spanned by kets $\ket{x_1 x_2 ... x_{3N} s_1 s_2 ... s_N}$ each corresponding to the N particles being at positions $(x_1,x_{N+1},x_{2N+1}), (x_2,x_{N+2},x_{2N+2}), ..., (x_N,x_{2N},x_{3N})$ and having spins $s_1,s_2,...,s_N$
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Kets of QM Systems}
-  \vspace{1mm}
-  Any system ket $\ket{\psi}$ can be decomposed in the position-spin basis $\ket{x,s}$ where $x$ stands for all position variables and $s$ stands for the spin variable
-  \begin{itemize}
-    \item $\ket{\psi} = \int_x \int_s \psi(x,s) \ket{x,s} dx ds$
-    \item Here, $\int_x .. dx_i$ and $\int_s .. ds$ are integrations over all position/spin DoFs, let $\int_{\Omega} ... d\Omega = \int_x \int_s ... dx ds$
-    \item Integrals become sums if any of the DoFs turn out to be discrete
-    \item Hence $\ket{\psi} = \int_{\Omega} \psi(x,s) \ket{x,s} d\Omega$ where $x$ is a point in the $3$-dimensional position space and $s$ is a point in the $1$-dimensional spin space
-    \item $\psi(x,s)$ is called the system's wave function. It is a function in all of the system's degrees of freedom
-    \item $\psi(x,s)$ is the projection of $\ket{\psi}$ on $\ket{x,s}$: $\braket{x,s}{\psi} = \int_{\Omega} \psi(x',s') \braket{x,s}{x',s'} d\Omega = \psi(x,s)$
-  \end{itemize}
-  The operators $X_i$ and $S$ will be chosen such that any ket $\ket{x,s}$ is a simultaneous eigenket for all of them
-  \begin{itemize}
-    \item This is required in order to allow the system's particles to have defined positions and spins simultaneously
-    \item Otherwise, particles in certain positions will have a distribution of spins and vice-versa which is inconsistent with positions and spins being independent DoFs
-    \item Hence, the commutators $[X_i,X_j] = [X_i,S] = 0$ for all $i$ and $j$
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Position and Spin Operators}
-  \vspace{1mm}
-  For the position operator $X_k$ to have the ket $\ket{x,s}$ as an eigenket, $X_k \ket{x,s} = x_k \ket{x,s}$
-  \begin{itemize}
-    \item $x_k$ is the value of the $k^{th}$ spatial coordinate when the system is in the state $\ket{x,s}$
-    \item Consequently, $\braket{x,s}{X_k \psi} = \bra{x,s X_k} \ket{\psi} = x_k \braket{x,s}{\psi} = x_k \psi(x,s)$
-    \item Hence, the position operator $X_k$ acts on a ket $\ket{\psi}$ by multiplying it by the $k^{th}$ coordinate: $X_k \ket{\psi} = x_k \ket{\psi}$
-    \item This is consistent with the commutation requirement $[X_i,X_j] = 0$ since $[X_i,X_j] = x_i x_j - x_j x_i = 0$
-    \item The position operators do not depend on the spin DoF and they do not affect it
-  \end{itemize}
-  Similarly, for the spin operator $S$ to have the ket $\ket{x,s}$ as an eigenket, $S \ket{x,s} = s \ket{x,s}$
-  \begin{itemize}
-    \item $s$ is the value of the spin when the system is in the state $\ket{x,s}$
-    \item Consequently, $\braket{x,s}{S \psi} = \bra{x,s S} \ket{\psi} = s \braket{x,s}{\psi} = s \psi(x,s)$
-    \item Hence, the spin operator $S$ acts on a ket $\ket{\psi}$ by multiplying it by the spin: $S \ket{\psi} = s \ket{\psi}$
-    \item The spin operators do not depend on the position DoFs and they do not affect them
-  \end{itemize}
-  Since all position and spin eigenvalues are real, the position-spin commutation requirement is satisfied
-  \begin{itemize}
-    \item $[X_i,S] = 0$ since $[X_i,S] = x_i s - s x_i = 0$
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Spin}
-  \vspace{1mm}
   Spin DoFs do not correspond to any physical spin for any particles and they do not have a classical analog
   \begin{itemize}
     \item Experimentally, particles in QM systems exhibit an intrinsic angular momentum that is not associated with their orbital angular momenta
@@ -171,34 +108,143 @@
     \item It will be shown later that spin DoF takes one of $M$ discrete values. Let these values be $s_1,s_2,...,s_M$
     \item The number $M$ of allowable spin DoF values and their values $s_1,s_2,...,s_M$ depend on the nature of the system's particles
   \end{itemize}
-  Magnetic fields are vector fields and have a preferred direction locally, hence, the particle's spin needs to have a directional preference as well in order to properly model its interaction with magnetic fields. 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quantum Mechanical Systems: Hilbert Spaces}
+  \vspace{1mm}
+  Let $H_x,H_y,H_z$ and $H_s$ be a Hilbert spaces spanned by kets $\ket{x},\ket{y},\ket{z}$ and $\ket{s}$ respectively
   \begin{itemize}
-    \item For each particle, there is a unit vector in $3D$ with components $(n_x,n_y,n_z)$ called the spin axis
-    \item $n_x^2 + n_y^2 + n_z^2 = 1$
-    \item Different particles have, in general, different spin axes
+    \item A single-particle system in state $\ket{x} \in H_x$ means that the particle's $x_1$ coordinate is $x$
+    \item A single-particle system in state $\ket{y} \in H_y$ means that the particle's $x_2$ coordinate is $y$
+    \item A single-particle system in state $\ket{z} \in H_z$ means that the particle's $x_3$ coordinate is $z$
+    \item A single-particle system in state $\ket{s} \in H_s$ means that the particle has spin $s$
+    \item $H_x, H_y, H_z$ and $H_s$ correspond to the different DoFs of a single particle QM system
+    \item Single DoF Hilbert spaces $H_x,H_y,H_z$ and $H_s$ are not sufficient to model QM systems since particles with the same value for one of the DoFs (e.g. $x$) and different values for the others (e.g. $y$, $z$ and $s$) will be in the same state (e.g. $\ket{x}$ in $H_x$)
+    \item Let $\ket{r,s} = \ket{x} \ket{y} \ket{z} \ket{s} = \ket{x} \otimes \ket{y} \otimes \ket{z} \otimes \ket{s}$
+    \item The product space $H = H_x \otimes H_y \otimes H_z \otimes H_s$ is spanned by kets $\ket{r,s}$
+    \item A single-particle system in state $\ket{r,s} \in H$ means that the particle is at position $(x,y,z)$ and has spin $s$
+  \end{itemize}
+  Since QM particles have both position and spin DoFs, $H$ is the smallest space that can contain the kets of a QM system
+  \begin{itemize}
+    \item A larger space that is the outer product of $H$ with another space spanned by other kets is unnecessary since there are no more particle DoFs to be modeled by the extra space kets
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Spin Axis}
+  \frametitle{Quantum Mechanical Systems: Kets}
   \vspace{1mm}
-  Let the spin operator for a given spin axis $\hat{n}$ for the particle be $S^n$
+  A single-particle QM system state is represented by a ket $\ket{\psi} \in H$
   \begin{itemize}
-    \item If the system's ket $\psi$ is an eigenket of $S^n$, we say that the spin axis of the particle is $\hat{n}$
-    % \item The forms of $S_x, S_y$ and $S_z$ depend on the particle's nature and will be determinated later
-    % \item Form the operator $S_n = n.S = n_x S_x + n_y S_y + n_z S_z$, this is the spin operator in the $\hat{n}$ direction
-    \item If not, then particle spins about some other axis which can be obtained by varying $n_x,n_y$ and $n_z$ until the $\ket{\psi}$ becomes an eigenket of $S^n$ 
-    % \item For multiple-particle systems, the spin operators for different particles commute regardless of the spin axes since the spin DoFs are independent $[S^{n_i}_i,S^{n_j}_j] = 0$
-    % \item For spin axes in the $x,y$ and $z$ directions, the $i^{th}$ particle spin operators are $S^x_i,S^y_i$ and $S^z_i$ respectively
-    \item For any $\hat{n}$, $S^n$ has $M$ eigenvalues equal to $s_1,s_2,...,s_M$, the $M$ spin DoF allowable values for the particle
-    \item As $\hat{n}$ changes, the eigenkets corresponding to the $M$ eigenvalues change 
-    \item A coordinate system rotation causes the spin axis components $n_i$ to change (vector rotation)
-    \item This is not the case for a coordinate system translation or a time shift where the spin axis remains the same
-    \item Spatial rotations with an orthonormal rotation matrix $R$ change the spin axis $n_i$ to $n'_i = R_{ij} n_j$
-    \item Operating with an operator $S^n$ on a ket $\ket{\psi}$ of a particle that does not have $\hat{n}$ as its spin axis results in the multiplication of the eigenvalues of $S^n$ with the components of $\ket{\psi}$ in $S^n$ eigenkets directions as usual
+    \item A ket $\ket{r,s} = \ket{x y z s}$ corresponds to a particle at position $(x,y,z)$ and having spin $s$
+    \item $\ket{\psi}$ is a linear combination (superposition) of $H$ basis kets $\ket{r,s}$: $\ket{\psi} = \int_r \int_s \psi(r,s) \ket{r,s} dr ds$
+  \end{itemize}
+  An N-particle QM system state is represented by a ket $\ket{\psi} \in H^n$ where $H^n = H_1 \otimes H_2 \otimes ... \otimes H_n$
+  \begin{itemize}
+    \item $H_i$ is the Hilbert space of kets representing the single-particle QM system of particle $i$
+    \item $H^n$ is spanned by basis kets $\ket{r^1,s^1} \ket{r^2,s^2} ... \ket{r^n,s^n}$ where kets $\ket{r^i,s^i}$ span $H^i$
+    \item A ket $\ket{r^1,s^1} \ket{r^2,s^2} ... \ket{r^n,s^n} = \ket{x_1 y_1 z_1 ... x_N y_N z_N s_1 ... s_N}$ corresponds to the N particles being at positions $(x_1,y_1,z_1), (x_2,y_2,z_2), ..., (x_N,y_N,z_N)$ and having spins $s_1,s_2,...,s_N$
+  \end{itemize}
+  A state $\ket{\psi} \in H^n$ is, in general, a linear combination (superposition) of the basis kets $\ket{r^1,s^1} \ket{r^2,s^2} ... \ket{r^n,s^n}$
+  \begin{itemize}
+    \item If $\ket{\psi}$ can be written as the outer product of $\ket{\psi^1}, \ket{\psi^2}, ..., \ket{\psi^n}$ where $\ket{\psi^i}$ is a superposition of $\ket{x^i,s^i}$ kets, then N-particle system is an untangled system 
+    \item Otherwise, it is an entangled system where a measurement made on one particle affects the states of all other particles 
+  \end{itemize}
+  The following development will be for single particle systems, multi-particle systems will be handled later
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quantum Mechanical Systems: Operators}
+  \vspace{1mm}
+  For operators $A$ on $H_r = H_x \otimes H_y \otimes H_z$ and $B$ on $H_s$
+  \begin{itemize}
+    \item $A \ket{\psi} = A \int_r \int_s \psi(r,s) \ket{r,s} dr ds = \int_r \int_s \psi(r,s) (A \ket{r}) \ket{s} dr ds$
+    \item $B \ket{\psi} = B \int_r \int_s \psi(r,s) \ket{r,s} dr ds = \int_r \int_s \psi(r,s) \ket{r} (B \ket{s}) dr ds$
+    \item $A$ [$B$] operates on $\ket{r}$ [$\ket{s}$] and does not affect $\ket{s}$ [$\ket{r}$]
+    \item $AB \ket{\psi} = A \int_r \int_s \psi(r,s) \ket{r} (B \ket{s}) dr ds = \int_r \int_s \psi(r,s) (A \ket{r}) (B \ket{s}) dr ds$
+    \item $BA \ket{\psi} = B \int_r \int_s \psi(r,s) (A \ket{r}) \ket{s} dr ds = \int_r \int_s \psi(r,s) (A \ket{r}) (B \ket{s}) dr ds$
+    \item $AB \ket{\psi} = BA \ket{\psi} \implies AB = BA \implies [A,B] = 0$ for all $A$ on $H_r$ and $B$ on $H_s$
+    \item For operator $C = A \otimes B$: $C \ket{\psi} = \int_r \int_s \psi(r,s) C \ket{r} \ket{s} dr ds = \int_r \int_s \psi(r,s) (A \ket{r}) (B \ket{s}) dr ds$
+    \item In general, any operator $Q$ on $H$ is the product of operators $Q_r$ on $H_r$ and $Q_s$ on $H_s$ such that $Q \ket{\psi} = \int_r \int_s \psi(r,s) (Q_r \ket{r}) (Q_s \ket{s}) dr ds$
+  \end{itemize}
+  Since the DoFs are dynamical variables themselves, there are Hermitian operators that represent them
+  \begin{itemize}
+    \item The operators $X_i, i = 1,2,3$ on $H_x,H_y$ and $H_z$ represent the $x,y$ and $z$ position DoFs of a particle
+    \item The operator $S$ on $H_s$ represents the spin DoF of the particle
+    \item Continuous/discrete DoFs have continuous/discrete eigenkets
+    \item $[X_i,X_j] = [X_i,S] = 0 \implies X_1,X_2,X_3$ and $S$ have a set of common eigenkets, these eigenkets are $\ket{r,s}$
   \end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Wave Functions}
+  \vspace{1mm}
+  $\ket{r,s}$ is a simultaneous eigenket for all $X_i$ and $S$
+  \begin{itemize}
+    \item This is required in order to allow the system's particles to have defined positions and spins simultaneously
+    \item Otherwise, particles in definite positions will have a distribution of spins and vice-versa which is inconsistent with positions and spins being independent DoFs
+    \item Hence, the commutators $[X_i,X_j] = [X_i,S] = 0$ for all $i$ and $j$
+  \end{itemize}
+  Any system ket $\ket{\psi}$ can be decomposed in the position-spin basis $\ket{r,s}$ where $r$ stands for all position variables and $s$ stands for the spin variable
+  \begin{itemize}
+    \item $\ket{\psi} = \int_r \int_s \psi(r,s) \ket{r,s} dr ds$
+    \item Here, $\int_r .. dr$ and $\int_s .. ds$ are integrations over all position and spin DoFs, let $\int_{\Omega} ... d\Omega = \int_r \int_s ... dr ds$
+    \item Integrals become sums if any of the DoFs turn out to be discrete
+    \item Hence $\ket{\psi} = \int_{\Omega} \psi(r,s) \ket{r,s} d\Omega$ where $r$ is a point in the $3$-dimensional position space and $s$ is a point in the $1$-dimensional spin space
+    \item $\psi(r,s)$ is called the system's wave function. It is a function in all of the system's degrees of freedom
+    \item $\psi(r,s)$ is the projection of $\ket{\psi}$ on $\ket{r,s}$: $\braket{r,s}{\psi} = \int_{\Omega} \psi(r',s') \braket{r,s}{r',s'} d\Omega = \psi(r,s)$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Position and Spin Operators}
+  \vspace{1mm}
+  For the position operator $X_k$ to have the ket $\ket{r,s}$ as an eigenket, $X_k \ket{r,s} = x_k \ket{r,s}$
+  \begin{itemize}
+    \item $x_k$ is the value of the $k^{th}$ spatial coordinate when the system is in the state $\ket{r,s}$
+    \item Consequently, $\braket{r,s}{X_k \psi} = \bra{r,s X_k} \ket{\psi} = x_k \braket{r,s}{\psi} = x_k \psi(r,s)$
+    \item Hence, the position operator $X_k$ acts on a ket $\ket{\psi}$ by multiplying it by the $k^{th}$ coordinate: $X_k \ket{\psi} = x_k \ket{\psi}$
+    \item This is consistent with the commutation requirement $[X_i,X_j] = 0$ since $[X_i,X_j] = x_i x_j - x_j x_i = 0$
+    \item The position operators do not depend on the spin DoF and they do not affect it
+  \end{itemize}
+  Similarly, for the spin operator $S$ to have the ket $\ket{r,s}$ as an eigenket, $S \ket{r,s} = s \ket{r,s}$
+  \begin{itemize}
+    \item $s$ is the value of the spin when the system is in the state $\ket{r,s}$
+    \item Consequently, $\braket{r,s}{S \psi} = \bra{r,s S} \ket{\psi} = s \braket{r,s}{\psi} = s \psi(r,s)$
+    \item Hence, the spin operator $S$ acts on a ket $\ket{\psi}$ by multiplying it by the spin: $S \ket{\psi} = s \ket{\psi}$
+    \item The spin operators do not depend on the position DoFs and they do not affect them
+  \end{itemize}
+  Since all position and spin eigenvalues are real, the position-spin commutation requirement is satisfied
+  \begin{itemize}
+    \item $[X_i,S] = 0$ since $[X_i,S] = x_i s - s x_i = 0$
+  \end{itemize}
+\end{frame}
+
+% \begin{frame}
+%   \frametitle{Spin Axis}
+%   \vspace{1mm}
+%   Let the spin operator for a given spin axis $\hat{n}$ for the particle be $S^n$
+%   \begin{itemize}
+%     \item If the system's ket $\ket{\psi}$ is an eigenket of $S^n$, we say that the spin axis of the particle is $\hat{n}$
+%     % \item The forms of $S_x, S_y$ and $S_z$ depend on the particle's nature and will be determinated later
+%     % \item Form the operator $S_n = n.S = n_x S_x + n_y S_y + n_z S_z$, this is the spin operator in the $\hat{n}$ direction
+%     \item If not, then particle spins about some other axis which can be obtained by varying $n_x,n_y$ and $n_z$ until the $\ket{\psi}$ becomes an eigenket of $S^n$ 
+%     % \item For multiple-particle systems, the spin operators for different particles commute regardless of the spin axes since the spin DoFs are independent $[S^{n_i}_i,S^{n_j}_j] = 0$
+%     % \item For spin axes in the $x,y$ and $z$ directions, the $i^{th}$ particle spin operators are $S^x_i,S^y_i$ and $S^z_i$ respectively
+%     \item For any $\hat{n}$, $S^n$ has $M$ eigenvalues equal to $s_1,s_2,...,s_M$, the $M$ spin DoF allowable values for the particle
+%     \item As $\hat{n}$ changes, the eigenkets corresponding to the $M$ eigenvalues change 
+%     \item A coordinate system rotation causes the spin axis components $n_i$ to change (vector rotation)
+%     \item This is not the case for a coordinate system translation or a time shift where the spin axis remains the same
+%     \item Spatial rotations with an orthonormal rotation matrix $R$ change the spin axis $n_i$ to $n'_i = R_{ij} n_j$
+%     \item Operating with an operator $S^n$ on a ket $\ket{\psi}$ of a particle that does not have $\hat{n}$ as its spin axis results in the multiplication of the eigenvalues of $S^n$ with the components of $\ket{\psi}$ in $S^n$ eigenkets directions as usual
+%   \end{itemize}
+%   $S^n$ is assumed to linearly depend on $\hat{n}$ components
+%     \begin{itemize}
+%     \item $S^n = n_x A + n_y B + n_z C$ where $A,B$ and $C$ are Hermitian operators
+%     \item For X-axis spin, $n_i = \delta_{1i} \implies S^x = A$, similarly, $S^y = B$ and $S^z = C$
+%     \item Hence $S^n = n_x S^x + n_y S^y + n_z S^z = n_i S^i$
+%   \end{itemize}
+% \end{frame}
 
 % \begin{frame}
 %   \frametitle{Spinors}
@@ -255,36 +301,36 @@
   \end{itemize}
   $U(\epsilon)$ is an infinitesimal unitary transformation that transforms all kets and operators and $K$ is the generator of this transformation
   \begin{itemize}
-    \item For finite transformations: $U(s) = lim_{N \to \infty} (U({s \over N}))^{N} = lim_{N \to \infty} (I + i {s \over N} K)^{N} = \exp(i s K)$
-    \item $U^{\dagger}(s) = \exp(-isK) \implies U^{\dagger}(s) U(s) = I \implies U(s)$ is unitary
+    \item For finite transformations: $U(\alpha) = lim_{N \to \infty} (U({\alpha \over N}))^{N} = lim_{N \to \infty} (I + i {\alpha \over N} K)^{N} = \exp(i \alpha K)$
+    \item $U^{\dagger}(\alpha) = \exp(-i \alpha K) \implies U^{\dagger}(\alpha) U(\alpha) = I \implies U(\alpha)$ is unitary
   \end{itemize}
-  For any operator $A$ with eigenkets $\ket{a}$, a ket $\ket{\psi}$ and a unitary transformation $U(s)$:
+  For any operator $A$ with eigenkets $\ket{a}$, a ket $\ket{\psi}$ and a unitary transformation $U(\alpha)$:
   \begin{itemize}
-    \item The ket $\ket{\psi'} = U(s) \ket{\psi}$ is the transformation of $\ket{\psi}$ under the action of $U(s)$
-    \item There exists an operator $A'$ such that the eigenkets $\ket{a}$ of $A$ transform to kets $\ket{a'} = U(s) \ket{a}$ that are the eigenkets of $A'$ with the same eigenvalues: $A \ket{a_i} = a_i \ket{a_i} \implies A' \ket{a_i'} = a_i \ket{a_i'}$
+    \item The ket $\ket{\psi'} = U(\alpha) \ket{\psi}$ is the transformation of $\ket{\psi}$ under the action of $U(\alpha)$
+    \item There exists an operator $A'$ such that the eigenkets $\ket{a}$ of $A$ transform to kets $\ket{a'} = U(\alpha) \ket{a}$ that are the eigenkets of $A'$ with the same eigenvalues: $A \ket{a_i} = a_i \ket{a_i} \implies A' \ket{a_i'} = a_i \ket{a_i'}$
   \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Symmetry Transformations}
   \vspace{1mm}
-  For an arbitrary operator $A$ with eigenkets $\ket{a}$, if a unitary transformation $U(s)$ transforms the kets $\ket{\psi}$ such that
+  For an arbitrary operator $A$ with eigenkets $\ket{a}$, if a unitary transformation $U(\alpha)$ transforms the kets $\ket{\psi}$ such that
   \begin{itemize}
     \item If $\ket{\psi} = \Sigma_i c_i \ket{a_i}$ then $\ket{\psi'} = \Sigma_i c_i' \ket{a_i'}$ where $|c_i| = |c_i'| \implies |\braket{\psi'}{a_i'}| = |\braket{\psi}{a_i}|$ 
     \item That is, the transformation preserves the probability of observing an eigenvalue $a_i$ upon measurement
   \end{itemize}
-  Then $U(s)$ is a symmetry transformation because all system measurements performed before and after the transformation yield outcomes with the same probabilities
+  Then $U(\alpha)$ is a symmetry transformation because all system measurements performed before and after the transformation yield outcomes with the same probabilities
 
-  For this to hold, $U(s)$ has to be a unitary transformation
+  For this to hold, $U(\alpha)$ has to be a unitary transformation
   \begin{itemize}
     \item $\ket{a'} = U \ket{a}$ and $\ket{\psi'} = U \ket{\psi} \implies \braket{\psi'}{a'} = \bra{\psi U^{\dagger}}\ket{U \psi} = \braket{\psi}{a}$
     \item $A' \ket{a_i'} = a_i \ket{a_i'} = a_i U \ket{a_i} \implies A' U \ket{a_i} = a_i U \ket{a_i} \implies U^{\dagger} A' U \ket{a_i} = a_i \ket{a_i}$
     \item $U^{\dagger} A' U \ket{a_i} = a_i \ket{a_i}$ and $A \ket{a_i} = a_i \ket{a_i}$ for all $i \implies A = U^{\dagger} A' U \implies A' = U A U^{\dagger}$ 
   \end{itemize}
 
-  In summary, any Hermitian operator $K$ can generate a symmetry transformation $U(s) = \exp(i s K)$
+  In summary, any Hermitian operator $K$ can generate a symmetry transformation $U(\alpha) = \exp(i \alpha K)$
   \begin{itemize}
-    \item Any ket $\ket{\psi}$ transforms to $\ket{\psi'} = U(s) \ket{\psi}$
+    \item Any ket $\ket{\psi}$ transforms to $\ket{\psi'} = U(\alpha) \ket{\psi}$
     \item There exists an operator $A' = U A U^{\dagger}$ such that the eigenkets $\ket{a_i}$ of $A$ transform to eigenkets $\ket{a'_i}$ of $A'$ with the same eigenvalues $a_i$
     \item The expansion coefficients of any ket $\ket{\psi}$ in any basis $\ket{a}$ are preserved: $\braket{\psi'}{a'} = \braket{\psi}{a}$
   \end{itemize}
@@ -316,7 +362,7 @@
 \begin{frame}
   \frametitle{Coordinate System Transformations II}
   \vspace{1mm}
-  For every transformation $\tau$ transforming one STC to another, there exists a unitary transformation $U(\tau)$ that transforms the kets $\ket{\psi}$ and operators $A$ in one STC to kets $\ket{\psi'}$ and operators $A'$ in the other
+  For every transformation $\tau$ transforming one STC to another, there exists a unitary transformation $U(\tau)$ that transforms the kets $\ket{\psi}$ and operators $A$ in one STC to kets $\ket{\psi'}$ and operators $A'$ such that
   \begin{itemize}
     \item $\ket{\psi'} = U(\tau) \ket{\psi}$ and $A' = U(\tau) A U^{\dagger}(\tau)$
     \item Since $U^{-1}(\tau) = U^{\dagger}(\tau) \implies U(\tau^{-1}) = U^{-1}(\tau) = U^{\dagger}(\tau)$
@@ -325,13 +371,36 @@
   \begin{itemize}
     \item $\delta$ is independent of $A$ and $\psi$ for $U(\tau)$ to be linear
   \end{itemize}
+  $U(\tau)$, being an operator acting on kets $\ket{\psi}$ of $H$, is the product of $U_r(\tau)$ on $H_r$ and $U_s(\tau)$ on $H_s$
+  \begin{itemize}
+    \item $U(\tau) \ket{\psi} = U_r(\tau) U_s(\tau) \ket{\psi} = U_s(\tau) U_r(\tau) \ket{\psi}$
+    \item Let $\psi_s(r)$ be the system's wave function $\psi(r,s)$ evaluated at spin $s: \ket{\psi} = \int_r \int_s \psi_s(r) \ket{r} \ket{s} dr ds$
+    \item Let $\ket{\psi_s} = \int_r \psi_s(r) \ket{r} dr \implies \ket{\psi} = \int_s \ket{\psi_s} \ket{s} ds$ (expansion of $\ket{\psi}$ in $H_s$)
+    \item $\ket{\psi'} = U(\tau) \ket{\psi} = \int_s (U_r(\tau) \ket{\psi_s}) (U_s(\tau) \ket{s}) ds = \int_s \ket{\psi'_s} \ket{s'} ds$
+    \item Here $\ket{\psi'_s} = U_r(\tau) \ket{\psi_s}$ and $\ket{s'} = U_s(\tau) \ket{s}$
+    \item Since $U_r$ and $U_s$ commute, the order of their application is immaterial
+    \item In order to keep $U$ unitary, $U_r$ and $U_s$ have to be unitary so that $U^{\dagger} U = U_r U_s U^{\dagger}_s U^{\dagger}_r = I = U_s U^{\dagger}_s U_r U^{\dagger}_r = I$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Coordinate System Transformations II**}
+  \vspace{1mm}
+  $U(\tau) = U_r(\tau) U_s(\tau) = U_s(\tau) U_r(\tau)$
+  \begin{itemize}
+    \item $U_r(\tau)$ changes the dependence of wave functions $\psi_s(r)$ on space coordinates but does not change the spin kets $\ket{s}$ associated with them
+    \item The change occurs by associating $\psi_s(r)$ with a linear combination $\ket{r'}$ of kets $\ket{r} \in H_r$ instead of $\ket{r}$
+    \item Similarly, $U_s(\tau)$ changes the spin associated with kets $\ket{\psi_s}$ but does not change their dependence on space coordinates
+    \item The change occurs by associating $\ket{\psi_s}$ with a linear combination $\ket{s'}$ of kets $\ket{s} \in H_s$ instead of $\ket{s}$
+    \item Both linear combinations depend on the transformation $\tau$
+  \end{itemize}
   Upon applying an STC transformation $\tau$, the system ket $\ket{\psi}$ transform to ket $\ket{\psi'} = U(\tau) \ket{\psi}$
   \begin{itemize}
-    \item The kets $\ket{x,s}$ transform to $\ket{x',s'}$ where $x' = \tau_x(x)$ and $s' = \tau_s(x)$
-    \item To preserve the system state: $\braket{x',s'}{\psi'} = \braket{x,s}{\psi}$ for all $x$ and $s$ (preserve all measurement probabilities)
-    \item $\ket{\psi'} = U(\tau) \ket{\psi} \implies \braket{x',s'}{\psi'} = \braket{x',s'}{U(\tau) \psi} \implies \psi'(x',s') = [U(\tau) \psi](x',s')$
-    \item But $\psi'(x',s') = \braket{x',s'}{\psi'} = \braket{x,s}{\psi} = \psi(x,s) = \psi'(\tau_x(x),\tau_s(x)) = \psi(\tau^{-1}_x(x'),\tau^{-1}_s(x'))$ 
-    \item Then $\ket{\psi'} = U(\tau) \ket{\psi} \implies \psi'(x'_i,s'_j) = [U(\tau) \psi](x'_i,s'_j) = \psi(\tau^{-1}_x(x'_i),\tau^{-1}_s(x'_i))$
+    \item The kets $\ket{r,s}$ transform to $\ket{r',s'}$ where $r' = \tau_r(r)$ and $s' = \tau_s(r)$
+    \item To preserve the system state: $\braket{r',s'}{\psi'} = \braket{r,s}{\psi}$ for all $r$ and $s$ (preserve all measurement probabilities)
+    \item $\ket{\psi'} = U(\tau) \ket{\psi} \implies \braket{r',s'}{\psi'} = \braket{r',s'}{U(\tau) \psi} \implies \psi'(r',s') = [U(\tau) \psi](r',s')$
+    \item But $\psi'(r',s') = \braket{r',s'}{\psi'} = \braket{r,s}{\psi} = \psi(r,s) = \psi'(\tau_r(r),\tau_s(r)) = \psi(\tau^{-1}_r(r'),\tau^{-1}_s(r'))$ 
+    \item Then $\ket{\psi'} = U(\tau) \ket{\psi} \implies \psi'(r',s') = [U(\tau) \psi](r',s') = \psi(\tau^{-1}_r(r'),\tau^{-1}_s(r'))$
     \item Hence, the kets transform in a direction opposite to the coordinate system transformation to preserve their values
   \end{itemize}
 \end{frame}
@@ -339,13 +408,13 @@
 \begin{frame}
   \frametitle{Coordinate System Transformations III}
   \vspace{1mm}
-  The transformation $\tau$ depends only on the position $x$ variables of the wave function and not on the spin variables $s$ because every point in space-time is transformed by $\tau$ while the particles' spins are not
+  The transformation $\tau$ depends only on the position $r$ variables of the wave function and not on the spin variables $s$ because every point in space-time is transformed by $\tau$ while the particles' spins are not
 
-  Let $\psi_s(x)$ denote the system's wave function $\psi(x,s)$ evaluated at the spin $s$. The application of an STC transformation changes the system kets in two ways
+  Let $\psi_s(r)$ denote the system's wave function $\psi(r,s)$ evaluated at the spin $s$. The application of an STC transformation changes the system kets in two ways
   \begin{itemize}
-    \item The functions $\psi_s(x)$ transform such that their values at one space-time point after transformation are reassigned to the values they had to the same space-time point before transformation $\psi'_s(x') = [U(\tau) \psi_s](x) = \psi_s(\tau^{-1}(x))$
+    \item The functions $\psi_s(r)$ transform such that their values at one space-time point after transformation are reassigned to the values they had at the same space-time point before transformation $\psi'_s(r') = [U(\tau) \psi_s](r) = \psi_s(\tau^{-1}(r))$
     \item This is required to preseve the particle's position DoFs and all dynamical variables depending on them
-    \item Otherwise, a measurement of a dynamical variable on a particle in spin configuration $s$ would yield different outcomes after transformation since the transformation of the function $\psi_s(x)$ does not preserve its values
+    \item Otherwise, a measurement of a dynamical variable on a particle with spin $s$ would yield different outcomes after transformation since the transformation of the function $\psi_s(r)$ does not preserve its values
     \item The spins also get reassigned so that $\psi_s$ becomes $\psi_{s'}$
     \item This is required to preserve the particle's spin DoFs after the transformation 
     \item Otherwise, a particle in an eigenket state of a spin operator $S^n$ in the $\hat{n}$ direction would not necessarily remain and eigenket for the operator $S_{n'}$ in the transformed direction $\hat{n}' = \tau(\hat{n})$
