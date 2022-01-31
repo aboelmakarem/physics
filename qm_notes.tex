@@ -137,7 +137,7 @@
   A single-particle QM system state is represented by a ket $\ket{\psi} \in H$
   \begin{itemize}
     \item A ket $\ket{r,s} = \ket{x y z s}$ corresponds to a particle at position $(x,y,z)$ and having spin $s$
-    \item $\ket{\psi}$ is a linear combination (superposition) of $H$ basis kets $\ket{r,s}$: $\ket{\psi} = \int_r \int_s \psi(r,s) \ket{r,s} dr ds$
+    \item $\ket{\psi}$ is a linear combination (superposition) of $H$ basis kets $\ket{r,s}$: $\ket{\psi} = \Sigma_s \int_r \psi(r,s) \ket{r,s} dr$
   \end{itemize}
   An N-particle QM system state is represented by a ket $\ket{\psi} \in H^n$ where $H^n = H_1 \otimes H_2 \otimes ... \otimes H_n$
   \begin{itemize}
@@ -158,14 +158,14 @@
   \vspace{1mm}
   For operators $A$ on $H_r = H_x \otimes H_y \otimes H_z$ and $B$ on $H_s$
   \begin{itemize}
-    \item $A \ket{\psi} = A \int_r \int_s \psi(r,s) \ket{r,s} dr ds = \int_r \int_s \psi(r,s) (A \ket{r}) \ket{s} dr ds$
-    \item $B \ket{\psi} = B \int_r \int_s \psi(r,s) \ket{r,s} dr ds = \int_r \int_s \psi(r,s) \ket{r} (B \ket{s}) dr ds$
+    \item $A \ket{\psi} = A \Sigma_s \int_r \psi(r,s) \ket{r,s} dr = \Sigma_s\int_r \psi(r,s) (A \ket{r}) \ket{s} dr$
+    \item $B \ket{\psi} = B \Sigma_s \int_r \psi(r,s) \ket{r,s} dr = \Sigma_s\int_r \psi(r,s) \ket{r} (B \ket{s}) dr$
     \item $A$ [$B$] operates on $\ket{r}$ [$\ket{s}$] and does not affect $\ket{s}$ [$\ket{r}$]
-    \item $AB \ket{\psi} = A \int_r \int_s \psi(r,s) \ket{r} (B \ket{s}) dr ds = \int_r \int_s \psi(r,s) (A \ket{r}) (B \ket{s}) dr ds$
-    \item $BA \ket{\psi} = B \int_r \int_s \psi(r,s) (A \ket{r}) \ket{s} dr ds = \int_r \int_s \psi(r,s) (A \ket{r}) (B \ket{s}) dr ds$
+    \item $AB \ket{\psi} = A \Sigma_s \int_r \psi(r,s) \ket{r} (B \ket{s}) dr = \Sigma_s\int_r \psi(r,s) (A \ket{r}) (B \ket{s}) dr$
+    \item $BA \ket{\psi} = B \Sigma_s \int_r \psi(r,s) (A \ket{r}) \ket{s} dr = \Sigma_s\int_r \psi(r,s) (A \ket{r}) (B \ket{s}) dr$
     \item $AB \ket{\psi} = BA \ket{\psi} \implies AB = BA \implies [A,B] = 0$ for all $A$ on $H_r$ and $B$ on $H_s$
-    \item For operator $C = A \otimes B$: $C \ket{\psi} = \int_r \int_s \psi(r,s) C \ket{r} \ket{s} dr ds = \int_r \int_s \psi(r,s) (A \ket{r}) (B \ket{s}) dr ds$
-    \item In general, any operator $Q$ on $H$ is the product of operators $Q_r$ on $H_r$ and $Q_s$ on $H_s$ such that $Q \ket{\psi} = \int_r \int_s \psi(r,s) (Q_r \ket{r}) (Q_s \ket{s}) dr ds$
+    \item For operator $C = A \otimes B$: $C \ket{\psi} = \Sigma_s \int_r \psi(r,s) C \ket{r} \ket{s} dr = \Sigma_s \int_r \psi(r,s) (A \ket{r}) (B \ket{s}) dr$
+    \item In general, any operator $Q$ on $H$ is a linear combination of the products of operators $Q^i_r$ on $H_r$ and $Q^i_s$ on $H_s$ such that $Q \ket{\psi} = \Sigma_i c_i \Sigma_s \int_r \psi(r,s) (Q^i_r \ket{r}) (Q^i_s \ket{s}) dr$ where $c_i$ is the combination coefficient
   \end{itemize}
   Since the DoFs are dynamical variables themselves, there are Hermitian operators that represent them
   \begin{itemize}
@@ -187,12 +187,11 @@
   \end{itemize}
   Any system ket $\ket{\psi}$ can be decomposed in the position-spin basis $\ket{r,s}$ where $r$ stands for all position variables and $s$ stands for the spin variable
   \begin{itemize}
-    \item $\ket{\psi} = \int_r \int_s \psi(r,s) \ket{r,s} dr ds$
-    \item Here, $\int_r .. dr$ and $\int_s .. ds$ are integrations over all position and spin DoFs, let $\int_{\Omega} ... d\Omega = \int_r \int_s ... dr ds$
-    \item Integrals become sums if any of the DoFs turn out to be discrete
-    \item Hence $\ket{\psi} = \int_{\Omega} \psi(r,s) \ket{r,s} d\Omega$ where $r$ is a point in the $3$-dimensional position space and $s$ is a point in the $1$-dimensional spin space
+    \item $\ket{\psi} = \Sigma_s \int_r \psi(r,s) \ket{r,s} dr = \Sigma_s \int_r \psi(r,s) \ket{r} dr \ket{s}$ where $r$ is a point in the $3$-dimensional position space and $s$ is one of the $M$ spin values of the system
+    \item Here, $\int_r .. dr$ and $\Sigma_s .. $ are integrations/sums over all position and spin DoFs
+    \item Integrals become sums if any of the DoFs turn out to be discrete and vice versa
     \item $\psi(r,s)$ is called the system's wave function. It is a function in all of the system's degrees of freedom
-    \item $\psi(r,s)$ is the projection of $\ket{\psi}$ on $\ket{r,s}$: $\braket{r,s}{\psi} = \int_{\Omega} \psi(r',s') \braket{r,s}{r',s'} d\Omega = \psi(r,s)$
+    \item $\psi(r,s)$ is the projection of $\ket{\psi}$ on $\ket{r,s}$: $\braket{r,s}{\psi} = \Sigma_{s'}\int_{r'} \psi(r',s') \braket{r,s}{r',s'} dr' = \psi(r,s)$
   \end{itemize}
 \end{frame}
 
@@ -246,48 +245,41 @@
 %   \end{itemize}
 % \end{frame}
 
-% \begin{frame}
-%   \frametitle{Spinors}
-%   \vspace{1mm}
-%   The position operator eigenkets $\ket{x_i}$ are members of a position Hilbert space $H_x$. Similarly, the spin operator eigenkets $\ket{s_j}$ are members of a spin Hilbert space $H_s$
-%   \begin{itemize}
-%     \item The product space $H = H_x \otimes H_s$ is spanned by basis kets that are the tensor products of kets $\ket{x_i}$ and $\ket{s_j}$
-%     \item The system kets $\ket{\psi}$ are members of the product Hilbert space $H$
-%     \item Hence, $\ket{x_i,s_j} = \ket{x_i} \ket{s_j} \implies \braket{x_i,s_j}{x_l,s_m} = \braket{x_i}{x_l} \braket{s_j}{s_m} = \delta_{jm} \braket{x_i}{x_l}$
-%   \end{itemize}
-%   Any ket $\ket{\psi}$ can be written as a linear combination of the position-spin eigenkets
-%   \begin{itemize}
-%     \item $\ket{\psi} = \Sigma^{M}_{j = 1} \int_{\Omega} \psi(x_i,s_j) \ket{x_i,s_j} d\Omega = \Sigma^{M}_{j = 1} \int_{\Omega} \psi(x_i,s_j) \ket{x_i}\ket{s_j} d\Omega$
-%     \item Then, $\braket{s_k}{\psi} = \Sigma^{M}_{j = 1} \int_{\Omega} \psi(x_i,s_j) \braket{s_k}{s_j}\ket{x_i} d\Omega = \Sigma^{M}_{j = 1} \int_{\Omega} \psi(x_i,s_j) \delta_{kj}\ket{x_i} d\Omega = \int_{\Omega} \psi(x_i,s_k) \ket{x_i} d\Omega$
-%     \item Let $\ket{\psi_k} = \int_{\Omega} \psi(x_i,s_k) \ket{x_i} d\Omega \implies \ket{\psi_k}$ is a ket in $H_x$ and $\braket{x_i}{\psi_k} = \psi_k(x_i)$
-%     \item Consequently, $\ket{\psi} = \ket{\psi_1} \ket{s_1} + \ket{\psi_2} \ket{s_2} + ... + \ket{\psi_M} \ket{s_M} = \ket{\psi_j} \ket{s_j}$
-%     \item $\ket{\psi}$ is the sum of outer products of $H_x$ kets $\ket{\psi_j}$ and $H_s$ basis kets $\ket{s_j}$
-%   \end{itemize}
-%   Hence, $\ket{\psi}$ (a ket in $H$) can be thought of as a vector-like object with components $\ket{\psi_k}$ (kets in $H_x)$
-%   \begin{itemize}
-%     \item The vector-like object is called a spinor and it is a member of $H$ with components in $H_x$
-%     \item Operators acting on $H_x$ kets operate on spinor components while operators acting on $H_s$ kets operate on the spinor itself (by forming linear combinations of its components)
-%   \end{itemize}
-% \end{frame}
+ \begin{frame}
+   \frametitle{Spinors}
+   \vspace{1mm}
+   Let $\ket{\psi_s} = \int_r \psi(r,s) \ket{r} dr \implies \ket{\psi} = \Sigma_s \ket{\psi_s} \ket{s}$
+  \begin{itemize}
+    \item $\ket{\psi_s} \in H_r$ is a position space ket associated with spin value $s$
+    \item $\ket{\psi}$ is a linear combination of outer products of kets $\ket{\psi_s} \in H_r$ and $\ket{s} \in H_s$
+    \item $\braket{s}{\psi} = \Sigma_{s'} \int_{r'} \psi(r',s') \ket{r} \braket{s}{s'} dr' = \Sigma_{s'} \int_{r'} \psi(r',s') \ket{r'} \delta_{ss'} dr' = \int_{r'} \psi(r',s) \ket{r'} dr' = \ket{\psi_s}$
+    \item $\ket{\psi_s}$ is the projection of $\ket{\psi}$ on eigenket $\ket{s} \in H_s$
+  \end{itemize}
+   Hence, $\ket{\psi} \in H$ can be thought of as a vector-like object in $H_s$ with components $\ket{\psi_k} \in H_r$
+   \begin{itemize}
+     \item The vector-like object is called a spinor and it is a member of $H$ with components in $H_r$
+     \item Operators acting on $H_r$ kets operate on spinor components while operators acting on $H_s$ kets operate on the spinor itself (by forming linear combinations of its components)
+   \end{itemize}
+ \end{frame}
 
-% \begin{frame}
-%   \frametitle{Mathematical Framework of Quantum Mechanics}
-%   \vspace{1mm}
-%   The state of a QM system is represented by a time-varying spinor $\ket{\psi(t)}$ in a Hilbert space $H$
-%   \begin{itemize}
-%     \item The number of the spinor components $M$ depends on the nature of the system's particles
-%   \end{itemize}  
-%   Operators on $H$ kets are either tensor produts of operators on $H_x$ and $H_s$ or linear combinations of such tensor products
-%   \begin{itemize}
-%     \item A tensor product opetator $A$ on $H$ is one where $A = A_x \otimes A_s$ with $A_x$ on $H_x$ and $A_s$ on $H_s$
-%     \item $A \ket{\psi} = (A_x \otimes A_s) \ket{\psi} = A_s \begin{pmatrix} A_x \ket{\psi_1} \\ A_x \ket{\psi_2} \\ \vdots \\ A_x \ket{\psi_M} \end{pmatrix} = A_x (A_s \begin{pmatrix} \ket{\psi_1} \\ \ket{\psi_2} \\ \vdots \\ \ket{\psi_M} \end{pmatrix})$ where $A_s$ is an $M \times M$ matrix
-%     \item For a linear combination of the tensor products, the previous operation holds term by term. The resulting ket for each term is multiplied by the term coefficient and all kets are summed to get the final ket
-%   \end{itemize}
-%   The spinor encodes the entire state of the QM system. Anything that can be known about the system in the present or the future can be obtained from the system's spinor
-%   \begin{itemize}
-%     \item Spinors are used because the spin DoFs are discrete, had they been continuous, we could have used a regular function with extra independent variables for spin DoFs 
-%   \end{itemize}
-% \end{frame}
+ \begin{frame}
+   \frametitle{Mathematical Framework of Quantum Mechanics}
+   \vspace{1mm}
+   The state of a QM system is represented by a time-varying spinor $\ket{\psi(t)}$ in a Hilbert space $H$
+   \begin{itemize}
+     \item The number of the spinor components $M$ depends on the nature of the system's particles
+   \end{itemize}  
+   Operators on $H$ kets are either tensor produts of operators on $H_r$ and $H_s$ or linear combinations of such tensor products
+   \begin{itemize}
+     \item A tensor product opetator $A$ on $H$ is one where $A = A_r \otimes A_s$ with $A_r$ on $H_r$ and $A_s$ on $H_s$
+     \item $A \ket{\psi} = (A_r \otimes A_s) \ket{\psi} = A_s \begin{pmatrix} A_r \ket{\psi_1} \\ A_r \ket{\psi_2} \\ \vdots \\ A_r \ket{\psi_M} \end{pmatrix} = A_r (A_s \begin{pmatrix} \ket{\psi_1} \\ \ket{\psi_2} \\ \vdots \\ \ket{\psi_M} \end{pmatrix})$ where $A_s$ is an $M \times M$ matrix
+     \item For a linear combination of the tensor products, the previous operation holds term by term. The resulting ket for each term is multiplied by the term coefficient and all kets are summed to get the final ket
+   \end{itemize}
+   The spinor encodes the entire state of the QM system. Anything that can be known about the system in the present or the future can be obtained from the system's spinor
+   \begin{itemize}
+     \item Spinors are used because the spin DoFs are discrete, had they been continuous, we could have used a regular function with extra independent variables for spin DoFs 
+   \end{itemize}
+ \end{frame}
 
 \begin{frame}
   \frametitle{Unitary Transformations and Their Generators}
@@ -374,9 +366,7 @@
   $U(\tau)$, being an operator acting on kets $\ket{\psi}$ of $H$, is the product of $U_r(\tau)$ on $H_r$ and $U_s(\tau)$ on $H_s$
   \begin{itemize}
     \item $U(\tau) \ket{\psi} = U_r(\tau) U_s(\tau) \ket{\psi} = U_s(\tau) U_r(\tau) \ket{\psi}$
-    \item Let $\psi_s(r)$ be the system's wave function $\psi(r,s)$ evaluated at spin $s: \ket{\psi} = \int_r \int_s \psi_s(r) \ket{r} \ket{s} dr ds$
-    \item Let $\ket{\psi_s} = \int_r \psi_s(r) \ket{r} dr \implies \ket{\psi} = \int_s \ket{\psi_s} \ket{s} ds$ (expansion of $\ket{\psi}$ in $H_s$)
-    \item $\ket{\psi'} = U(\tau) \ket{\psi} = \int_s (U_r(\tau) \ket{\psi_s}) (U_s(\tau) \ket{s}) ds = \int_s \ket{\psi'_s} \ket{s'} ds$
+    \item $\ket{\psi'} = U(\tau) \ket{\psi} = \Sigma_s (U_r(\tau) \ket{\psi_s}) (U_s(\tau) \ket{s}) = \Sigma_s \ket{\psi'_s} \ket{s'}$
     \item Here $\ket{\psi'_s} = U_r(\tau) \ket{\psi_s}$ and $\ket{s'} = U_s(\tau) \ket{s}$
     \item Since $U_r$ and $U_s$ commute, the order of their application is immaterial
     \item In order to keep $U$ unitary, $U_r$ and $U_s$ have to be unitary so that $U^{\dagger} U = U_r U_s U^{\dagger}_s U^{\dagger}_r = I = U_s U^{\dagger}_s U_r U^{\dagger}_r = I$
@@ -384,11 +374,16 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Coordinate System Transformations II**}
+  \frametitle{Coordinate System Transformations III}
   \vspace{1mm}
-  $U(\tau) = U_r(\tau) U_s(\tau) = U_s(\tau) U_r(\tau)$
+  $U(\tau) = U_r(\tau) U_s(\tau) = U_s(\tau) U_r(\tau), \ket{\psi_s} = \int_r \psi_s(r) \ket{r} dr$ where $\psi_s(r) = \psi(r,s)$
   \begin{itemize}
-    \item $U_r(\tau)$ changes the dependence of wave functions $\psi_s(r)$ on space coordinates but does not change the spin kets $\ket{s}$ associated with them
+    \item $U_r(\tau) \ket{\psi_s} = \int_r U_r(\tau) \psi_s(r) \ket{r} dr$
+    \item $U_r(\tau)$ acts on $\psi_s(r)$ by changing its dependence on space coordinates $r$, effecively associating it with a different ket $\ket{r'} \in H_r$
+    \item Or alternatively, it transforms the ket $\ket{r} \in H_r$ to $\ket{r'} \in H_r$ to be associated with $\psi_s(r)$
+    \item In both views, $U_r(\tau)$ does not change the association of $\psi_s(r)$ and $\ket{\psi_s}$ with the ket $\ket{s} in H_s$
+    
+    
     \item The change occurs by associating $\psi_s(r)$ with a linear combination $\ket{r'}$ of kets $\ket{r} \in H_r$ instead of $\ket{r}$
     \item Similarly, $U_s(\tau)$ changes the spin associated with kets $\ket{\psi_s}$ but does not change their dependence on space coordinates
     \item The change occurs by associating $\ket{\psi_s}$ with a linear combination $\ket{s'}$ of kets $\ket{s} \in H_s$ instead of $\ket{s}$
@@ -444,516 +439,516 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Coordinate System Transformations V}
-  \vspace{1mm}
-  For an STC transformations $\tau(\alpha)$ parametrized by a single continuous parameter $\alpha$, $U_x(\tau) = U_x(\alpha)$ and $U_s(\tau) = U_s(\alpha)$
-  \begin{itemize}
-    \item Multiple-parameters transformations are the compositions of multiple single-parameter transformation
-    \item $U_x(\alpha) = I + \alpha {d U_x \over d\alpha}|_{\alpha = 0} + O(\alpha^2)$ and $U_s(\alpha) = I + \alpha {d U_s \over d\alpha}|_{\alpha = 0} + O(\alpha^2)$
-    \item For infinitesimal $\alpha = \epsilon \to 0: U_x(\epsilon) = I + {i \over \hbar} \epsilon K$ and $U_s(\epsilon) = I + {i \over \hbar} \epsilon D$
-    \item $K = -i \hbar {d U_x \over d\alpha}|_{\alpha = 0}$ and $D = -i \hbar {d U_s \over d\alpha}|_{\alpha = 0}$ are the Hermitian generators of $U_s(\alpha)$ and $U_s(\alpha)$
-    % \item $K$ is a continuous generator while $D$ may be a discrete ($M \times M$ matrix) generator
-    \item $\ket{\psi'} = U_x(\epsilon) U_s(\epsilon) \ket{\psi} = (I + {i \over \hbar} \epsilon K)(I + {i \over \hbar} \epsilon T) \ket{\psi} = (I + {i \over \hbar} \epsilon (K + D)) \ket{\psi} = (I + {i \over \hbar} \epsilon V) \ket{\psi}$
-    \item $V = K + D$ is the generator of the overall infinitesimal transformation
-    \item For finite $\alpha$: $U_x(\alpha) = lim_{N \to \infty} U_x({\alpha \over N})^{N} = lim_{N \to \infty} [I + {i \over \hbar} {\alpha \over N} K]^{N} = \exp({i \over \hbar} \alpha K)$
-    \item Similarly, $U_s(\alpha) = \exp({i \over \hbar} \alpha D)$
-    \item The overall finite transformation: $U_x(\alpha) U_s(\alpha) = \exp({i \over \hbar} \alpha K) \exp({i \over \hbar} \alpha D) = \exp({i \over \hbar} \alpha D) \exp({i \over \hbar} \alpha K)$
-    \item Finite transformation operators commute the same way the infinitesimal transformation operators commute
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+  %\frametitle{Coordinate System Transformations V}
+  %\vspace{1mm}
+  %For an STC transformations $\tau(\alpha)$ parametrized by a single continuous parameter $\alpha$, $U_x(\tau) = U_x(\alpha)$ and $U_s(\tau) = U_s(\alpha)$
+  %\begin{itemize}
+    %\item Multiple-parameters transformations are the compositions of multiple single-parameter transformation
+    %\item $U_x(\alpha) = I + \alpha {d U_x \over d\alpha}|_{\alpha = 0} + O(\alpha^2)$ and $U_s(\alpha) = I + \alpha {d U_s \over d\alpha}|_{\alpha = 0} + O(\alpha^2)$
+    %\item For infinitesimal $\alpha = \epsilon \to 0: U_x(\epsilon) = I + {i \over \hbar} \epsilon K$ and $U_s(\epsilon) = I + {i \over \hbar} \epsilon D$
+    %\item $K = -i \hbar {d U_x \over d\alpha}|_{\alpha = 0}$ and $D = -i \hbar {d U_s \over d\alpha}|_{\alpha = 0}$ are the Hermitian generators of $U_s(\alpha)$ and $U_s(\alpha)$
+    %% \item $K$ is a continuous generator while $D$ may be a discrete ($M \times M$ matrix) generator
+    %\item $\ket{\psi'} = U_x(\epsilon) U_s(\epsilon) \ket{\psi} = (I + {i \over \hbar} \epsilon K)(I + {i \over \hbar} \epsilon T) \ket{\psi} = (I + {i \over \hbar} \epsilon (K + D)) \ket{\psi} = (I + {i \over \hbar} \epsilon V) \ket{\psi}$
+    %\item $V = K + D$ is the generator of the overall infinitesimal transformation
+    %\item For finite $\alpha$: $U_x(\alpha) = lim_{N \to \infty} U_x({\alpha \over N})^{N} = lim_{N \to \infty} [I + {i \over \hbar} {\alpha \over N} K]^{N} = \exp({i \over \hbar} \alpha K)$
+    %\item Similarly, $U_s(\alpha) = \exp({i \over \hbar} \alpha D)$
+    %\item The overall finite transformation: $U_x(\alpha) U_s(\alpha) = \exp({i \over \hbar} \alpha K) \exp({i \over \hbar} \alpha D) = \exp({i \over \hbar} \alpha D) \exp({i \over \hbar} \alpha K)$
+    %\item Finite transformation operators commute the same way the infinitesimal transformation operators commute
+  %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Rotation Transformation}
-  \vspace{1mm}
-  The rotation matrices $R_i(\theta)$ that rotate points of three-dimensional space about an axis $x_i$ by an angle $\theta$ are
-  \begin{itemize}
-    \item $R_1(\theta) = \begin{pmatrix} 1 & 0 & 0\\ 0 & \cos{\theta} & -\sin{\theta} \\ 0 & \sin{\theta} & \cos{\theta}\end{pmatrix}$, $R_2(\theta) = \begin{pmatrix} \cos{\theta} & 0 & \sin{\theta}\\ 0 & 1 & 0 \\ -\sin{\theta} & 0 & \cos{\theta}\end{pmatrix}$ and $R_3(\theta) = \begin{pmatrix} \cos{\theta} & -\sin{\theta} & 0\\ \sin{\theta} & \cos{\theta} &  0\\ 0 & 0 & 1\end{pmatrix}$
-  \end{itemize}
-  For rotations by an infinitesimal angle $\epsilon$, $\cos{\epsilon} \to 1$, $\sin{\epsilon} \to \epsilon$ and the rotation matrices become
-  \begin{itemize}
-    \item $T_1(\epsilon) = \begin{pmatrix} 1 & 0 & 0\\ 0 & 1 & -\epsilon \\ 0 & \epsilon & 1\end{pmatrix}$, $T_2(\epsilon) = \begin{pmatrix} 1 & 0 & \epsilon\\ 0 & 1 & 0 \\ -\epsilon & 0 & 1\end{pmatrix}$ and $T_3(\theta) = \begin{pmatrix} 1 & -\epsilon & 0\\ \epsilon & 1 &  0\\ 0 & 0 & 1\end{pmatrix}$
-    \item This can be written as $T_{k}(\epsilon) = I + {i \over \hbar} \epsilon M^k$ where $k = 1,2,3$ is the rotation axis and $M^{k}_{ij} = i \hbar \epsilon_{ijk}$
-    \item The transformation $T_k(\epsilon) = I + {i \over \hbar} \epsilon M^k$ is the one that infinitesimally rotates space
-  \end{itemize}
-  For finite-angle rotations about an axis $x_k$ by an angle $\theta$, the total transformation $R_k(\theta)$ can be composed from an infinite product of infinitesimal transformations $T_k(\epsilon)$
-  \begin{itemize}
-    \item $R_k(\theta) = lim_{n \to \infty} [T_{k}({\theta \over n})]^n = lim_{n \to \infty} [I + {i \over \hbar} {\theta \over n} M^k]^n = \exp({i \over \hbar} \theta M^{k})$
-  \end{itemize}
-  The inverse of the infinitesimal rotation transformation $T_k(\epsilon) = I + {i \over \hbar} \epsilon M^k$ is $T^{-1}_k(\epsilon) = I - {i \over \hbar} \epsilon M^k$
-  \begin{itemize}
-    \item $T_k(\epsilon) T^{-1}_k(\epsilon) = (I + {i \over \hbar} \epsilon M^k)(I - {i \over \hbar} \epsilon M^k) = I - {\epsilon^{2} \over \hbar^2} M^k M^k \to I$ as $\epsilon \to 0$
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+  %\frametitle{Rotation Transformation}
+  %\vspace{1mm}
+  %The rotation matrices $R_i(\theta)$ that rotate points of three-dimensional space about an axis $x_i$ by an angle $\theta$ are
+  %\begin{itemize}
+    %\item $R_1(\theta) = \begin{pmatrix} 1 & 0 & 0\\ 0 & \cos{\theta} & -\sin{\theta} \\ 0 & \sin{\theta} & \cos{\theta}\end{pmatrix}$, $R_2(\theta) = \begin{pmatrix} \cos{\theta} & 0 & \sin{\theta}\\ 0 & 1 & 0 \\ -\sin{\theta} & 0 & \cos{\theta}\end{pmatrix}$ and $R_3(\theta) = \begin{pmatrix} \cos{\theta} & -\sin{\theta} & 0\\ \sin{\theta} & \cos{\theta} &  0\\ 0 & 0 & 1\end{pmatrix}$
+  %\end{itemize}
+  %For rotations by an infinitesimal angle $\epsilon$, $\cos{\epsilon} \to 1$, $\sin{\epsilon} \to \epsilon$ and the rotation matrices become
+  %\begin{itemize}
+    %\item $T_1(\epsilon) = \begin{pmatrix} 1 & 0 & 0\\ 0 & 1 & -\epsilon \\ 0 & \epsilon & 1\end{pmatrix}$, $T_2(\epsilon) = \begin{pmatrix} 1 & 0 & \epsilon\\ 0 & 1 & 0 \\ -\epsilon & 0 & 1\end{pmatrix}$ and $T_3(\theta) = \begin{pmatrix} 1 & -\epsilon & 0\\ \epsilon & 1 &  0\\ 0 & 0 & 1\end{pmatrix}$
+    %\item This can be written as $T_{k}(\epsilon) = I + {i \over \hbar} \epsilon M^k$ where $k = 1,2,3$ is the rotation axis and $M^{k}_{ij} = i \hbar \epsilon_{ijk}$
+    %\item The transformation $T_k(\epsilon) = I + {i \over \hbar} \epsilon M^k$ is the one that infinitesimally rotates space
+  %\end{itemize}
+  %For finite-angle rotations about an axis $x_k$ by an angle $\theta$, the total transformation $R_k(\theta)$ can be composed from an infinite product of infinitesimal transformations $T_k(\epsilon)$
+  %\begin{itemize}
+    %\item $R_k(\theta) = lim_{n \to \infty} [T_{k}({\theta \over n})]^n = lim_{n \to \infty} [I + {i \over \hbar} {\theta \over n} M^k]^n = \exp({i \over \hbar} \theta M^{k})$
+  %\end{itemize}
+  %The inverse of the infinitesimal rotation transformation $T_k(\epsilon) = I + {i \over \hbar} \epsilon M^k$ is $T^{-1}_k(\epsilon) = I - {i \over \hbar} \epsilon M^k$
+  %\begin{itemize}
+    %\item $T_k(\epsilon) T^{-1}_k(\epsilon) = (I + {i \over \hbar} \epsilon M^k)(I - {i \over \hbar} \epsilon M^k) = I - {\epsilon^{2} \over \hbar^2} M^k M^k \to I$ as $\epsilon \to 0$
+  %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Space Translation Generator}
-  \vspace{1mm}
-  An infinitesimal translation $\epsilon$ in space in the $i$ direction changes the space coordinates but does not change spin direction ($S^n = S^{n'}$ for any spin operator in the direction $\hat{n}' = \hat{n}$) $\implies \ket{\psi'} = U_{xi}(\epsilon) U_{si}(\epsilon) \ket{\psi}$
-  \begin{itemize}
-    \item The transformed kets $\ket{\psi'} = U_{xi}(\epsilon) U_{si}(\epsilon) \ket{\psi} = U_{xi}(\epsilon) I \ket{\psi} \implies D_i = 0$
-    \item The wave functions $\psi_s$ change such that $\psi'_s(x') = \psi_s(x + \epsilon e^i)$ where $e^i$ is the unit vector in $i$ direction
-    \item $\psi'_s(x') = \psi_s(x) + \epsilon {\partial \over \partial x_i} \psi_s(x) + O(\epsilon^2) = [I + \epsilon {\partial \over \partial x_i}] \psi_s \implies {i \over \hbar} \epsilon P_i = \epsilon {\partial \over \partial x_i} \implies P_i = -i \hbar {\partial \over \partial x_i}$
-    \item $P_i = -i \hbar {\partial \over \partial x_i}$ is the generator of infinitesimal translations in $i$ direction
-    % \item For an N-particle system, $P_i = -i \hbar \Sigma^{N -1}_{j = 0} {\partial \over \partial x_{3j + i}}$ because the $i^{th}$ coordinate ($x_{3j + i}$) of all particles change
-    \item It can be shown that $\bra{\psi_1}\ket{P_i \psi_2} = \bra{P_i \psi_1} \ket{\psi_2} \implies P_i$ is Hermitian 
-    \item $P_i$ is Hermitian $\implies U_i(\epsilon) = I + {i \over \hbar} \epsilon P_i$ is a symmetry transformation that preserves the system state
-    \item Space translation is a symmetry operation only if the translation is along a cartesian coordinate dimension $\implies P_i$ is the generator of translation only in cartesian coordinates, for other coordinate systems $P_\eta \neq -i \hbar {\partial \over \partial \eta}$
-    \item The finite translation transformation in the $i$ direction is $U_i(\alpha) = \exp(\alpha {\partial \over \partial x_i})$
-    \item $[X_i,P_j]f = -i \hbar x_i {\partial f \over \partial x_j} + i \hbar {\partial \over \partial x_j} x_i f = i \hbar \delta_{ij} f \implies [X_i,P_j] = i \hbar \delta_{ij}$
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+  %\frametitle{Space Translation Generator}
+  %\vspace{1mm}
+  %An infinitesimal translation $\epsilon$ in space in the $i$ direction changes the space coordinates but does not change spin direction ($S^n = S^{n'}$ for any spin operator in the direction $\hat{n}' = \hat{n}$) $\implies \ket{\psi'} = U_{xi}(\epsilon) U_{si}(\epsilon) \ket{\psi}$
+  %\begin{itemize}
+    %\item The transformed kets $\ket{\psi'} = U_{xi}(\epsilon) U_{si}(\epsilon) \ket{\psi} = U_{xi}(\epsilon) I \ket{\psi} \implies D_i = 0$
+    %\item The wave functions $\psi_s$ change such that $\psi'_s(x') = \psi_s(x + \epsilon e^i)$ where $e^i$ is the unit vector in $i$ direction
+    %\item $\psi'_s(x') = \psi_s(x) + \epsilon {\partial \over \partial x_i} \psi_s(x) + O(\epsilon^2) = [I + \epsilon {\partial \over \partial x_i}] \psi_s \implies {i \over \hbar} \epsilon P_i = \epsilon {\partial \over \partial x_i} \implies P_i = -i \hbar {\partial \over \partial x_i}$
+    %\item $P_i = -i \hbar {\partial \over \partial x_i}$ is the generator of infinitesimal translations in $i$ direction
+    %% \item For an N-particle system, $P_i = -i \hbar \Sigma^{N -1}_{j = 0} {\partial \over \partial x_{3j + i}}$ because the $i^{th}$ coordinate ($x_{3j + i}$) of all particles change
+    %\item It can be shown that $\bra{\psi_1}\ket{P_i \psi_2} = \bra{P_i \psi_1} \ket{\psi_2} \implies P_i$ is Hermitian 
+    %\item $P_i$ is Hermitian $\implies U_i(\epsilon) = I + {i \over \hbar} \epsilon P_i$ is a symmetry transformation that preserves the system state
+    %\item Space translation is a symmetry operation only if the translation is along a cartesian coordinate dimension $\implies P_i$ is the generator of translation only in cartesian coordinates, for other coordinate systems $P_\eta \neq -i \hbar {\partial \over \partial \eta}$
+    %\item The finite translation transformation in the $i$ direction is $U_i(\alpha) = \exp(\alpha {\partial \over \partial x_i})$
+    %\item $[X_i,P_j]f = -i \hbar x_i {\partial f \over \partial x_j} + i \hbar {\partial \over \partial x_j} x_i f = i \hbar \delta_{ij} f \implies [X_i,P_j] = i \hbar \delta_{ij}$
+  %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Space Rotation Generator}
-  \vspace{1mm}
-  A rotation by an infinitesimal angle $\alpha$ in space about the $i$ axis changes the space coordinates and the spin direction ($S^n \neq S^{n'}$ for any spin operator in the direction $\hat{n}$ because $\hat{n}' \neq \hat{n}$) $\implies \ket{\psi'} = U_{xi}(\epsilon) U_{si}(\epsilon) \ket{\psi}$
-  \begin{itemize}
-    \item The wave functions $\psi_s$ change such that $\psi'_s(x') = \psi_s(x + \alpha \epsilon_{ilm} x_l e^m e^i)$, $e^p$ is the unit vector in $p$ direction
-    \item $\psi'_s(x') = \psi_s(x) + \alpha \epsilon_{ilm} x_l {\partial \over \partial x_m} \psi_s(x_j) + O(\alpha^2) = [I + \alpha \epsilon_{ilm} x_l {\partial \over \partial x_m}] \psi_s \implies {i \over \hbar} \alpha L_i = \alpha \epsilon_{ilm} x_l {\partial \over \partial x_m}$
-    \item $L_i = -i \hbar \epsilon_{ilm} x_l {\partial \over \partial x_m}$ is the generator of infinitesimal rotations about $i$ axis for wave functions $\psi_s(x_i)$
-    \item Since $P_i = -i \hbar {\partial \over \partial x_m}$, then $L_i = \epsilon_{ilm} X_l P_m$
-    % \item N-particle system $L_i = \Sigma^{N -1}_{j = 0} \epsilon_{(3j + i)lm} X_l P_m$ because coordinates of all particles rotate about the $i^{th}$ axis
-    \item It can be shown that $\bra{\psi_1}\ket{L_i \psi_2} = \bra{L_i \psi_1} \ket{\psi_2} \implies L_i$ is Hermitian 
-    \item $L_i$ is Hermitian $\implies U_i(\alpha) = I + {i \over \hbar} \alpha L_i$ is a symmetry transformation that preserves the system state
-    \item The finite rotation transformation about $i$ axis is $U_i(\beta) = \exp(\beta \epsilon_{ilm} x_l {\partial \over \partial x_m})$
-    \item $[X_i,L_j] = [X_i,\epsilon_{jlm} X_l P_m] = \epsilon_{jlm} (X_i X_l P_m - X_l P_m X_i) = \epsilon_{jlm} X_l [X_i,P_m] = \epsilon_{jlm} X_l \delta_{im} i \hbar = i \hbar \epsilon_{ijl} X_l$
-    \item The form of the spin transform $U_{si}$ is still to be determined $\implies \ket{\psi'} = [I + {i \over \hbar} \alpha L_i] U_{si}(\alpha) \ket{\psi}$
-    \item The overall transformation is $U_{xi}(\alpha) U_{si}(\alpha) = [I + {i \over \hbar} \alpha L_i] [I + {i \over \hbar} \alpha D_i] = [I + {i \over \hbar} \alpha (L_i + D_i)] = [I + {i \over \hbar} \alpha J_i]$ where $J_i = L_i + D_i$
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+  %\frametitle{Space Rotation Generator}
+  %\vspace{1mm}
+  %A rotation by an infinitesimal angle $\alpha$ in space about the $i$ axis changes the space coordinates and the spin direction ($S^n \neq S^{n'}$ for any spin operator in the direction $\hat{n}$ because $\hat{n}' \neq \hat{n}$) $\implies \ket{\psi'} = U_{xi}(\epsilon) U_{si}(\epsilon) \ket{\psi}$
+  %\begin{itemize}
+    %\item The wave functions $\psi_s$ change such that $\psi'_s(x') = \psi_s(x + \alpha \epsilon_{ilm} x_l e^m e^i)$, $e^p$ is the unit vector in $p$ direction
+    %\item $\psi'_s(x') = \psi_s(x) + \alpha \epsilon_{ilm} x_l {\partial \over \partial x_m} \psi_s(x_j) + O(\alpha^2) = [I + \alpha \epsilon_{ilm} x_l {\partial \over \partial x_m}] \psi_s \implies {i \over \hbar} \alpha L_i = \alpha \epsilon_{ilm} x_l {\partial \over \partial x_m}$
+    %\item $L_i = -i \hbar \epsilon_{ilm} x_l {\partial \over \partial x_m}$ is the generator of infinitesimal rotations about $i$ axis for wave functions $\psi_s(x_i)$
+    %\item Since $P_i = -i \hbar {\partial \over \partial x_m}$, then $L_i = \epsilon_{ilm} X_l P_m$
+    %% \item N-particle system $L_i = \Sigma^{N -1}_{j = 0} \epsilon_{(3j + i)lm} X_l P_m$ because coordinates of all particles rotate about the $i^{th}$ axis
+    %\item It can be shown that $\bra{\psi_1}\ket{L_i \psi_2} = \bra{L_i \psi_1} \ket{\psi_2} \implies L_i$ is Hermitian 
+    %\item $L_i$ is Hermitian $\implies U_i(\alpha) = I + {i \over \hbar} \alpha L_i$ is a symmetry transformation that preserves the system state
+    %\item The finite rotation transformation about $i$ axis is $U_i(\beta) = \exp(\beta \epsilon_{ilm} x_l {\partial \over \partial x_m})$
+    %\item $[X_i,L_j] = [X_i,\epsilon_{jlm} X_l P_m] = \epsilon_{jlm} (X_i X_l P_m - X_l P_m X_i) = \epsilon_{jlm} X_l [X_i,P_m] = \epsilon_{jlm} X_l \delta_{im} i \hbar = i \hbar \epsilon_{ijl} X_l$
+    %\item The form of the spin transform $U_{si}$ is still to be determined $\implies \ket{\psi'} = [I + {i \over \hbar} \alpha L_i] U_{si}(\alpha) \ket{\psi}$
+    %\item The overall transformation is $U_{xi}(\alpha) U_{si}(\alpha) = [I + {i \over \hbar} \alpha L_i] [I + {i \over \hbar} \alpha D_i] = [I + {i \over \hbar} \alpha (L_i + D_i)] = [I + {i \over \hbar} \alpha J_i]$ where $J_i = L_i + D_i$
+  %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Commutators of IT Generators}
-  \vspace{1mm}
-  Take two invarance transformations $\exp(i \alpha_1 K_1)$ and $\exp(i \alpha_2 K_2)$, and let $U_{12}$ be the product of the transformations and their inverses
-  \begin{itemize}
-    \item $U_{12} = \exp(i \alpha_1 K_1) \exp(i \alpha_2 K_2) \exp(-i \alpha_1 K_1) \exp(-i \alpha_2 K_2)$
-    \item By expanding $U$ in powers of $\alpha_i$ and keeping only up to the second order terms, $U_{12} \approx I + \alpha_1 \alpha_2 [K_2,K_1]$
-  \end{itemize}
-  The infinitesimal transformation $U_{12} \approx I + \alpha_1 \alpha_2 [K_2,K_1]$ is equivalent to the application of $10$ invariance transformations (IT) up to an arbitrary phase factor $\exp(i \delta)$
-  \begin{itemize}
-    \item $U_{12} = \exp(i \delta) \Pi_{i = 1}^{10} \exp(i \beta_j K_j) \approx \exp(i \delta) (I + i \Sigma_{j = 1}^{10} \beta_j K_j)$ for infinitesimal $\alpha_1$ and $\alpha_2$
-    \item $(1 - i \delta)(I + \alpha_1 \alpha_2 [K_2,K_1]) = I + i \Sigma_{j = 1}^{10} \beta_j K_j \implies [K_2,K_1] =  i \Sigma_{j = 1}^{10} {\beta_j \over \alpha_1 \alpha_2} K_j + i \delta I$
-    \item Hence, the commutator of any two IT generators is a linear combination of all other IT generators
-    \item Since this derivation does not depend on particular generators, it holds for the general case of any two IT generators
-    \item The extra term $i \delta I$ is a multiple of identity that accounts for any phase factors
-  \end{itemize}
-  This is only true because the IT generators are independent of the transformation parameter $\alpha$, otherwise, the relationship between commutators and generators would be non-linear
-\end{frame}
+%\begin{frame}
+  %\frametitle{Commutators of IT Generators}
+  %\vspace{1mm}
+  %Take two invarance transformations $\exp(i \alpha_1 K_1)$ and $\exp(i \alpha_2 K_2)$, and let $U_{12}$ be the product of the transformations and their inverses
+  %\begin{itemize}
+    %\item $U_{12} = \exp(i \alpha_1 K_1) \exp(i \alpha_2 K_2) \exp(-i \alpha_1 K_1) \exp(-i \alpha_2 K_2)$
+    %\item By expanding $U$ in powers of $\alpha_i$ and keeping only up to the second order terms, $U_{12} \approx I + \alpha_1 \alpha_2 [K_2,K_1]$
+  %\end{itemize}
+  %The infinitesimal transformation $U_{12} \approx I + \alpha_1 \alpha_2 [K_2,K_1]$ is equivalent to the application of $10$ invariance transformations (IT) up to an arbitrary phase factor $\exp(i \delta)$
+  %\begin{itemize}
+    %\item $U_{12} = \exp(i \delta) \Pi_{i = 1}^{10} \exp(i \beta_j K_j) \approx \exp(i \delta) (I + i \Sigma_{j = 1}^{10} \beta_j K_j)$ for infinitesimal $\alpha_1$ and $\alpha_2$
+    %\item $(1 - i \delta)(I + \alpha_1 \alpha_2 [K_2,K_1]) = I + i \Sigma_{j = 1}^{10} \beta_j K_j \implies [K_2,K_1] =  i \Sigma_{j = 1}^{10} {\beta_j \over \alpha_1 \alpha_2} K_j + i \delta I$
+    %\item Hence, the commutator of any two IT generators is a linear combination of all other IT generators
+    %\item Since this derivation does not depend on particular generators, it holds for the general case of any two IT generators
+    %\item The extra term $i \delta I$ is a multiple of identity that accounts for any phase factors
+  %\end{itemize}
+  %This is only true because the IT generators are independent of the transformation parameter $\alpha$, otherwise, the relationship between commutators and generators would be non-linear
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Commutators of IT Generators II}
-  \vspace{1mm}
-  Any generator (operator, in general) commutes with itself $\implies [P_i,P_i] = [J_i,J_i] = [G_i,G_i] = [H,H] = 0$
+%\begin{frame}
+  %\frametitle{Commutators of IT Generators II}
+  %\vspace{1mm}
+  %Any generator (operator, in general) commutes with itself $\implies [P_i,P_i] = [J_i,J_i] = [G_i,G_i] = [H,H] = 0$
 
-  For two space rotations about axes $i$ and $j$: $\tau_1(R_i,0,0,0)$, $\tau_2(R_j,0,0,0)$
-  \begin{itemize}
-    \item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(i \theta_i J_i) \exp(i \theta_j J_j) \exp(-i \theta_i J_i) \exp(-i \theta_j J_j) \to I + \theta_i \theta_j [J_j,J_i]$
-    \item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = \tau(R^{-1}_i R^{-1}_j R_i R_j,0,0,0) \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = U(R^{-1}_i R^{-1}_j R_i R_j,0,0,0)$
-    \item For infinitesimal rotations about axis $i$, $R_i(\epsilon) = I + {i \over \hbar} \epsilon M^i$ and $R^{-1}_{i}(\epsilon) = I - {i \over \hbar} \epsilon M^i$
-    \item Hence, $R_i(\epsilon_1) R_j(\epsilon_2) = I + {i \over \hbar} (\epsilon_1 M^{i} + \epsilon_2 M^{j}) - {1 \over \hbar^2}({\epsilon^2_1 \over 2} M^i M^i + \epsilon_1 \epsilon_2 M^i M^j + {\epsilon^2_2 \over 2} M^j M^j)$
-    \item Similarly, $R^{-1}_{i}(\epsilon_1) R^{-1}_{j}(\epsilon_2) = I - {i \over \hbar} (\epsilon_1 M^{i} + \epsilon_2 M^{j}) - {1 \over \hbar^2}({\epsilon^2_1 \over 2} M^i M^i + \epsilon_1 \epsilon_2 M^i M^j + {\epsilon^2_2 \over 2} M^j M^j)$
-    \item Hence, $R^{-1}_{i} R^{-1}_{j} R_i R_j = I + {\epsilon_1 \epsilon_2 \over \hbar^2} [M^j,M^i]$ up to a second order in $\epsilon$
-    \item But $[M^i,M^j] = i \hbar \epsilon_{ijk} M^k \implies R^{-1}_{i} R^{-1}_{j} R_i R_j = I - i {\epsilon_1 \epsilon_2 \over \hbar} \epsilon_{ijk} M^k$
-    \item Since $R_{k}(-\epsilon_1 \epsilon_2) = I - i {\epsilon_1 \epsilon_2 \over \hbar} M^k \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = U(\tau(-\epsilon_{ijk} R_k,0,0,0))$
-    \item Hence, $[J_j,J_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [J_j,J_i] = -i \epsilon_{ijk} J_k + i \delta I \implies [J_i,J_j] = i \epsilon_{ijk} J_k - i \delta I$
-    \item $[J_i,J_j] = i \epsilon_{ijk} J_k - i \delta I = -[J_j,J_i] = -i \epsilon_{jik} J_k + i \delta I = i \epsilon_{ijk} J_k + i \delta I \implies \delta = 0 \implies [J_i,J_j] = i \epsilon_{ijk} J_k$
-  \end{itemize}
-\end{frame}
+  %For two space rotations about axes $i$ and $j$: $\tau_1(R_i,0,0,0)$, $\tau_2(R_j,0,0,0)$
+  %\begin{itemize}
+    %\item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(i \theta_i J_i) \exp(i \theta_j J_j) \exp(-i \theta_i J_i) \exp(-i \theta_j J_j) \to I + \theta_i \theta_j [J_j,J_i]$
+    %\item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = \tau(R^{-1}_i R^{-1}_j R_i R_j,0,0,0) \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = U(R^{-1}_i R^{-1}_j R_i R_j,0,0,0)$
+    %\item For infinitesimal rotations about axis $i$, $R_i(\epsilon) = I + {i \over \hbar} \epsilon M^i$ and $R^{-1}_{i}(\epsilon) = I - {i \over \hbar} \epsilon M^i$
+    %\item Hence, $R_i(\epsilon_1) R_j(\epsilon_2) = I + {i \over \hbar} (\epsilon_1 M^{i} + \epsilon_2 M^{j}) - {1 \over \hbar^2}({\epsilon^2_1 \over 2} M^i M^i + \epsilon_1 \epsilon_2 M^i M^j + {\epsilon^2_2 \over 2} M^j M^j)$
+    %\item Similarly, $R^{-1}_{i}(\epsilon_1) R^{-1}_{j}(\epsilon_2) = I - {i \over \hbar} (\epsilon_1 M^{i} + \epsilon_2 M^{j}) - {1 \over \hbar^2}({\epsilon^2_1 \over 2} M^i M^i + \epsilon_1 \epsilon_2 M^i M^j + {\epsilon^2_2 \over 2} M^j M^j)$
+    %\item Hence, $R^{-1}_{i} R^{-1}_{j} R_i R_j = I + {\epsilon_1 \epsilon_2 \over \hbar^2} [M^j,M^i]$ up to a second order in $\epsilon$
+    %\item But $[M^i,M^j] = i \hbar \epsilon_{ijk} M^k \implies R^{-1}_{i} R^{-1}_{j} R_i R_j = I - i {\epsilon_1 \epsilon_2 \over \hbar} \epsilon_{ijk} M^k$
+    %\item Since $R_{k}(-\epsilon_1 \epsilon_2) = I - i {\epsilon_1 \epsilon_2 \over \hbar} M^k \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = U(\tau(-\epsilon_{ijk} R_k,0,0,0))$
+    %\item Hence, $[J_j,J_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [J_j,J_i] = -i \epsilon_{ijk} J_k + i \delta I \implies [J_i,J_j] = i \epsilon_{ijk} J_k - i \delta I$
+    %\item $[J_i,J_j] = i \epsilon_{ijk} J_k - i \delta I = -[J_j,J_i] = -i \epsilon_{jik} J_k + i \delta I = i \epsilon_{ijk} J_k + i \delta I \implies \delta = 0 \implies [J_i,J_j] = i \epsilon_{ijk} J_k$
+  %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Commutators of IT Generators III}
-  \vspace{1mm}
-  For two space translations: $\tau_1(I,d_i,0,0)$, $\tau_2(I,d_j,0,0)$ in any directions $i$, $j$
-  \begin{itemize}
-    \item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(i d_i P_i) \exp(i d_j P_j) \exp(-i d_i P_i) \exp(-i d_j P_j) \to I + d_i d_j [P_j,P_j]$
-    \item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = I \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = I$
-    \item Hence, $[P_j,P_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [P_j,P_i] = 0$ and $\delta$ can be arbitrarily chosen to be $0$
-  \end{itemize}
-  For a space translation in direction $i$ and a time translation: $\tau_1(I,d_i,0,0)$, $\tau_2(I,0,0,s)$
-  \begin{itemize}
-    \item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(i d_i P_i) \exp(-i s H) \exp(-i d_i P_i) \exp(i s H) \to I + s d_i [H,P_i]$
-    \item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = I \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = I$
-    \item Hence, $[H,P_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [H,P_i] = 0$ and $\delta$ can be arbitrarily chosen to be $0$
-  \end{itemize}
-  For two velocity transformations: $\tau_1(I,0,v_i,0)$, $\tau_2(I,0,v_j,0)$ in any directions $i$, $j$
-  \begin{itemize}
-    \item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(-i v_i G_i) \exp(-i v_j G_j) \exp(i v_i G_i) \exp(i v_j G_j) \to I + v_i v_j [G_j,G_i]$
-    \item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = I \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = I$
-    \item Hence, $[G_j,G_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [G_j,G_i] = 0$ and $\delta$ can be arbitrarily chosen to be $0$
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+  %\frametitle{Commutators of IT Generators III}
+  %\vspace{1mm}
+  %For two space translations: $\tau_1(I,d_i,0,0)$, $\tau_2(I,d_j,0,0)$ in any directions $i$, $j$
+  %\begin{itemize}
+    %\item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(i d_i P_i) \exp(i d_j P_j) \exp(-i d_i P_i) \exp(-i d_j P_j) \to I + d_i d_j [P_j,P_j]$
+    %\item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = I \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = I$
+    %\item Hence, $[P_j,P_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [P_j,P_i] = 0$ and $\delta$ can be arbitrarily chosen to be $0$
+  %\end{itemize}
+  %For a space translation in direction $i$ and a time translation: $\tau_1(I,d_i,0,0)$, $\tau_2(I,0,0,s)$
+  %\begin{itemize}
+    %\item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(i d_i P_i) \exp(-i s H) \exp(-i d_i P_i) \exp(i s H) \to I + s d_i [H,P_i]$
+    %\item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = I \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = I$
+    %\item Hence, $[H,P_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [H,P_i] = 0$ and $\delta$ can be arbitrarily chosen to be $0$
+  %\end{itemize}
+  %For two velocity transformations: $\tau_1(I,0,v_i,0)$, $\tau_2(I,0,v_j,0)$ in any directions $i$, $j$
+  %\begin{itemize}
+    %\item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(-i v_i G_i) \exp(-i v_j G_j) \exp(i v_i G_i) \exp(i v_j G_j) \to I + v_i v_j [G_j,G_i]$
+    %\item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = I \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = I$
+    %\item Hence, $[G_j,G_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [G_j,G_i] = 0$ and $\delta$ can be arbitrarily chosen to be $0$
+  %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Commutators of IT Generators IV}
-  \vspace{1mm}
-  For a space rotation about axis $i$ and time translation: $\tau_1(R_i,0,0,0)$, $\tau_2(I,0,0,s)$
-  \begin{itemize}
-    \item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(i \theta_i J_i) \exp(-i s H) \exp(-i \theta_i J_i) \exp(i s H) \to I + \theta_i s [H,J_i]$
-    \item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = I \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = I$
-    \item Hence, $[H,J_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [H,J_i] = 0$ and $\delta$ can be arbitrarily chosen to be $0$
-  \end{itemize}
-  For any three operators $A$, $B$ and $C$: $[[A,B],C] = [[C,B],A] + [[A,C],B]$
+%\begin{frame}
+  %\frametitle{Commutators of IT Generators IV}
+  %\vspace{1mm}
+  %For a space rotation about axis $i$ and time translation: $\tau_1(R_i,0,0,0)$, $\tau_2(I,0,0,s)$
+  %\begin{itemize}
+    %\item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(i \theta_i J_i) \exp(-i s H) \exp(-i \theta_i J_i) \exp(i s H) \to I + \theta_i s [H,J_i]$
+    %\item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = I \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = I$
+    %\item Hence, $[H,J_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [H,J_i] = 0$ and $\delta$ can be arbitrarily chosen to be $0$
+  %\end{itemize}
+  %For any three operators $A$, $B$ and $C$: $[[A,B],C] = [[C,B],A] + [[A,C],B]$
   
-  For a space rotation about axis $i$ and a space translation in direction $j$: $\tau_1(R_i,0,0,0)$, $\tau_2(I,d_j,0,0)$
-  \begin{itemize}
-    \item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(i \theta_i J_i) \exp(i d_j P_j) \exp(-i \theta_i J_i) \exp(-i d_j P_j) \to I + \theta_i d_j [P_j,J_i]$
-    \item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = \tau(I,(I - R^{-1}_i)d_j,0,0) \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = U(I,(I - R^{-1}_i)d_j,0,0)$
-    \item $U_{12}$ corresponds to a space translation in a direction normal to $i$ and $j$ 
-    \item Hence, $[P_j,J_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [P_j,J_i] = i \epsilon_{jik} P_k + i \delta I \implies [J_i,P_j] = i \epsilon_{ijk} P_k + i \delta I$
-    \item $[[J_1,J_2],P_3] = [[P_3,J_2],J_1] + [[J_1,P_3],J_2] \implies i[J_3,P_3] = -i[P_1,J_1] + i \delta [I,J_1] - i[P_2,J_2] + i \delta [I,J_1]$
-    \item Hence, $[J_3,P_3] = [J_1,P_1] + [J_2,P_2]$, $[J_2,P_2] = [J_1,P_1] + [J_3,P_3]$, $[J_1,P_1] = [J_3,P_3] + [J_2,P_2]$
-    \item This is only true if $[J_1,P_1] = [J_2,P_2] = [J_3,P_3] = 0 \implies \delta = 0 \implies [J_i,P_j] = i \epsilon_{ijk} P_k$
-  \end{itemize}
+  %For a space rotation about axis $i$ and a space translation in direction $j$: $\tau_1(R_i,0,0,0)$, $\tau_2(I,d_j,0,0)$
+  %\begin{itemize}
+    %\item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(i \theta_i J_i) \exp(i d_j P_j) \exp(-i \theta_i J_i) \exp(-i d_j P_j) \to I + \theta_i d_j [P_j,J_i]$
+    %\item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = \tau(I,(I - R^{-1}_i)d_j,0,0) \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = U(I,(I - R^{-1}_i)d_j,0,0)$
+    %\item $U_{12}$ corresponds to a space translation in a direction normal to $i$ and $j$ 
+    %\item Hence, $[P_j,J_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [P_j,J_i] = i \epsilon_{jik} P_k + i \delta I \implies [J_i,P_j] = i \epsilon_{ijk} P_k + i \delta I$
+    %\item $[[J_1,J_2],P_3] = [[P_3,J_2],J_1] + [[J_1,P_3],J_2] \implies i[J_3,P_3] = -i[P_1,J_1] + i \delta [I,J_1] - i[P_2,J_2] + i \delta [I,J_1]$
+    %\item Hence, $[J_3,P_3] = [J_1,P_1] + [J_2,P_2]$, $[J_2,P_2] = [J_1,P_1] + [J_3,P_3]$, $[J_1,P_1] = [J_3,P_3] + [J_2,P_2]$
+    %\item This is only true if $[J_1,P_1] = [J_2,P_2] = [J_3,P_3] = 0 \implies \delta = 0 \implies [J_i,P_j] = i \epsilon_{ijk} P_k$
+  %\end{itemize}
 
-\end{frame}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Commutators of IT Generators V}
-  \vspace{1mm}
-    For a space rotation about axis $i$ and a velocity transformation in direction $j$: $\tau_1(R_i,0,0,0)$, $\tau_2(I,0,v_j,0)$
-  \begin{itemize}
-    \item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(i \theta_i J_i) \exp(-i v_j G_j) \exp(-i \theta_i J_i) \exp(i v_j G_j) \to I + \theta_i v_j [G_j,J_i]$
-    \item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = \tau(I,0,(I - R^{-1}_i)v_j,0) \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = U(I,0,(I - R^{-1}_i)v_j,0)$
-    \item $U_{12}$ corresponds to a velocity transformation in a direction normal to $i$ and $j$ 
-    \item Hence, $[G_j,J_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [G_j,J_i] = i \epsilon_{jik} G_k + i \delta I  \implies [J_i,P_j] = i \epsilon_{ijk} P_k + i \delta I$
-    \item $[[J_1,J_2],G_3] = [[G_3,J_2],J_1] + [[J_1,G_3],J_2] \implies i[J_3,G_3] = -i[G_1,J_1] + i \delta [I,J_1] - i[G_2,J_2] + i \delta [I,J_1]$
-    \item Hence, $[J_3,G_3] = [J_1,G_1] + [J_2,G_2]$, $[J_2,G_2] = [J_1,G_1] + [J_3,G_3]$, $[J_1,G_1] = [J_3,G_3] + [J_2,G_2]$
-    \item This is only true if $[J_1,G_1] = [J_2,G_2] = [J_3,G_3] = 0 \implies \delta = 0 \implies [J_i,G_j] = i \epsilon_{ijk} G_k$
-  \end{itemize}
-  For a velocity transformation about axis $i$ and time translation: $\tau_1(I,0,v_i,0)$, $\tau_2(I,0,0,s)$
-  \begin{itemize}
-    \item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(-i v_i G_i) \exp(-i s H) \exp(i v_i G_i) \exp(i s H) \to I + v_i s [H,G_i]$
-    \item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = \tau(I,v_i s,0,0) \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = U(I,v_i s,0,0)$
-    \item Hence, $[H,G_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [G_i,H] = i P_i + i \delta I$
-    \item $[[J_1,G_2],H] = [[H,G_2],J_1] + [[J_1,H],G_2] \implies i[G_3,H] + i \delta [I,H] = -i[P_2,J_1] + i \delta [I,J_1] + [0,G_2]$
-    \item Hence, $[G_3,H] = [J_1,P_2] = i P_3$, $[G_2,H] = i P_2$ and $[G_1,H] = i P_1 \implies \delta = 0 \implies [G_i,H] = i P_i$
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+  %\frametitle{Commutators of IT Generators V}
+  %\vspace{1mm}
+    %For a space rotation about axis $i$ and a velocity transformation in direction $j$: $\tau_1(R_i,0,0,0)$, $\tau_2(I,0,v_j,0)$
+  %\begin{itemize}
+    %\item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(i \theta_i J_i) \exp(-i v_j G_j) \exp(-i \theta_i J_i) \exp(i v_j G_j) \to I + \theta_i v_j [G_j,J_i]$
+    %\item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = \tau(I,0,(I - R^{-1}_i)v_j,0) \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = U(I,0,(I - R^{-1}_i)v_j,0)$
+    %\item $U_{12}$ corresponds to a velocity transformation in a direction normal to $i$ and $j$ 
+    %\item Hence, $[G_j,J_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [G_j,J_i] = i \epsilon_{jik} G_k + i \delta I  \implies [J_i,P_j] = i \epsilon_{ijk} P_k + i \delta I$
+    %\item $[[J_1,J_2],G_3] = [[G_3,J_2],J_1] + [[J_1,G_3],J_2] \implies i[J_3,G_3] = -i[G_1,J_1] + i \delta [I,J_1] - i[G_2,J_2] + i \delta [I,J_1]$
+    %\item Hence, $[J_3,G_3] = [J_1,G_1] + [J_2,G_2]$, $[J_2,G_2] = [J_1,G_1] + [J_3,G_3]$, $[J_1,G_1] = [J_3,G_3] + [J_2,G_2]$
+    %\item This is only true if $[J_1,G_1] = [J_2,G_2] = [J_3,G_3] = 0 \implies \delta = 0 \implies [J_i,G_j] = i \epsilon_{ijk} G_k$
+  %\end{itemize}
+  %For a velocity transformation about axis $i$ and time translation: $\tau_1(I,0,v_i,0)$, $\tau_2(I,0,0,s)$
+  %\begin{itemize}
+    %\item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(-i v_i G_i) \exp(-i s H) \exp(i v_i G_i) \exp(i s H) \to I + v_i s [H,G_i]$
+    %\item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = \tau(I,v_i s,0,0) \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = U(I,v_i s,0,0)$
+    %\item Hence, $[H,G_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [G_i,H] = i P_i + i \delta I$
+    %\item $[[J_1,G_2],H] = [[H,G_2],J_1] + [[J_1,H],G_2] \implies i[G_3,H] + i \delta [I,H] = -i[P_2,J_1] + i \delta [I,J_1] + [0,G_2]$
+    %\item Hence, $[G_3,H] = [J_1,P_2] = i P_3$, $[G_2,H] = i P_2$ and $[G_1,H] = i P_1 \implies \delta = 0 \implies [G_i,H] = i P_i$
+  %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Commutators of IT Generators VI}
-  \vspace{1mm}
-  For a space translation in direction $i$ and velocity transformation in direction $j$: $\tau_1(I,d_i,0,0)$, $\tau_2(I,0,v_j,0)$
-  \begin{itemize}
-    \item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(i d_i P_i) \exp(-i v_j G_j) \exp(-i d_i P_i) \exp(i v_j G_j) \to I + d_i v_j [G_j,P_i]$
-    \item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = I \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = I$
-    \item Hence, $[G_j,P_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [G_j,P_i] = i \delta I$
-    \item $[[J_1,G_2],P_1] = [[P_1,G_2],J_1] + [[J_1,P_1],G_2] \implies i[G_3,P_1] = i \delta [I,J_1] + [0,G_2] \implies [G_3,P_1] = 0$
-    \item Similarly, $[G_3,P_2] = [G_2,P_1] = [G_2,P_3] = [G_1,P_2] = [G_1,P_3] = 0$
-    \item Also $[[J_1,G_2],P_3] = [[P_3,G_2],J_1] + [[J_1,P_3],G_2] \implies i[G_3,P_3] = [0,J_1] -i [P_2,G_2]$
-    \item Hence, $[G_3,P_3] = [G_2,P_2]$ and $[G_3,P_3] = [G_1,P_1] \implies [G_i,P_j] = i \delta_{ij} M I$
-    \item $\delta = M$ only if $i = j$ in $[G_i,P_j]$, otherwise, $\delta = 0$
-  \end{itemize}
-  Here, $M$ cannot be arbitrarily chosen to be zero, unlike $[P_i,P_j]$, $[G_i,G_j]$, $[P_i,H]$ and $[J_i,H]$ where
-  \begin{itemize}
-    \item $[[J_2,P_3],H] = [[H,P_3],J_2] + [[J_2,H],P_3] \implies i[P_1,H] = 0 \implies [P_i,H] = 0$
-    \item $[[J_2,P_3],P_2] = [[P_2,P_3],J_2] + [[J_2,P_2],P_3] \implies i[P_1,P_2] = 0 \implies [P_i,P_j] = 0$
-    \item $[[J_2,G_3],G_2] = [[G_2,G_3],J_2] + [[J_2,G_2],G_3] \implies i[G_1,G_2] = 0 \implies [G_i,G_j] = 0$
-    \item $[[J_2,J_3],H] = [[H,J_3],J_2] + [[J_2,H],J_3] \implies i[J_1,H] = 0 \implies [J_i,H] = 0$
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+  %\frametitle{Commutators of IT Generators VI}
+  %\vspace{1mm}
+  %For a space translation in direction $i$ and velocity transformation in direction $j$: $\tau_1(I,d_i,0,0)$, $\tau_2(I,0,v_j,0)$
+  %\begin{itemize}
+    %\item $U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = \exp(i d_i P_i) \exp(-i v_j G_j) \exp(-i d_i P_i) \exp(i v_j G_j) \to I + d_i v_j [G_j,P_i]$
+    %\item But $\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2 = I \implies U_{12}(\tau^{-1}_1 \tau^{-1}_2 \tau_1 \tau_2) = I$
+    %\item Hence, $[G_j,P_i] = i \Sigma_{j = 1}^{10} \beta_j K_j + i \delta I \implies [G_j,P_i] = i \delta I$
+    %\item $[[J_1,G_2],P_1] = [[P_1,G_2],J_1] + [[J_1,P_1],G_2] \implies i[G_3,P_1] = i \delta [I,J_1] + [0,G_2] \implies [G_3,P_1] = 0$
+    %\item Similarly, $[G_3,P_2] = [G_2,P_1] = [G_2,P_3] = [G_1,P_2] = [G_1,P_3] = 0$
+    %\item Also $[[J_1,G_2],P_3] = [[P_3,G_2],J_1] + [[J_1,P_3],G_2] \implies i[G_3,P_3] = [0,J_1] -i [P_2,G_2]$
+    %\item Hence, $[G_3,P_3] = [G_2,P_2]$ and $[G_3,P_3] = [G_1,P_1] \implies [G_i,P_j] = i \delta_{ij} M I$
+    %\item $\delta = M$ only if $i = j$ in $[G_i,P_j]$, otherwise, $\delta = 0$
+  %\end{itemize}
+  %Here, $M$ cannot be arbitrarily chosen to be zero, unlike $[P_i,P_j]$, $[G_i,G_j]$, $[P_i,H]$ and $[J_i,H]$ where
+  %\begin{itemize}
+    %\item $[[J_2,P_3],H] = [[H,P_3],J_2] + [[J_2,H],P_3] \implies i[P_1,H] = 0 \implies [P_i,H] = 0$
+    %\item $[[J_2,P_3],P_2] = [[P_2,P_3],J_2] + [[J_2,P_2],P_3] \implies i[P_1,P_2] = 0 \implies [P_i,P_j] = 0$
+    %\item $[[J_2,G_3],G_2] = [[G_2,G_3],J_2] + [[J_2,G_2],G_3] \implies i[G_1,G_2] = 0 \implies [G_i,G_j] = 0$
+    %\item $[[J_2,J_3],H] = [[H,J_3],J_2] + [[J_2,H],J_3] \implies i[J_1,H] = 0 \implies [J_i,H] = 0$
+  %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Commutators of IT Generators VII}
-  \vspace{1mm}
-  Since the space translation generator $P_i$ was found to be $P_i = -i \hbar {\partial \over \partial x_i}$
-  \begin{itemize}
-    \item $[P_i,P_j] = - \hbar^2 ({\partial \over \partial} x_i {\partial \over \partial x_j} - {\partial \over \partial x_j} {\partial \over \partial x_i}) = 0 \implies [P_i,P_j] = 0$ as derived from the IT commutator relations
-  \end{itemize}
-  For space rotation generators, $[J_i,J_j] = i \epsilon_{ijk} J_k$, $J_i = L_i + D_i$ and
-  \begin{itemize}
-    \item $[L_i,D_j] = 0$, $L_i = \epsilon_{ilm} X_l P_m$ and $[X_i,L_j] = i \hbar \epsilon_{ijl} X_l$
-    \item $[P_i,L_j] = [P_i,\epsilon_{jlm} X_l P_m] = \epsilon_{jlm} (P_i X_l P_m - X_l P_m P_i) = \epsilon_{jlm} [P_i,X_l] P_m = -\epsilon_{jlm} P_m \delta_{il} i \hbar = i \hbar \epsilon_{ijl} P_l$
-    \item $[L_i,L_j] = \epsilon_{ilm} [X_l P_m,L_j] = \epsilon_{ilm} (X_l [P_m,L_j] + [X_l,L_j] P_m) = i \hbar \epsilon_{ilm} (\epsilon_{mjq} X_l P_q + \epsilon_{ljq} X_q P_m)$
-    \item $[L_i,L_j] = i \hbar (X_i P_j - X_j P_i)$ and $\epsilon_{ijk} L_k = \epsilon_{ijk} \epsilon_{klm} X_l P_m = X_i P_j - X_j P_i$, then $[L_i,L_j] = i \epsilon_{ijk} L_k$
-    \item $[J_i,J_j] = [L_i + D_i,L_j + D_j] = [L_i,L_j] + [D_i,L_j] + [L_i,D_j] + [D_i,D_j] = i \epsilon_{ijk} L_k + [D_i,D_j] = i \epsilon_{ijk} (L_k + D_k)$
-    \item Then, $[D_i,D_j] = i \epsilon_{ijk} D_k$
-  \end{itemize}
-  This result is true whether $D_i$ is a discrete or a continuous generator
-  \begin{itemize}
-    \item $[X_i,L_j] = i \hbar \epsilon_{ijl} X_l \implies [X_i,J_j] = [X_i,L_j + D_j] = i \hbar \epsilon_{ijl} X_l + [X_i,D_j]$
-    \item $D_i$ are generators that handle the transformation of spin wave functions $\psi_s(x)$, they are related to the spin operator $S^n$ in the $\hat{n}$ direction as it will be derived
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+  %\frametitle{Commutators of IT Generators VII}
+  %\vspace{1mm}
+  %Since the space translation generator $P_i$ was found to be $P_i = -i \hbar {\partial \over \partial x_i}$
+  %\begin{itemize}
+    %\item $[P_i,P_j] = - \hbar^2 ({\partial \over \partial} x_i {\partial \over \partial x_j} - {\partial \over \partial x_j} {\partial \over \partial x_i}) = 0 \implies [P_i,P_j] = 0$ as derived from the IT commutator relations
+  %\end{itemize}
+  %For space rotation generators, $[J_i,J_j] = i \epsilon_{ijk} J_k$, $J_i = L_i + D_i$ and
+  %\begin{itemize}
+    %\item $[L_i,D_j] = 0$, $L_i = \epsilon_{ilm} X_l P_m$ and $[X_i,L_j] = i \hbar \epsilon_{ijl} X_l$
+    %\item $[P_i,L_j] = [P_i,\epsilon_{jlm} X_l P_m] = \epsilon_{jlm} (P_i X_l P_m - X_l P_m P_i) = \epsilon_{jlm} [P_i,X_l] P_m = -\epsilon_{jlm} P_m \delta_{il} i \hbar = i \hbar \epsilon_{ijl} P_l$
+    %\item $[L_i,L_j] = \epsilon_{ilm} [X_l P_m,L_j] = \epsilon_{ilm} (X_l [P_m,L_j] + [X_l,L_j] P_m) = i \hbar \epsilon_{ilm} (\epsilon_{mjq} X_l P_q + \epsilon_{ljq} X_q P_m)$
+    %\item $[L_i,L_j] = i \hbar (X_i P_j - X_j P_i)$ and $\epsilon_{ijk} L_k = \epsilon_{ijk} \epsilon_{klm} X_l P_m = X_i P_j - X_j P_i$, then $[L_i,L_j] = i \epsilon_{ijk} L_k$
+    %\item $[J_i,J_j] = [L_i + D_i,L_j + D_j] = [L_i,L_j] + [D_i,L_j] + [L_i,D_j] + [D_i,D_j] = i \epsilon_{ijk} L_k + [D_i,D_j] = i \epsilon_{ijk} (L_k + D_k)$
+    %\item Then, $[D_i,D_j] = i \epsilon_{ijk} D_k$
+  %\end{itemize}
+  %This result is true whether $D_i$ is a discrete or a continuous generator
+  %\begin{itemize}
+    %\item $[X_i,L_j] = i \hbar \epsilon_{ijl} X_l \implies [X_i,J_j] = [X_i,L_j + D_j] = i \hbar \epsilon_{ijl} X_l + [X_i,D_j]$
+    %\item $D_i$ are generators that handle the transformation of spin wave functions $\psi_s(x)$, they are related to the spin operator $S^n$ in the $\hat{n}$ direction as it will be derived
+  %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Position Operator Commutators}
-  \vspace{1mm}
-  The position operator $X_i$ multiplies any ket $\ket{\psi}$ by its space coordinate $x_i \implies X_i \ket{\psi} = x_i \ket{\psi}$. 
+%\begin{frame}
+  %\frametitle{Position Operator Commutators}
+  %\vspace{1mm}
+  %The position operator $X_i$ multiplies any ket $\ket{\psi}$ by its space coordinate $x_i \implies X_i \ket{\psi} = x_i \ket{\psi}$. 
 
-  For any unitary transformation generator $K_j$
-  \begin{itemize}
-    \item The corresponding unitary transformation is $U(\alpha) = \exp({i \over \hbar} \alpha K_j)$ for a transformation parameter $\alpha$
-    \item The transformed position operator $X'_i = U X_i U^{\dagger} = \exp({i \over \hbar} \alpha K_j) X_i \exp(-{i \over \hbar} \alpha K_j) = X_i + {i \over \hbar} \alpha [X_i,K_j] + O(\alpha^2)$
-    \item The transformed position eigenkets $\ket{x'} = U \ket{x} = \exp({i \over \hbar} \alpha K_j) \ket{x}$
-  \end{itemize}
-  For a space rotation about $j$ axis, the generator is $J_j \implies X'_i = X_i + {i \over \hbar} \alpha [X_i,J_j] + O(\alpha^2)$
-  \begin{itemize}
-    \item A point $x$ transforms to $x + \alpha r \times e^j \implies x_k \to x_k + \alpha \epsilon_{lmk} x_l e^j_m$ where $e^j$ is the unit vector in $j$ direction upon a rotation by an infinitesimal angle $\alpha$
-    \item $X'_i$ measures the position relative to the rotated coordinates $\implies X_i \ket{x} = x_i \ket{x}$ and $X'_i \ket{x'} = x_i \ket{x'}$
-    \item $\ket{x'} = \exp({i \over \hbar} \alpha J_j) \ket{x} = \ket{x_k - \alpha \epsilon_{lmk} x_l \delta_{jm}}$ since $e^j_m = \delta_{jm}$ (opposite direction transformation)
-    \item $X'_i \ket{x'} = (X_i + {i \over \hbar} \alpha [X_i,J_j])\ket{x'} = (x_i - \alpha \epsilon_{lmi} x_l \delta_{mj})\ket{x'} + {i \over \hbar} \alpha [X_i,J_j] \ket{x'} \implies -\alpha \epsilon_{lji} x_l + {i \over \hbar} \alpha [X_i,J_j] = 0$
-    \item Hence, $[X_i,J_j] = -i \hbar \epsilon_{lji} x_l I = i \hbar \epsilon_{ijl} X_l \implies [J_i,X_j] = i \hbar \epsilon_{ijl} X_l$
-  \end{itemize}
-  But $[X_i,J_j] = i \hbar \epsilon_{ijl} X_l + [X_i,D_j] = i \hbar \epsilon_{ijl} X_l \implies [X_i,D_j] = 0$ 
-\end{frame}
+  %For any unitary transformation generator $K_j$
+  %\begin{itemize}
+    %\item The corresponding unitary transformation is $U(\alpha) = \exp({i \over \hbar} \alpha K_j)$ for a transformation parameter $\alpha$
+    %\item The transformed position operator $X'_i = U X_i U^{\dagger} = \exp({i \over \hbar} \alpha K_j) X_i \exp(-{i \over \hbar} \alpha K_j) = X_i + {i \over \hbar} \alpha [X_i,K_j] + O(\alpha^2)$
+    %\item The transformed position eigenkets $\ket{x'} = U \ket{x} = \exp({i \over \hbar} \alpha K_j) \ket{x}$
+  %\end{itemize}
+  %For a space rotation about $j$ axis, the generator is $J_j \implies X'_i = X_i + {i \over \hbar} \alpha [X_i,J_j] + O(\alpha^2)$
+  %\begin{itemize}
+    %\item A point $x$ transforms to $x + \alpha r \times e^j \implies x_k \to x_k + \alpha \epsilon_{lmk} x_l e^j_m$ where $e^j$ is the unit vector in $j$ direction upon a rotation by an infinitesimal angle $\alpha$
+    %\item $X'_i$ measures the position relative to the rotated coordinates $\implies X_i \ket{x} = x_i \ket{x}$ and $X'_i \ket{x'} = x_i \ket{x'}$
+    %\item $\ket{x'} = \exp({i \over \hbar} \alpha J_j) \ket{x} = \ket{x_k - \alpha \epsilon_{lmk} x_l \delta_{jm}}$ since $e^j_m = \delta_{jm}$ (opposite direction transformation)
+    %\item $X'_i \ket{x'} = (X_i + {i \over \hbar} \alpha [X_i,J_j])\ket{x'} = (x_i - \alpha \epsilon_{lmi} x_l \delta_{mj})\ket{x'} + {i \over \hbar} \alpha [X_i,J_j] \ket{x'} \implies -\alpha \epsilon_{lji} x_l + {i \over \hbar} \alpha [X_i,J_j] = 0$
+    %\item Hence, $[X_i,J_j] = -i \hbar \epsilon_{lji} x_l I = i \hbar \epsilon_{ijl} X_l \implies [J_i,X_j] = i \hbar \epsilon_{ijl} X_l$
+  %\end{itemize}
+  %But $[X_i,J_j] = i \hbar \epsilon_{ijl} X_l + [X_i,D_j] = i \hbar \epsilon_{ijl} X_l \implies [X_i,D_j] = 0$ 
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Spin Transformation Generator}
-  \vspace{1mm}
-  The spin transformation generator $D_i$ has the following properties
-  \begin{itemize}
-    \item $[D_i,L_j] = 0$ (by definition) and $[X_i,D_j] = 0, [D_i,D_j] = i \epsilon_{ijk} D_k$ (proven)
-    \item Then $0 = \epsilon_{jlm} [D_i,X_l P_m] = \epsilon_{jlm} (X_l [S_i,P_m] + [S_i,X_l] P_m) = \epsilon_{jlm} (0 + X_l [S_i,P_m]) \implies [S_i,P_m] = 0$
-  \end{itemize}
-  For a state $\ket{\psi}$ that is an eigenket of the spin operator $S^n$ with axis $\hat{n}$, after applying an infinitesimal STC rotation with an angle $\alpha$ about the $k$ axis
-  \begin{itemize}
-    \item The state $\ket{\psi}$ transforms to $\ket{\psi'} = U_x(\alpha) U_s(\alpha) \ket{\psi} = [I + {i \over \hbar} \alpha L_k][I + {i \over \hbar} \alpha D_k] \ket{\psi}$
-    \item The axis $\hat{n}$ transforms to $\hat{n}' = T_k(\alpha) \hat{n} = [I + {i \over \hbar} \alpha M^k] \hat{n}$
-    \item The operator $S^n$ transforms to $S^{n'} = U(\alpha) S^{n} U^{\dagger}(\alpha) = U_x(\alpha) U_s(\alpha) S^{n} U^{\dagger}_s(\alpha) U^{\dagger}_x(\alpha)$
-    \item Since $U_x(\alpha)$ does not affect the spin DoFs and their operators, then $U_x(\alpha) U_s(\alpha) S^{n} U^{\dagger}_s(\alpha) U^{\dagger}_x(\alpha) = U_s(\alpha) S^{n} U^{\dagger}_s(\alpha) U_x(\alpha) U^{\dagger}_x(\alpha) = U_s(\alpha) S^{n} U^{\dagger}_s(\alpha) \implies S^{n'} = U_s(\alpha) S^{n} U^{\dagger}_s(\alpha)$
-    \item This guarantees that if $S^n \ket{\psi} = s \ket{\psi}$ then $S^{n'} \ket{\psi'} = s \ket{\psi'}$ as required by a symmetry transformation
-    \item $S^{n'} = [I + {i \over \hbar} \alpha D_k] S^{n} [I - {i \over \hbar} \alpha D_k] = S_n + {i \over \hbar} \alpha [D_k,S^n] + {\alpha^2 \over \hbar^2} D_k S^n D_k$
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+  %\frametitle{Spin Transformation Generator}
+  %\vspace{1mm}
+  %The spin transformation generator $D_i$ has the following properties
+  %\begin{itemize}
+    %\item $[D_i,L_j] = 0$ (by definition) and $[X_i,D_j] = 0, [D_i,D_j] = i \epsilon_{ijk} D_k$ (proven)
+    %\item Then $0 = \epsilon_{jlm} [D_i,X_l P_m] = \epsilon_{jlm} (X_l [S_i,P_m] + [S_i,X_l] P_m) = \epsilon_{jlm} (0 + X_l [S_i,P_m]) \implies [S_i,P_m] = 0$
+  %\end{itemize}
+  %For a state $\ket{\psi}$ that is an eigenket of the spin operator $S^n$ with axis $\hat{n}$, after applying an infinitesimal STC rotation with an angle $\alpha$ about the $k$ axis
+  %\begin{itemize}
+    %\item The state $\ket{\psi}$ transforms to $\ket{\psi'} = U_x(\alpha) U_s(\alpha) \ket{\psi} = [I + {i \over \hbar} \alpha L_k][I + {i \over \hbar} \alpha D_k] \ket{\psi}$
+    %\item The axis $\hat{n}$ transforms to $\hat{n}' = T_k(\alpha) \hat{n} = [I + {i \over \hbar} \alpha M^k] \hat{n}$
+    %\item The operator $S^n$ transforms to $S^{n'} = U(\alpha) S^{n} U^{\dagger}(\alpha) = U_x(\alpha) U_s(\alpha) S^{n} U^{\dagger}_s(\alpha) U^{\dagger}_x(\alpha)$
+    %\item Since $U_x(\alpha)$ does not affect the spin DoFs and their operators, then $U_x(\alpha) U_s(\alpha) S^{n} U^{\dagger}_s(\alpha) U^{\dagger}_x(\alpha) = U_s(\alpha) S^{n} U^{\dagger}_s(\alpha) U_x(\alpha) U^{\dagger}_x(\alpha) = U_s(\alpha) S^{n} U^{\dagger}_s(\alpha) \implies S^{n'} = U_s(\alpha) S^{n} U^{\dagger}_s(\alpha)$
+    %\item This guarantees that if $S^n \ket{\psi} = s \ket{\psi}$ then $S^{n'} \ket{\psi'} = s \ket{\psi'}$ as required by a symmetry transformation
+    %\item $S^{n'} = [I + {i \over \hbar} \alpha D_k] S^{n} [I - {i \over \hbar} \alpha D_k] = S_n + {i \over \hbar} \alpha [D_k,S^n] + {\alpha^2 \over \hbar^2} D_k S^n D_k$
+  %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Spin Transformation Generator II***}
-  \vspace{1mm}
-  $S^n$ depends on the spin axis direction $\hat{n}$, assuming a linear dependence: $S^n = n_i S^i$ where $S^i$ are Hermitian operators
-  \begin{itemize}
-    \item For spin axes in $x,y$ and $z$ directions, the spin operators are $S^x,S_y$ and $S_z$
-    \item $\hat{n}' = [I + {i \over \hbar} \alpha M^k] \hat{n} \implies S^{n'} = \hat{n}_i' S^i = [\delta_{ij} + {i \over \hbar} \alpha M^k_{ij}] \hat{n}_j S^i = \hat{n}_i S^i + {i \over \hbar} \alpha M^k_{ij} \hat{n}_j S^i = S^n + {i \over \hbar} \alpha M^k_{ij} \hat{n}_j S^i$
-    \item By comparison $[D_k,S^n] = M^k_{ij} \hat{n}_j S^i = i \hbar \epsilon_{ijk} \hat{n}_j S^i$
-    \item For spin about axis $p$: $[D_k,S^p] = i \hbar \epsilon_{ijk} \delta_{pj} S^i = i \hbar \epsilon_{ipk} S^i = -i \hbar \epsilon_{kpi} S^i$
-    \item But $[D_k,D_p] = i \epsilon_{kpl} D_l$, this suggests that $D_p = -i \hbar S^p$
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+  %\frametitle{Spin Transformation Generator II***}
+  %\vspace{1mm}
+  %$S^n$ depends on the spin axis direction $\hat{n}$, assuming a linear dependence: $S^n = n_i S^i$ where $S^i$ are Hermitian operators
+  %\begin{itemize}
+    %\item For spin axes in $x,y$ and $z$ directions, the spin operators are $S^x,S_y$ and $S_z$
+    %\item $\hat{n}' = [I + {i \over \hbar} \alpha M^k] \hat{n} \implies S^{n'} = \hat{n}_i' S^i = [\delta_{ij} + {i \over \hbar} \alpha M^k_{ij}] \hat{n}_j S^i = \hat{n}_i S^i + {i \over \hbar} \alpha M^k_{ij} \hat{n}_j S^i = S^n + {i \over \hbar} \alpha M^k_{ij} \hat{n}_j S^i$
+    %\item By comparison $[D_k,S^n] = M^k_{ij} \hat{n}_j S^i = i \hbar \epsilon_{ijk} \hat{n}_j S^i$
+    %\item For spin about axis $p$: $[D_k,S^p] = i \hbar \epsilon_{ijk} \delta_{pj} S^i = i \hbar \epsilon_{ipk} S^i = -i \hbar \epsilon_{kpi} S^i$
+    %\item But $[D_k,D_p] = i \epsilon_{kpl} D_l$, this suggests that $D_p = -i \hbar S^p$
+  %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Position Operator Commutators II***}
-  \vspace{1mm}
-  For a velocity transformation in $j$ direction, the generator is $G^t_j \implies X'_i = X_i + i \alpha [X_i,G^t_j] + O(\alpha^2)$
-  \begin{itemize}
-    \item $G^t_j$ is parametrized by $t$ because it transforms space coordinates to ones of a moving coordinate system at time $t$. It is assumed here that origins coincide at $t = 0$
-    \item $X'_i$ measures the position relative to the moving coordinates $\implies X_i \ket{x} = x_i \ket{x}$ and $X'_i \ket{x'} = x_i \ket{x'}$
-    \item $\ket{x'} = \exp(i \alpha G^t_j) \ket{x} = \ket{x + \alpha t e^j}$ where $e^j_p = \delta_{jp}$ is unit vector in $j$ direction
-    \item $X'_i \ket{x'} = (X_i + i \alpha [X_i,G^t_j])\ket{x'} = (x_i + \alpha t \delta_{ij})\ket{x'} + i \alpha [X_i,G^t_j] \ket{x'} \implies \alpha t \delta_{ij} + i \alpha [X_i,G^t_j] = 0$
-    \item Hence, $[X_i,G^t_j] = i \delta_{ij} t I$
-    \item $$
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+  %\frametitle{Position Operator Commutators II***}
+  %\vspace{1mm}
+  %For a velocity transformation in $j$ direction, the generator is $G^t_j \implies X'_i = X_i + i \alpha [X_i,G^t_j] + O(\alpha^2)$
+  %\begin{itemize}
+    %\item $G^t_j$ is parametrized by $t$ because it transforms space coordinates to ones of a moving coordinate system at time $t$. It is assumed here that origins coincide at $t = 0$
+    %\item $X'_i$ measures the position relative to the moving coordinates $\implies X_i \ket{x} = x_i \ket{x}$ and $X'_i \ket{x'} = x_i \ket{x'}$
+    %\item $\ket{x'} = \exp(i \alpha G^t_j) \ket{x} = \ket{x + \alpha t e^j}$ where $e^j_p = \delta_{jp}$ is unit vector in $j$ direction
+    %\item $X'_i \ket{x'} = (X_i + i \alpha [X_i,G^t_j])\ket{x'} = (x_i + \alpha t \delta_{ij})\ket{x'} + i \alpha [X_i,G^t_j] \ket{x'} \implies \alpha t \delta_{ij} + i \alpha [X_i,G^t_j] = 0$
+    %\item Hence, $[X_i,G^t_j] = i \delta_{ij} t I$
+    %\item $$
+  %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Ehrenfest Theorem}
-  \vspace{1mm}
-  The time rate of change of the expectation of any operator $A$ is
-  \begin{itemize}
-    \item $\dot{\expval{A}} = {d \over dt} \expval{A}{\psi(t)} = ({d \over dt} \bra{\psi}) A \ket{\psi} + \bra{\psi} A ({d \over dt} \ket{\psi})$
-    \item A time translation of $\alpha$ transforms $\ket{\psi(t)} \to \ket{\psi'(t)} = \exp({i \over \hbar} \alpha H) \ket{\psi(t)} \implies \ket{\psi'(t)} = \ket{\psi(t - \alpha)}$ 
-    \item Then $\exp({i \over \hbar} \alpha H) \ket{\psi(t)} = \ket{\psi(t - \alpha)}$, at $\alpha = t: $\exp({i \over \hbar} t H) \ket{\psi(t)} = \ket{\psi(0)}$
-    \item $\ket{\psi(t)} = \exp({-i \over \hbar} t H) \ket{\psi(0)} \implies {d \over dt} \ket{\psi(t)} = {-i \over \hbar} H \exp({-i \over \hbar} t H) \ket{\psi(0)} = {-i \over \hbar} H \ket{\psi(t)}$
-    \item $i \hbar {d \over dt} \ket{\psi(t)} = H \ket{\psi(t)}$ which is Schrodinger equation
-    \item The above derivation can be used in place of postulating that system's evolution follows Schrodinger's equation 
-    \item $\dot{\expval{A}} = ({i \over \hbar} \bra{\psi} H^{\dagger}) A \ket{\psi} + \bra{\psi} A ({-i \over \hbar} H \ket{\psi}) = {i \over \hbar} \expval {H^{\dagger} A - A H}{\psi} = {i \over \hbar} \expval {[H,A]}{\psi}$
-  \end{itemize}
-  Hence, if the dynamical variables $b$ and $a$ are related such that $b = {da \over dt} \implies B = {i \over \hbar} [H,A]$
-  \begin{itemize}
-    \item For the case of the position operator $X_i$, the velocity operator $V_i = {i \over \hbar} [H,X_i]$
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+  %\frametitle{Ehrenfest Theorem}
+  %\vspace{1mm}
+  %The time rate of change of the expectation of any operator $A$ is
+  %\begin{itemize}
+    %\item $\dot{\expval{A}} = {d \over dt} \expval{A}{\psi(t)} = ({d \over dt} \bra{\psi}) A \ket{\psi} + \bra{\psi} A ({d \over dt} \ket{\psi})$
+    %\item A time translation of $\alpha$ transforms $\ket{\psi(t)} \to \ket{\psi'(t)} = \exp({i \over \hbar} \alpha H) \ket{\psi(t)} \implies \ket{\psi'(t)} = \ket{\psi(t - \alpha)}$ 
+    %\item Then $\exp({i \over \hbar} \alpha H) \ket{\psi(t)} = \ket{\psi(t - \alpha)}$, at $\alpha = t: $\exp({i \over \hbar} t H) \ket{\psi(t)} = \ket{\psi(0)}$
+    %\item $\ket{\psi(t)} = \exp({-i \over \hbar} t H) \ket{\psi(0)} \implies {d \over dt} \ket{\psi(t)} = {-i \over \hbar} H \exp({-i \over \hbar} t H) \ket{\psi(0)} = {-i \over \hbar} H \ket{\psi(t)}$
+    %\item $i \hbar {d \over dt} \ket{\psi(t)} = H \ket{\psi(t)}$ which is Schrodinger equation
+    %\item The above derivation can be used in place of postulating that system's evolution follows Schrodinger's equation 
+    %\item $\dot{\expval{A}} = ({i \over \hbar} \bra{\psi} H^{\dagger}) A \ket{\psi} + \bra{\psi} A ({-i \over \hbar} H \ket{\psi}) = {i \over \hbar} \expval {H^{\dagger} A - A H}{\psi} = {i \over \hbar} \expval {[H,A]}{\psi}$
+  %\end{itemize}
+  %Hence, if the dynamical variables $b$ and $a$ are related such that $b = {da \over dt} \implies B = {i \over \hbar} [H,A]$
+  %\begin{itemize}
+    %\item For the case of the position operator $X_i$, the velocity operator $V_i = {i \over \hbar} [H,X_i]$
+  %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Rotation Generator and Spin***}
-  \vspace{1mm}
-  The rotation generator $J_k = L_k + S_k = \epsilon_{ijk} X_i P_j + S_k$
-  \begin{itemize}
-    \item It was shown that $[J_i,X_j] = i \epsilon_{ijk} X_k,[J_i,P_j] = i \epsilon_{ijk} P_k$ and $[X_i,P_j] = i \delta_{ij} I$
-    \item Also $[S_i,S_j] = i \epsilon_{ijk} S_k$ and $[S_i,X_j] = [S_i,L_j] = \epsilon_{jlm} [S_i,X_l P_m] = 0$
-    \item Then $0 = \epsilon_{jlm} [S_i,X_l P_m] = \epsilon_{jlm} (X_l [S_i,P_m] + [S_i,X_l] P_m) = \epsilon_{jlm} (0 + X_l [S_i,P_m]) \implies [S_i,P_m] = 0$
-    \item $[G_i,P_j] = i \delta_{ij} M I = M [X_i,P_j] \implies G_i = M X_i$
-  \end{itemize}  
-  Let $\ket{\psi}$ be the ket for a single-particle system where the particle spins about the $i$ axis. An STC rotation about the $i$ axis, generated by $J_i$, does not rotate the $i$ axis itself 
-  \begin{itemize}
-    \item The particle still spins about the $i$ axis after rotation
-    \item The rotated system ket $\ket{\psi'} = [I + {i \over \hbar} \alpha J_i] \ket{\psi} = \ket{\psi} + {i \over \hbar} \alpha L_i \ket{\psi} + {i \over \hbar} \alpha S_i \ket{\psi}$
-    \item The spin DoFs form a separate Hilbert space, the tensor product of which with the position DoFs is another Hilbert space with basis kets $\ket{x_1 x_2 ... x_n s_1 s_2 ... s_m}$
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+  %\frametitle{Rotation Generator and Spin***}
+  %\vspace{1mm}
+  %The rotation generator $J_k = L_k + S_k = \epsilon_{ijk} X_i P_j + S_k$
+  %\begin{itemize}
+    %\item It was shown that $[J_i,X_j] = i \epsilon_{ijk} X_k,[J_i,P_j] = i \epsilon_{ijk} P_k$ and $[X_i,P_j] = i \delta_{ij} I$
+    %\item Also $[S_i,S_j] = i \epsilon_{ijk} S_k$ and $[S_i,X_j] = [S_i,L_j] = \epsilon_{jlm} [S_i,X_l P_m] = 0$
+    %\item Then $0 = \epsilon_{jlm} [S_i,X_l P_m] = \epsilon_{jlm} (X_l [S_i,P_m] + [S_i,X_l] P_m) = \epsilon_{jlm} (0 + X_l [S_i,P_m]) \implies [S_i,P_m] = 0$
+    %\item $[G_i,P_j] = i \delta_{ij} M I = M [X_i,P_j] \implies G_i = M X_i$
+  %\end{itemize}  
+  %Let $\ket{\psi}$ be the ket for a single-particle system where the particle spins about the $i$ axis. An STC rotation about the $i$ axis, generated by $J_i$, does not rotate the $i$ axis itself 
+  %\begin{itemize}
+    %\item The particle still spins about the $i$ axis after rotation
+    %\item The rotated system ket $\ket{\psi'} = [I + {i \over \hbar} \alpha J_i] \ket{\psi} = \ket{\psi} + {i \over \hbar} \alpha L_i \ket{\psi} + {i \over \hbar} \alpha S_i \ket{\psi}$
+    %\item The spin DoFs form a separate Hilbert space, the tensor product of which with the position DoFs is another Hilbert space with basis kets $\ket{x_1 x_2 ... x_n s_1 s_2 ... s_m}$
+  %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Commutators of Triples of Operators}
-  \vspace{1mm}
-  Take any set of three operators that are logically related in some manner, for example (for $i \in \{1,2,3\}$)
-  \begin{itemize}
-    \item The set of position operators $X_i$
-    \item The set of momentum operators $P_i$
-    \item The set of orbital angular momentum operators $L_i$
-    \item The set of spin angular momentum operators $S_i$
-  \end{itemize}
-  This case is important for dynamical variables that have components in all three dimensions
+%\begin{frame}
+  %\frametitle{Commutators of Triples of Operators}
+  %\vspace{1mm}
+  %Take any set of three operators that are logically related in some manner, for example (for $i \in \{1,2,3\}$)
+  %\begin{itemize}
+    %\item The set of position operators $X_i$
+    %\item The set of momentum operators $P_i$
+    %\item The set of orbital angular momentum operators $L_i$
+    %\item The set of spin angular momentum operators $S_i$
+  %\end{itemize}
+  %This case is important for dynamical variables that have components in all three dimensions
 
-  The operators can either
-  \begin{itemize}
-    \item I: Commute, such that their commutators vanish $[K_i,K_j] = 0$
-    \item II: Not commute, such that their commutators are multiples of identity $[K_i,K_j] = i c_{ij} I$
-    \item III: Not commute, such that their commutators are other commutators from the same set $[K_i,K_j] = i c \epsilon_{ijk} K_k$
-    \item IV: Follow other commutation relations
-  \end{itemize}
-  For case III, the multiplier does not depend on the commutator's operator pair since space is assumed to be isotropic. 
-\end{frame}
+  %The operators can either
+  %\begin{itemize}
+    %\item I: Commute, such that their commutators vanish $[K_i,K_j] = 0$
+    %\item II: Not commute, such that their commutators are multiples of identity $[K_i,K_j] = i c_{ij} I$
+    %\item III: Not commute, such that their commutators are other commutators from the same set $[K_i,K_j] = i c \epsilon_{ijk} K_k$
+    %\item IV: Follow other commutation relations
+  %\end{itemize}
+  %For case III, the multiplier does not depend on the commutator's operator pair since space is assumed to be isotropic. 
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Commutators of Case III Operators}
-  \vspace{1mm}
-  For the case of $[K_i,K_j] = c \epsilon_{ijk} K_k$, define $K^2 = K_i K_i$, $K_{+} = K_1 + i K_2$ and $K_{-} = K_1 - i K_2$
-  \begin{itemize}
-    \item $[K^2,K_i] = [K_j K_j,K_i] = K_j [K_j,K_i] + [K_j,K_i]K_j = c(\epsilon_{jik} K_j K_k + \epsilon_{kij} K_j K_k) = 0$
-    \item $[K_3,K_{+}] = [K_3,K_1] + i[K_3,K_2] = c(iK_2 - i^2 K_1) = c K_{+}$
-    \item $[K_3,K_{-}] = [K_3,K_1] - i[K_3,K_2] = c(iK_2 - i^2 K_1) = -c K_{-}$
-    \item $[K_{+},K_{-}] = [K_1,K_1] - i[K_1,K_2] + i[K_2,K_1] + [K_2,K_2] = c(K_3 + K_3) = 2cK_3$
-    \item $[K^2,K_{+}] = [K^2,K_{-}] = 0$
-    \item $K_{-} K_{+} = K_{1}^{2} - i K_2 K_1  + i K_2 K_1 + K_{2}^{2} = K_{1}^{2} + K_{2}^{2} + i[K_1,K_2] = K_{1}^{2} + K_{2}^{2} + i^2 c K_3 = K^{2} - K_{3}^{2} - c K_3$
-    \item $K_{+} K_{-} = K_{1}^{2} + i K_2 K_1  - i K_2 K_1 + K_{2}^{2} = K_{1}^{2} + K_{2}^{2} + i[K_2,K_1] = K_{1}^{2} + K_{2}^{2} - i^2 c K_3 = K^{2} - K_{3}^{2} + c K_3$
-  \end{itemize}
-  Furthermore, if $K_i$ are Hermitian, then $K_i^{\dagger} = K_i \implies K_{+}^{\dagger} = K_{-}$ and $K_{-}^{\dagger} = K_{+}$
+%\begin{frame}
+  %\frametitle{Commutators of Case III Operators}
+  %\vspace{1mm}
+  %For the case of $[K_i,K_j] = c \epsilon_{ijk} K_k$, define $K^2 = K_i K_i$, $K_{+} = K_1 + i K_2$ and $K_{-} = K_1 - i K_2$
+  %\begin{itemize}
+    %\item $[K^2,K_i] = [K_j K_j,K_i] = K_j [K_j,K_i] + [K_j,K_i]K_j = c(\epsilon_{jik} K_j K_k + \epsilon_{kij} K_j K_k) = 0$
+    %\item $[K_3,K_{+}] = [K_3,K_1] + i[K_3,K_2] = c(iK_2 - i^2 K_1) = c K_{+}$
+    %\item $[K_3,K_{-}] = [K_3,K_1] - i[K_3,K_2] = c(iK_2 - i^2 K_1) = -c K_{-}$
+    %\item $[K_{+},K_{-}] = [K_1,K_1] - i[K_1,K_2] + i[K_2,K_1] + [K_2,K_2] = c(K_3 + K_3) = 2cK_3$
+    %\item $[K^2,K_{+}] = [K^2,K_{-}] = 0$
+    %\item $K_{-} K_{+} = K_{1}^{2} - i K_2 K_1  + i K_2 K_1 + K_{2}^{2} = K_{1}^{2} + K_{2}^{2} + i[K_1,K_2] = K_{1}^{2} + K_{2}^{2} + i^2 c K_3 = K^{2} - K_{3}^{2} - c K_3$
+    %\item $K_{+} K_{-} = K_{1}^{2} + i K_2 K_1  - i K_2 K_1 + K_{2}^{2} = K_{1}^{2} + K_{2}^{2} + i[K_2,K_1] = K_{1}^{2} + K_{2}^{2} - i^2 c K_3 = K^{2} - K_{3}^{2} + c K_3$
+  %\end{itemize}
+  %Furthermore, if $K_i$ are Hermitian, then $K_i^{\dagger} = K_i \implies K_{+}^{\dagger} = K_{-}$ and $K_{-}^{\dagger} = K_{+}$
   
-  Since $[K^2,K_i] = 0$ for all $i$ but $[K_i,K_j] \neq 0$ for all $i,j$ pairs
-  \begin{itemize}
-    \item There exists a set of common eigenkets for $K^2$ and each one of the $K_i$ operators
-    \item However, there are no common eigenkets between $K_i$ and $K_j$ for $i \neq j$
-    \item This may indicate that $K^2$ is degenerate and has multiple eigenkets for the same eigenvalue with the different eigenkets corresponding to the same eigenvalue being also eigenkets for $K_1$, $K_2$ or $K_3$
-  \end{itemize}
-\end{frame}
+  %Since $[K^2,K_i] = 0$ for all $i$ but $[K_i,K_j] \neq 0$ for all $i,j$ pairs
+  %\begin{itemize}
+    %\item There exists a set of common eigenkets for $K^2$ and each one of the $K_i$ operators
+    %\item However, there are no common eigenkets between $K_i$ and $K_j$ for $i \neq j$
+    %\item This may indicate that $K^2$ is degenerate and has multiple eigenkets for the same eigenvalue with the different eigenkets corresponding to the same eigenvalue being also eigenkets for $K_1$, $K_2$ or $K_3$
+  %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Case III Operators Eigenkets}
-  \vspace{1mm}
-  For the case of $[K_i,K_j] = c \epsilon_{ijk} K_k$, there exists common eigenkets for $K^2$ and each $K_i$
+%\begin{frame}
+  %\frametitle{Case III Operators Eigenkets}
+  %\vspace{1mm}
+  %For the case of $[K_i,K_j] = c \epsilon_{ijk} K_k$, there exists common eigenkets for $K^2$ and each $K_i$
 
-  Let $\ket{\beta,\alpha}$ be an eigenket for $K^2$ and $K_3$ with eigenvalues $\beta$ and $\alpha$ respectively
-  \begin{itemize}
-    \item $K^2 \ket{\beta,\alpha} = \beta \ket{\beta,\alpha}$ and $K_3 \ket{\beta,\alpha} = \alpha \ket{\beta,\alpha}$
-    \item $K_3 K_{+} \ket{\beta,\alpha} = (K_{+} K_3 + c K_{+}) \ket{\beta,\alpha} = (\alpha + c) K_{+} \ket{\beta,\alpha}$
-    \item $K_3 K_{-} \ket{\beta,\alpha} = (K_{-} K_3 - c K_{-}) \ket{\beta,\alpha} = (\alpha - c) K_{-} \ket{\beta,\alpha}$
-    \item $K^2 K_{+} \ket{\beta,\alpha} = K_{+} K^2 \ket{\beta,\alpha} = \beta K_{+} \ket{\beta,\alpha}$
-    \item $K^2 K_{-} \ket{\beta,\alpha} = K_{-} K^2 \ket{\beta,\alpha} = \beta K_{+} \ket{\beta,\alpha}$
-    \item $K_{+} \ket{\beta,\alpha}$ and $K_{-} \ket{\beta,\alpha}$ are eigenkets for $K_3$ with eigenvalues $\alpha + c$ and $\alpha - c$ respectively
-    \item $K_{+} \ket{\beta,\alpha}$ and $K_{-} \ket{\beta,\alpha}$ are eigenkets for $K^2$ with eigenvalues $\beta \implies K^2$ is a degenerate operator
-    \item Hence, $K_{+}$ is a raising operator that transforms $K_3$ eigenkets to ones with an  eigenvalue that is $c$ higher
-    \item Similarly, $K_{-}$ is a lowering operator that transforms $K_3$ eigenkets to ones with an  eigenvalue that is $c$ lower
-  \end{itemize}
-  Same results hold for eigenkets common to $\{K^2$,K_1\}$ and $\{K^2,K_2\}$
-\end{frame}
+  %Let $\ket{\beta,\alpha}$ be an eigenket for $K^2$ and $K_3$ with eigenvalues $\beta$ and $\alpha$ respectively
+  %\begin{itemize}
+    %\item $K^2 \ket{\beta,\alpha} = \beta \ket{\beta,\alpha}$ and $K_3 \ket{\beta,\alpha} = \alpha \ket{\beta,\alpha}$
+    %\item $K_3 K_{+} \ket{\beta,\alpha} = (K_{+} K_3 + c K_{+}) \ket{\beta,\alpha} = (\alpha + c) K_{+} \ket{\beta,\alpha}$
+    %\item $K_3 K_{-} \ket{\beta,\alpha} = (K_{-} K_3 - c K_{-}) \ket{\beta,\alpha} = (\alpha - c) K_{-} \ket{\beta,\alpha}$
+    %\item $K^2 K_{+} \ket{\beta,\alpha} = K_{+} K^2 \ket{\beta,\alpha} = \beta K_{+} \ket{\beta,\alpha}$
+    %\item $K^2 K_{-} \ket{\beta,\alpha} = K_{-} K^2 \ket{\beta,\alpha} = \beta K_{+} \ket{\beta,\alpha}$
+    %\item $K_{+} \ket{\beta,\alpha}$ and $K_{-} \ket{\beta,\alpha}$ are eigenkets for $K_3$ with eigenvalues $\alpha + c$ and $\alpha - c$ respectively
+    %\item $K_{+} \ket{\beta,\alpha}$ and $K_{-} \ket{\beta,\alpha}$ are eigenkets for $K^2$ with eigenvalues $\beta \implies K^2$ is a degenerate operator
+    %\item Hence, $K_{+}$ is a raising operator that transforms $K_3$ eigenkets to ones with an  eigenvalue that is $c$ higher
+    %\item Similarly, $K_{-}$ is a lowering operator that transforms $K_3$ eigenkets to ones with an  eigenvalue that is $c$ lower
+  %\end{itemize}
+  %Same results hold for eigenkets common to $\{K^2$,K_1\}$ and $\{K^2,K_2\}$
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Case III Operators Eigenkets II}
-  \vspace{1mm}
-  For Hermitian $K_i$, $K_{2}$ is also Hermitian $\implies \alpha,\beta$ are real
-  \begin{itemize}
-    \item $\expval{K^2}{\beta,\alpha} = \expval{K_{1}^{2}}{\beta,\alpha} + \expval{K_{2}^{2}}{\beta,\alpha} + \expval{K_{3}^{2}}{\beta,\alpha}$
-    \item But $\expval{K_{1}^{2}}{\beta,\alpha} = \expval{K_1 K_1}{\beta,\alpha} = \expval{K_{1}^{\dagger} K_1}{\beta,\alpha} = (\bra{\beta,\alpha} K_{1}^{\dagger}) (K_1 \ket{\beta,\alpha}) > 0$
-    \item Similarly, $\expval{K_{2}^{2}}{\beta,\alpha} > 0$
-    \item Hence, $\expval{K^2}{\beta,\alpha} > \expval{K_{3}^{2}}{\beta,\alpha} \implies \beta \braket{{\beta,\alpha}} > \alpha^2 \braket{{\beta,\alpha}} \implies \beta > \alpha^2$
-    \item For any $K^2$ eigenvalue $\beta$, there may exist multiple $K_3$ eigenkets with eigenvalues $\alpha \in [-\sqrt{\beta},\sqrt{\beta}]$ 
-    \item There exist $\alpha_{+} > \sqrt{\beta} - c$ and $\alpha_{-} < \sqrt{\beta} + c$ such that $K_{+} \ket{\beta,\alpha_{+}} = K_{-} \ket{\beta,\alpha_{-}} = 0$
-    \item Otherwise, the raising operator $K_{+}$ would transform $\ket{\beta,\alpha_{+}}$ to $K_3$ eigenket with $\alpha > \sqrt{\beta} \implies \alpha > \beta^2$
-    \item Similarly, the lowering operator $K_{-}$ would transform $\ket{\beta,\alpha_{-}}$ to $K_3$ eigenket with $\alpha < -\sqrt{\beta} \implies \alpha^2 > \beta$
-    \item For $K_{+} \ket{\beta,\alpha_{+}} = 0$, $K_{-} K_{+} \ket{\beta,\alpha_{+}} = (K^{2} - K_{3}^{2} - c K_3) \ket{\beta,\alpha_{+}} = (\beta - \alpha_{+}^2 - c \alpha_{+}) \ket{\beta,\alpha_{+}} = 0$
-    \item Since $\ket{\beta,\alpha_{+}} \neq 0 \implies \beta = \alpha_{+}(\alpha_{+} + c)$, similarly, $\beta = \alpha_{-}(\alpha_{-} - c)$
-    \item By solving the equations $\alpha_{+} = {-c + \sqrt{c^2 + 4 \beta} \over 2}$ and $\alpha_{-} = {c - \sqrt{c^2 + 4 \beta} \over 2} \implies \alpha_{+} = -\alpha_{-}$
-  \end{itemize}
-  This analysis shows that like $\alpha$ and $\beta$, $c$ is also real, or else, some of $K_3$ eigenvalues would be complex
-\end{frame}
+%\begin{frame}
+  %\frametitle{Case III Operators Eigenkets II}
+  %\vspace{1mm}
+  %For Hermitian $K_i$, $K_{2}$ is also Hermitian $\implies \alpha,\beta$ are real
+  %\begin{itemize}
+    %\item $\expval{K^2}{\beta,\alpha} = \expval{K_{1}^{2}}{\beta,\alpha} + \expval{K_{2}^{2}}{\beta,\alpha} + \expval{K_{3}^{2}}{\beta,\alpha}$
+    %\item But $\expval{K_{1}^{2}}{\beta,\alpha} = \expval{K_1 K_1}{\beta,\alpha} = \expval{K_{1}^{\dagger} K_1}{\beta,\alpha} = (\bra{\beta,\alpha} K_{1}^{\dagger}) (K_1 \ket{\beta,\alpha}) > 0$
+    %\item Similarly, $\expval{K_{2}^{2}}{\beta,\alpha} > 0$
+    %\item Hence, $\expval{K^2}{\beta,\alpha} > \expval{K_{3}^{2}}{\beta,\alpha} \implies \beta \braket{{\beta,\alpha}} > \alpha^2 \braket{{\beta,\alpha}} \implies \beta > \alpha^2$
+    %\item For any $K^2$ eigenvalue $\beta$, there may exist multiple $K_3$ eigenkets with eigenvalues $\alpha \in [-\sqrt{\beta},\sqrt{\beta}]$ 
+    %\item There exist $\alpha_{+} > \sqrt{\beta} - c$ and $\alpha_{-} < \sqrt{\beta} + c$ such that $K_{+} \ket{\beta,\alpha_{+}} = K_{-} \ket{\beta,\alpha_{-}} = 0$
+    %\item Otherwise, the raising operator $K_{+}$ would transform $\ket{\beta,\alpha_{+}}$ to $K_3$ eigenket with $\alpha > \sqrt{\beta} \implies \alpha > \beta^2$
+    %\item Similarly, the lowering operator $K_{-}$ would transform $\ket{\beta,\alpha_{-}}$ to $K_3$ eigenket with $\alpha < -\sqrt{\beta} \implies \alpha^2 > \beta$
+    %\item For $K_{+} \ket{\beta,\alpha_{+}} = 0$, $K_{-} K_{+} \ket{\beta,\alpha_{+}} = (K^{2} - K_{3}^{2} - c K_3) \ket{\beta,\alpha_{+}} = (\beta - \alpha_{+}^2 - c \alpha_{+}) \ket{\beta,\alpha_{+}} = 0$
+    %\item Since $\ket{\beta,\alpha_{+}} \neq 0 \implies \beta = \alpha_{+}(\alpha_{+} + c)$, similarly, $\beta = \alpha_{-}(\alpha_{-} - c)$
+    %\item By solving the equations $\alpha_{+} = {-c + \sqrt{c^2 + 4 \beta} \over 2}$ and $\alpha_{-} = {c - \sqrt{c^2 + 4 \beta} \over 2} \implies \alpha_{+} = -\alpha_{-}$
+  %\end{itemize}
+  %This analysis shows that like $\alpha$ and $\beta$, $c$ is also real, or else, some of $K_3$ eigenvalues would be complex
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Case III Operators Eigenkets III}
-  \vspace{1mm}
-  For a given $K^2$ eigenvalue $\beta$, starting from the $K_3$ eigenvalue $\alpha_{+} = {-c + \sqrt{c^2 + 4 \beta} \over 2}$
-  \begin{itemize}
-    \item By applying $L_{-}$ on $\ket{\beta,\alpha_{+}}$ successively, eigenkets with lower eigenvalues are obtained in steps of $c$
-    \item After $n$ applications of $L_{-}$ on $\ket{\beta,\alpha_{+}}$, the eigenket $\ket{\beta,\alpha_{-}}$ with $K_3$ eigenvalue $\alpha_{-}$ is obtained
-    \item Hence, $\alpha_{+} - \alpha_{-}$ is an integer multiple of $c \implies \alpha_{+} - \alpha_{-} = nc \implies {-c + \sqrt{c^2 + 4 \beta} \over 2} - {c - \sqrt{c^2 + 4 \beta} \over 2} = nc$
-    \item $c^2 + 4 \beta = (n + 1)^2 c^2 \implies \beta = c^2 {n(n + 2) \over 4}$ and $\alpha_{+} = -\alpha_{-} = {nc \over 2}$
-  \end{itemize}
-  These results mean that for a given non-negative integer $n$
-  \begin{itemize}
-    \item There is a $K^2$ eigenvalue $\beta = c^2 {n(n + 2) \over 4} \implies K^2$ eigenvalues are quantized
-    \item $K_3$ eigenvalues are quantized with eigenvalues in steps of $c \over 2$ in the range $[-{nc\over 2},{nc \over 2}]$
-    \item There are exactly $n + 1$ eigenvalues for $K_3$ with eigenkets common with $K^2$
-    \item The degeneracy of $K^2$ eigenvalue $\beta$ is $3 \times (n + 1)$ since there are $n + 1$ common eigenkets with $K_1$, $K_2$ and $K_3$
-  \end{itemize}
-  Note that $K^2$ and $K_i$ quantization follows from the commutation relations between $K_i$ and their Hermiticity only without resorting to any particular system, boundary condittions or even to the nature of $K_i$
-\end{frame}
+%\begin{frame}
+  %\frametitle{Case III Operators Eigenkets III}
+  %\vspace{1mm}
+  %For a given $K^2$ eigenvalue $\beta$, starting from the $K_3$ eigenvalue $\alpha_{+} = {-c + \sqrt{c^2 + 4 \beta} \over 2}$
+  %\begin{itemize}
+    %\item By applying $L_{-}$ on $\ket{\beta,\alpha_{+}}$ successively, eigenkets with lower eigenvalues are obtained in steps of $c$
+    %\item After $n$ applications of $L_{-}$ on $\ket{\beta,\alpha_{+}}$, the eigenket $\ket{\beta,\alpha_{-}}$ with $K_3$ eigenvalue $\alpha_{-}$ is obtained
+    %\item Hence, $\alpha_{+} - \alpha_{-}$ is an integer multiple of $c \implies \alpha_{+} - \alpha_{-} = nc \implies {-c + \sqrt{c^2 + 4 \beta} \over 2} - {c - \sqrt{c^2 + 4 \beta} \over 2} = nc$
+    %\item $c^2 + 4 \beta = (n + 1)^2 c^2 \implies \beta = c^2 {n(n + 2) \over 4}$ and $\alpha_{+} = -\alpha_{-} = {nc \over 2}$
+  %\end{itemize}
+  %These results mean that for a given non-negative integer $n$
+  %\begin{itemize}
+    %\item There is a $K^2$ eigenvalue $\beta = c^2 {n(n + 2) \over 4} \implies K^2$ eigenvalues are quantized
+    %\item $K_3$ eigenvalues are quantized with eigenvalues in steps of $c \over 2$ in the range $[-{nc\over 2},{nc \over 2}]$
+    %\item There are exactly $n + 1$ eigenvalues for $K_3$ with eigenkets common with $K^2$
+    %\item The degeneracy of $K^2$ eigenvalue $\beta$ is $3 \times (n + 1)$ since there are $n + 1$ common eigenkets with $K_1$, $K_2$ and $K_3$
+  %\end{itemize}
+  %Note that $K^2$ and $K_i$ quantization follows from the commutation relations between $K_i$ and their Hermiticity only without resorting to any particular system, boundary condittions or even to the nature of $K_i$
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Case III Operators Matrices}
-  \vspace{1mm}
-  Switch the $K^2$ eigenket labeling from $\ket{\beta,\alpha}$ to $\ket{k,m}$
-  \begin{itemize}
-    \item Here, $k = {n \over 2}$, $\beta = c^2 k(k + 1)$ and $\alpha = mc$ where $-k \le m \le k$
-    \item It follows from the new labeling that $K_{+} \ket{k,m} = A \ket{k,m+1}$ and $K_{-} \ket{k,m} = B \ket{k,m-1}$
-    \item $A$ and $B$ are normalization constants such that $A^{*}A \braket{k,m+1}{k,m+1} = B^{*}B \braket{k,m-1}{k,m-1} = 1$
-    \item Let $T = A^{*}A \braket{k,m+1}{k,m+1} = \bra{k,m} K^{\dagger}_{+} K_{+} \ket{k,m} = \bra{k,m} K_{-} K_{+} \ket{k,m} = A^{*}A = |A|^2$
-    \item $T = \bra{k,m} (K^{2} - K_{3}^{2} - c K_3) \ket{k,m} = \bra{k,m}(c^2{k(k + 1)} - c^2 m^2 - c^2m)\ket{k,m} = c^2[k(k + 1) - m(m + 1)]$
-    \item $|A|^2 = c^2[k(k + 1) - m(m + 1)] \implies A = c[k(k + 1) - m(m + 1)]^{1/2}$
-    \item Similarly, $B = c[k(k + 1) - m(m - 1)]^{1/2}$
-    \item $K_{+} \ket{k,m} = c[k(k + 1) - m(m + 1)]^{1/2} \ket{k,m + 1}$, $K_{-} \ket{k,m} = c[k(k + 1) - m(m - 1)]^{1/2} \ket{k,m - 1}$
-    \item The pases of $A$ and $B$ can be arbitrarily chosen and do not affect the state $\implies$ choose them to be $0$
-  \end{itemize}
-  Taking the $\ket{k,m}$ eigenkets common to $K^2$ and $K_3$ as a basis, the matrix elements of $K_3$ operator are
-  \begin{itemize}
-    \item $\bra{k',m'} K^2 K_3 \ket{k,m} = k'(k' + 1)c^2 \bra{k',m'} K_3 \ket{k,m}$
-    \item $\bra{k',m'} K_3 K^2 \ket{k,m} = \bra{k',m'} K_3 \ket{k,m} k(k + 1)c^2$
-    \item Since $K_3$: $\bra{k',m'} K^2 K_3 \ket{k,m} = \bra{k',m'} K_3 K^2 \ket{k,m} \implies \bra{k',m'} K_3 \ket{k,m}$ if $j \neq j'$
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+  %\frametitle{Case III Operators Matrices}
+  %\vspace{1mm}
+  %Switch the $K^2$ eigenket labeling from $\ket{\beta,\alpha}$ to $\ket{k,m}$
+  %\begin{itemize}
+    %\item Here, $k = {n \over 2}$, $\beta = c^2 k(k + 1)$ and $\alpha = mc$ where $-k \le m \le k$
+    %\item It follows from the new labeling that $K_{+} \ket{k,m} = A \ket{k,m+1}$ and $K_{-} \ket{k,m} = B \ket{k,m-1}$
+    %\item $A$ and $B$ are normalization constants such that $A^{*}A \braket{k,m+1}{k,m+1} = B^{*}B \braket{k,m-1}{k,m-1} = 1$
+    %\item Let $T = A^{*}A \braket{k,m+1}{k,m+1} = \bra{k,m} K^{\dagger}_{+} K_{+} \ket{k,m} = \bra{k,m} K_{-} K_{+} \ket{k,m} = A^{*}A = |A|^2$
+    %\item $T = \bra{k,m} (K^{2} - K_{3}^{2} - c K_3) \ket{k,m} = \bra{k,m}(c^2{k(k + 1)} - c^2 m^2 - c^2m)\ket{k,m} = c^2[k(k + 1) - m(m + 1)]$
+    %\item $|A|^2 = c^2[k(k + 1) - m(m + 1)] \implies A = c[k(k + 1) - m(m + 1)]^{1/2}$
+    %\item Similarly, $B = c[k(k + 1) - m(m - 1)]^{1/2}$
+    %\item $K_{+} \ket{k,m} = c[k(k + 1) - m(m + 1)]^{1/2} \ket{k,m + 1}$, $K_{-} \ket{k,m} = c[k(k + 1) - m(m - 1)]^{1/2} \ket{k,m - 1}$
+    %\item The pases of $A$ and $B$ can be arbitrarily chosen and do not affect the state $\implies$ choose them to be $0$
+  %\end{itemize}
+  %Taking the $\ket{k,m}$ eigenkets common to $K^2$ and $K_3$ as a basis, the matrix elements of $K_3$ operator are
+  %\begin{itemize}
+    %\item $\bra{k',m'} K^2 K_3 \ket{k,m} = k'(k' + 1)c^2 \bra{k',m'} K_3 \ket{k,m}$
+    %\item $\bra{k',m'} K_3 K^2 \ket{k,m} = \bra{k',m'} K_3 \ket{k,m} k(k + 1)c^2$
+    %\item Since $K_3$: $\bra{k',m'} K^2 K_3 \ket{k,m} = \bra{k',m'} K_3 K^2 \ket{k,m} \implies \bra{k',m'} K_3 \ket{k,m}$ if $j \neq j'$
+  %\end{itemize}
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Case III Operators Matrices II}
-  \vspace{1mm}
-  In the $\ket{k,m}$ eigenkets basis
-  \begin{itemize}
-    \item $\bra{k',m'} K_3 \ket{k,m}$ if $k \neq k' \implies \bra{k',m'} K_3 \ket{k,m} = mc \delta_{k,k'}\delta_{m,m'}$
-    \item Same result holds for matrices of $K_1$ and $K_2$ operators in their eigenket bases
-  \end{itemize}
-  For operators $K_{+}$, $K_{-}$, $K_1 = {K_{+} + K_{-} \over 2}$ and $K_2 = {K_{+} - K_{-} \over 2i}$
-  \begin{itemize}
-    \item $\bra{k',m'} K_{+} \ket{k,m} = \bra{k',m'} c[k(k + 1) - m(m + 1)]^{1/2} \ket{k,m - 1} = c[k(k + 1) - m(m + 1)]^{1/2} \delta_{k,k'} \delta_{m',m + 1}$
-    \item $\bra{k',m'} K_{-} \ket{k,m} = \bra{k',m'} c[k(k + 1) - m(m - 1)]^{1/2} \ket{k,m - 1} = c[k(k + 1) - m(m - 1)]^{1/2} \delta_{k,k'} \delta_{m',m - 1}$
-    \item Operator $K_1$: ${c \delta_{k,k'} \over 2} ([k(k + 1) - m(m + 1)]^{1/2} \delta_{m',m + 1} + [k(k + 1) - m(m - 1)]^{1/2} \delta_{m',m - 1})$
-    \item Operator $K_2$: ${c \delta_{k,k'} \over 2i} ([k(k + 1) - m(m + 1)]^{1/2} \delta_{m',m + 1} - [k(k + 1) - m(m - 1)]^{1/2} \delta_{m',m - 1})$
-  \end{itemize}
-  This shows that all operator matrices are diagonal in $k$
-  \begin{itemize}
-    \item $K^2$ and $K_3$ operator matrices are also diagonal $m$
-    \item $K_1$ and $K_2$ operator matrices are $1$ off-diagonal in $m$
-  \end{itemize}
-  These results are very general and hold for all Hermitian operators $K_i$ that satisfy the commutation relation $[K_i,K_j] = i c \epsilon_{ijk} K_k$
-\end{frame}
+%\begin{frame}
+  %\frametitle{Case III Operators Matrices II}
+  %\vspace{1mm}
+  %In the $\ket{k,m}$ eigenkets basis
+  %\begin{itemize}
+    %\item $\bra{k',m'} K_3 \ket{k,m}$ if $k \neq k' \implies \bra{k',m'} K_3 \ket{k,m} = mc \delta_{k,k'}\delta_{m,m'}$
+    %\item Same result holds for matrices of $K_1$ and $K_2$ operators in their eigenket bases
+  %\end{itemize}
+  %For operators $K_{+}$, $K_{-}$, $K_1 = {K_{+} + K_{-} \over 2}$ and $K_2 = {K_{+} - K_{-} \over 2i}$
+  %\begin{itemize}
+    %\item $\bra{k',m'} K_{+} \ket{k,m} = \bra{k',m'} c[k(k + 1) - m(m + 1)]^{1/2} \ket{k,m - 1} = c[k(k + 1) - m(m + 1)]^{1/2} \delta_{k,k'} \delta_{m',m + 1}$
+    %\item $\bra{k',m'} K_{-} \ket{k,m} = \bra{k',m'} c[k(k + 1) - m(m - 1)]^{1/2} \ket{k,m - 1} = c[k(k + 1) - m(m - 1)]^{1/2} \delta_{k,k'} \delta_{m',m - 1}$
+    %\item Operator $K_1$: ${c \delta_{k,k'} \over 2} ([k(k + 1) - m(m + 1)]^{1/2} \delta_{m',m + 1} + [k(k + 1) - m(m - 1)]^{1/2} \delta_{m',m - 1})$
+    %\item Operator $K_2$: ${c \delta_{k,k'} \over 2i} ([k(k + 1) - m(m + 1)]^{1/2} \delta_{m',m + 1} - [k(k + 1) - m(m - 1)]^{1/2} \delta_{m',m - 1})$
+  %\end{itemize}
+  %This shows that all operator matrices are diagonal in $k$
+  %\begin{itemize}
+    %\item $K^2$ and $K_3$ operator matrices are also diagonal $m$
+    %\item $K_1$ and $K_2$ operator matrices are $1$ off-diagonal in $m$
+  %\end{itemize}
+  %These results are very general and hold for all Hermitian operators $K_i$ that satisfy the commutation relation $[K_i,K_j] = i c \epsilon_{ijk} K_k$
+%\end{frame}
 
-\begin{frame}
-  \frametitle{Orbital Angular Momentum Operators}
-  \vspace{1mm}
-  Applying an infinitesimal rotation to space using the transformation $T_k(\epsilon)$ results in another transformation $U_k(\epsilon)$ being applied to the Hilbert space kets $\ket{\psi}$
-  \begin{itemize}
-    \item $U_k(\epsilon) \to I$ as $\epsilon \to 0 \implies U_k(\epsilon)$ is linear in $\epsilon$
-    \item $U_k(\epsilon)$ has to be unitary to preserve normalization of space kets $\ket{\psi}$
-    \item Postulate a transformation $U_k(\epsilon) = I + {i \over \hbar} \epsilon L_k$ where $J_k$ is a Hermitian operator 
-    \item $U^{\dagger}_k(\epsilon) = I - {i \over \hbar} \epsilon J_k \implies U_k(\epsilon) U^{\dagger}_k(\epsilon) = I - {\epsilon^{2} \over \hbar^2} L_k L_k \to I$ as $\epsilon \to 0 \implies U_k(\epsilon)$ is unitary 
-    \item $U_k(\epsilon_1) U_k(\epsilon_2) = (I + {i \over \hbar} \epsilon_1 L_k) (I + {i \over \hbar} \epsilon_2 L_k) = I + {i \over \hbar} (\epsilon_1 + \epsilon_2) L_k + O(\epsilon^2)$ as expected
-  \end{itemize}
-  Hence, $U_k(\epsilon) = I + {i \over \hbar} \epsilon L_k$ is an appropriate space rotation transformation for Hilbert space kets $\ket{\psi}$
-  \begin{itemize}
-    \item $U_k(\epsilon) \ket{\psi} = \psi(T^{-1}_k(\epsilon) x)$ since space is rotated, the inverse mapping preserves $\psi(x)$ values
-    \item For $U_3(\epsilon)$: $U_3(\epsilon) \psi(x) = \psi(T^{-1}_3(\epsilon) x) = \psi(x_1 + \epsilon x_2,x_2 - \epsilon x_1,x_3) = \psi(x) + \epsilon x_2 {\partial \psi \over \partial x_1} - \epsilon x_1 {\partial \psi \over \partial x_2} + O(\epsilon^2)$
-    \item As $\epsilon \to 0$, $U_3(\epsilon) \psi(x) \to \psi(x_1,x_2,x_3) + \epsilon (x_2 {\partial \psi \over \partial x_1} - x_1 {\partial \psi \over \partial x_2}) = [I + \epsilon (x_2 {\partial \over \partial x_1} - x_1 {\partial \over \partial x_2}) ] \psi(x)$
-    \item Generally, $U_k(\epsilon) \psi(x) = [I + \epsilon \epsilon_{ijk} x_i {\partial \over \partial x_j}] \psi(x) \implies L_k = -i \hbar \epsilon_{ijk} x_i {\partial \over \partial x_j}$
-    \item The operators $L_k = -i \hbar \epsilon_{ijk} x_i {\partial \over \partial x_j}$ are called the orbital angular momentum operators
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+  %\frametitle{Orbital Angular Momentum Operators}
+  %\vspace{1mm}
+  %Applying an infinitesimal rotation to space using the transformation $T_k(\epsilon)$ results in another transformation $U_k(\epsilon)$ being applied to the Hilbert space kets $\ket{\psi}$
+  %\begin{itemize}
+    %\item $U_k(\epsilon) \to I$ as $\epsilon \to 0 \implies U_k(\epsilon)$ is linear in $\epsilon$
+    %\item $U_k(\epsilon)$ has to be unitary to preserve normalization of space kets $\ket{\psi}$
+    %\item Postulate a transformation $U_k(\epsilon) = I + {i \over \hbar} \epsilon L_k$ where $J_k$ is a Hermitian operator 
+    %\item $U^{\dagger}_k(\epsilon) = I - {i \over \hbar} \epsilon J_k \implies U_k(\epsilon) U^{\dagger}_k(\epsilon) = I - {\epsilon^{2} \over \hbar^2} L_k L_k \to I$ as $\epsilon \to 0 \implies U_k(\epsilon)$ is unitary 
+    %\item $U_k(\epsilon_1) U_k(\epsilon_2) = (I + {i \over \hbar} \epsilon_1 L_k) (I + {i \over \hbar} \epsilon_2 L_k) = I + {i \over \hbar} (\epsilon_1 + \epsilon_2) L_k + O(\epsilon^2)$ as expected
+  %\end{itemize}
+  %Hence, $U_k(\epsilon) = I + {i \over \hbar} \epsilon L_k$ is an appropriate space rotation transformation for Hilbert space kets $\ket{\psi}$
+  %\begin{itemize}
+    %\item $U_k(\epsilon) \ket{\psi} = \psi(T^{-1}_k(\epsilon) x)$ since space is rotated, the inverse mapping preserves $\psi(x)$ values
+    %\item For $U_3(\epsilon)$: $U_3(\epsilon) \psi(x) = \psi(T^{-1}_3(\epsilon) x) = \psi(x_1 + \epsilon x_2,x_2 - \epsilon x_1,x_3) = \psi(x) + \epsilon x_2 {\partial \psi \over \partial x_1} - \epsilon x_1 {\partial \psi \over \partial x_2} + O(\epsilon^2)$
+    %\item As $\epsilon \to 0$, $U_3(\epsilon) \psi(x) \to \psi(x_1,x_2,x_3) + \epsilon (x_2 {\partial \psi \over \partial x_1} - x_1 {\partial \psi \over \partial x_2}) = [I + \epsilon (x_2 {\partial \over \partial x_1} - x_1 {\partial \over \partial x_2}) ] \psi(x)$
+    %\item Generally, $U_k(\epsilon) \psi(x) = [I + \epsilon \epsilon_{ijk} x_i {\partial \over \partial x_j}] \psi(x) \implies L_k = -i \hbar \epsilon_{ijk} x_i {\partial \over \partial x_j}$
+    %\item The operators $L_k = -i \hbar \epsilon_{ijk} x_i {\partial \over \partial x_j}$ are called the orbital angular momentum operators
+  %\end{itemize}
+%\end{frame}
 
 \begin{frame}
   \frametitle{Orbital Angular Momentum Operators II}
@@ -1200,29 +1195,29 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Angular Momentum Eigenvalues II}
-  \vspace{1mm}
-  Angular momentum raising/lowering operators increase/decrease angular momentum indefinitely
+%\begin{frame}
+  %\frametitle{Angular Momentum Eigenvalues II}
+  %\vspace{1mm}
+  %Angular momentum raising/lowering operators increase/decrease angular momentum indefinitely
 
-  However, for a given system energy, the angular momentum cannot be arbitrarily large in either direction
-  \begin{itemize}
-    \item From CM, the angular momentum can at most be $l_{3}^{2} < l^2$ where $l^2$ is the rotational kinetic energy
-    \item In QM, $\expval{L^2 - L_{3}^{2}}{\psi} = \expval{L_{1}^2 + L_{2}^{2}}{\psi} \geq 0$ since $\expval{L_{i}^2}{\psi}$ \geq 0$ for all $\psi$
-    \item Hence, $\expval{L^2 - L_{3}^{2}}{\alpha \beta} = \alpha - \beta^2 \geq 0 \implies \alpha \geq \beta^2$
-  \end{itemize}
-  Hence, there are states $\ket{\alpha \beta_{max}}$ and $\ket{\alpha \beta_{min}}$ that cannot be further raised/lowered
-  \begin{itemize}
-    \item $L_{+} \ket{\alpha \beta_{max}} = L_{-} \ket{\alpha \beta_{min}} = 0 \implies L_{-} L_{+} \ket{\alpha \beta_{max}} = L_{+} L_{-} \ket{\alpha \beta_{min}} = 0$
-    \item $L_{-} L_{+} = L_{1}^{2} + i L_1 L_2 - i L_2 L_1 + L_{2}^{2} = L^{2} - L_{3}^{2} + i[L_1,L_2] = L^{2} - L_{3}^{2} - \hbar L_3$ 
-    \item $L_{+} L_{-} = L_{1}^{2} - i L_1 L_2 + i L_2 L_1 + L_{2}^{2} = L^{2} - L_{3}^{2} - i[L_1,L_2] = L^{2} - L_{3}^{2} + \hbar L_3$
-    \item $L_{-} L_{+} \ket{\alpha \beta_{max}} = (L^{2} - L_{3}^{2} - \hbar L_3,L_2) \ket{\alpha \beta_{max}} = (\alpha - \beta_{max}^{2} - \hbar \beta_{max}) \ket{\alpha \beta_{max}} = 0$
-    \item Hence, $\alpha = \beta_{max} (\beta_{max} + \hbar)$ and similarly $\alpha = \beta_{min} (\beta_{min} - \hbar)$
-    \item This is only true if $\beta_{max} = -\beta_{min} \implies \beta_{max} - \beta_{min} = 2 \beta_{max}$
-    \item Between $\beta_{max}$ and $\beta_{min}$, there are $N$ raising/lowering steps $\implies \beta_{max} = \beta_{min} + N \hbar$
-    \item From $\beta_{max}$ and $\beta_{min}$ symmetry, $\beta_{max} - \beta_{min} = 2 \beta_{max} = N \hbar \implies \beta_{max} = -\beta_{min} = {N \over 2} \hbar$
-  \end{itemize}
-\end{frame}
+  %However, for a given system energy, the angular momentum cannot be arbitrarily large in either direction
+  %\begin{itemize}
+    %\item From CM, the angular momentum can at most be $l_{3}^{2} < l^2$ where $l^2$ is the rotational kinetic energy
+    %\item In QM, $\expval{L^2 - L_{3}^{2}}{\psi} = \expval{L_{1}^2 + L_{2}^{2}}{\psi} \geq 0$ since $\expval{L_{i}^2}{\psi}$ \geq 0$ for all $\psi$
+    %\item Hence, $\expval{L^2 - L_{3}^{2}}{\alpha \beta} = \alpha - \beta^2 \geq 0 \implies \alpha \geq \beta^2$
+  %\end{itemize}
+  %Hence, there are states $\ket{\alpha \beta_{max}}$ and $\ket{\alpha \beta_{min}}$ that cannot be further raised/lowered
+  %\begin{itemize}
+    %\item $L_{+} \ket{\alpha \beta_{max}} = L_{-} \ket{\alpha \beta_{min}} = 0 \implies L_{-} L_{+} \ket{\alpha \beta_{max}} = L_{+} L_{-} \ket{\alpha \beta_{min}} = 0$
+    %\item $L_{-} L_{+} = L_{1}^{2} + i L_1 L_2 - i L_2 L_1 + L_{2}^{2} = L^{2} - L_{3}^{2} + i[L_1,L_2] = L^{2} - L_{3}^{2} - \hbar L_3$ 
+    %\item $L_{+} L_{-} = L_{1}^{2} - i L_1 L_2 + i L_2 L_1 + L_{2}^{2} = L^{2} - L_{3}^{2} - i[L_1,L_2] = L^{2} - L_{3}^{2} + \hbar L_3$
+    %\item $L_{-} L_{+} \ket{\alpha \beta_{max}} = (L^{2} - L_{3}^{2} - \hbar L_3,L_2) \ket{\alpha \beta_{max}} = (\alpha - \beta_{max}^{2} - \hbar \beta_{max}) \ket{\alpha \beta_{max}} = 0$
+    %\item Hence, $\alpha = \beta_{max} (\beta_{max} + \hbar)$ and similarly $\alpha = \beta_{min} (\beta_{min} - \hbar)$
+    %\item This is only true if $\beta_{max} = -\beta_{min} \implies \beta_{max} - \beta_{min} = 2 \beta_{max}$
+    %\item Between $\beta_{max}$ and $\beta_{min}$, there are $N$ raising/lowering steps $\implies \beta_{max} = \beta_{min} + N \hbar$
+    %\item From $\beta_{max}$ and $\beta_{min}$ symmetry, $\beta_{max} - \beta_{min} = 2 \beta_{max} = N \hbar \implies \beta_{max} = -\beta_{min} = {N \over 2} \hbar$
+  %\end{itemize}
+%\end{frame}
 
 \begin{frame}
   \frametitle{Angular Momentum Eigenvalues III}
@@ -1283,26 +1278,26 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Angular Momentum Eigenvalue Problem III}
-  \vspace{1mm}
-  To find the eigenvalues and eigenkets of the angular momentum operator, solve $L_i \ket{l_i} = l_i \ket{l_i}$
-  \begin{itemize}
-    \item In a plane normal to the rotation generated by $L_i$, the angular momentum operator becomes $L_n = -i \hbar {\partial \over \partial \phi_n}$
-    \item Use cylindrical polar coordinates $r,\phi$ in the rotation plane
-    \item The eigenvalue problem becomes $L_i \ket{l_i} = -i \hbar {\partial \over \partial \phi} l(r,\phi) = l l(r,\phi)$
-    \item The most general solution to this differential equation is $l(r,\phi) = R(r) exp({i \over \hbar} l \phi)$
-    \item $R(r)$ is a normalizable function in $r$ such that $\int_{0}^{\infty} R(r) r dr$ converges
-  \end{itemize}
-  Since $L$ is Hermitian $\implies \mel{\psi_1}{L}{\psi_2} = \mel{\psi_2}{L}{\psi_1}^{*} \implies \int_{0}^{\infty} \int_{0}^{2 \pi} \psi_1^{*} L \psi_{2} r dr d\phi = [\int_{0}^{\infty} \int_{0}^{2 \pi} \psi_2^{*} L \psi_{1} r dr d\phi]^{*}$
-  \begin{itemize}
-    \item $S = \mel{\psi_1}{L}{\psi_2} = -i \hbar \int_{0}^{\infty} \int_{0}^{2 \pi} \psi_1^{*} \psi_{2,\phi} r dr d\phi = -i \hbar [\int_{0}^{\infty} \int_{0}^{2 \pi} (\psi_1^{*} \psi_{2})_{,\phi} r dr d\phi - \int_{0}^{\infty} \int_{0}^{2 \pi} \psi_1^{*}_{,\phi} \psi_{2} r dr d\phi]$
-    \item $S = -i \hbar [\int_{0}^{\infty} [\psi_1^{*} \psi_{2}]_{0}^{2 \pi} r dr - \int_{0}^{\infty} \int_{0}^{2 \pi} \psi_{2} \psi_1^{*}_{,\phi} r dr d\phi]$
-    \item Let $T_1 = -i \hbar \int_{0}^{\infty} [\psi_1^{*} \psi_{2}]_{0}^{2 \pi} r dr$ and $T_2 = i \hbar \int_{0}^{\infty} \int_{0}^{2 \pi} \psi_{2} \psi_1^{*}_{,\phi} r dr d\phi \implies S = T_1 + T_2$
-    \item $T_{2}^{*} = -i \hbar \int_{0}^{\infty} \int_{0}^{2 \pi} \psi_{2}^{*} \psi_1_{,\phi} r dr d\phi = \mel{\psi_2}{L}{\psi_1}^{*}$
-    \item Hermitian $L \implies S = T_2 \implies T_1 = 0 \implies \psi_1(r,0) = \psi_1(r,2 \pi)$ and $\psi_2(r,0) = \psi_2(r,2 \pi)$ for all $\psi_1$ and $\psi_2$
-  \end{itemize}
-\end{frame}
+%\begin{frame}
+  %\frametitle{Angular Momentum Eigenvalue Problem III}
+  %\vspace{1mm}
+  %To find the eigenvalues and eigenkets of the angular momentum operator, solve $L_i \ket{l_i} = l_i \ket{l_i}$
+  %\begin{itemize}
+    %\item In a plane normal to the rotation generated by $L_i$, the angular momentum operator becomes $L_n = -i \hbar {\partial \over \partial \phi_n}$
+    %\item Use cylindrical polar coordinates $r,\phi$ in the rotation plane
+    %\item The eigenvalue problem becomes $L_i \ket{l_i} = -i \hbar {\partial \over \partial \phi} l(r,\phi) = l l(r,\phi)$
+    %\item The most general solution to this differential equation is $l(r,\phi) = R(r) exp({i \over \hbar} l \phi)$
+    %\item $R(r)$ is a normalizable function in $r$ such that $\int_{0}^{\infty} R(r) r dr$ converges
+  %\end{itemize}
+  %Since $L$ is Hermitian $\implies \mel{\psi_1}{L}{\psi_2} = \mel{\psi_2}{L}{\psi_1}^{*} \implies \int_{0}^{\infty} \int_{0}^{2 \pi} \psi_1^{*} L \psi_{2} r dr d\phi = [\int_{0}^{\infty} \int_{0}^{2 \pi} \psi_2^{*} L \psi_{1} r dr d\phi]^{*}$
+  %\begin{itemize}
+    %\item $S = \mel{\psi_1}{L}{\psi_2} = -i \hbar \int_{0}^{\infty} \int_{0}^{2 \pi} \psi_1^{*} \psi_{2,\phi} r dr d\phi = -i \hbar [\int_{0}^{\infty} \int_{0}^{2 \pi} (\psi_1^{*} \psi_{2})_{,\phi} r dr d\phi - \int_{0}^{\infty} \int_{0}^{2 \pi} \psi_1^{*}_{,\phi} \psi_{2} r dr d\phi]$
+    %\item $S = -i \hbar [\int_{0}^{\infty} [\psi_1^{*} \psi_{2}]_{0}^{2 \pi} r dr - \int_{0}^{\infty} \int_{0}^{2 \pi} \psi_{2} \psi_1^{*}_{,\phi} r dr d\phi]$
+    %\item Let $T_1 = -i \hbar \int_{0}^{\infty} [\psi_1^{*} \psi_{2}]_{0}^{2 \pi} r dr$ and $T_2 = i \hbar \int_{0}^{\infty} \int_{0}^{2 \pi} \psi_{2} \psi_1^{*}_{,\phi} r dr d\phi \implies S = T_1 + T_2$
+    %\item $T_{2}^{*} = -i \hbar \int_{0}^{\infty} \int_{0}^{2 \pi} \psi_{2}^{*} \psi_1_{,\phi} r dr d\phi = \mel{\psi_2}{L}{\psi_1}^{*}$
+    %\item Hermitian $L \implies S = T_2 \implies T_1 = 0 \implies \psi_1(r,0) = \psi_1(r,2 \pi)$ and $\psi_2(r,0) = \psi_2(r,2 \pi)$ for all $\psi_1$ and $\psi_2$
+  %\end{itemize}
+%\end{frame}
 
 \begin{frame}
   \frametitle{Angular Momentum Eigenvalue Problem IV}
@@ -1331,9 +1326,9 @@
 
   Time independent Schrodinger's equation in cylindrical polar coordinates of the plane is
   \begin{itemize}
-    \item $[-{\hbar^2 \over 2 \M} ({\partial^2 \over \partial r^2} + {1 \over r} {\partial \over \partial r} + {1 \over r^2} {\partial^2 \over \partial \phi^2}) + V(r)] \psi(r,\phi) = E \psi(r,phi)$
+    \item $[-{\hbar^2 \over 2 M} ({\partial^2 \over \partial r^2} + {1 \over r} {\partial \over \partial r} + {1 \over r^2} {\partial^2 \over \partial \phi^2}) + V(r)] \psi(r,\phi) = E \psi(r,phi)$
     \item For an eigenket of the angular momentum operator $\psi_{Em}(r,\phi) = R_{Em}(r) \Phi_m(\phi)$
-    \item $[-{\hbar^2 \over 2 \M} ({\partial^2 \over \partial r^2} + {1 \over r} {\partial \over \partial r}- {m^2 \over r^2} ) + V(r)] R_{Em}(r) = E R_{Em}(r)$
+    \item $[-{\hbar^2 \over 2 M} ({\partial^2 \over \partial r^2} + {1 \over r} {\partial \over \partial r}- {m^2 \over r^2} ) + V(r)] R_{Em}(r) = E R_{Em}(r)$
     \item This is the eigenvalue problem for the radial part of the wave function
     \item As the potential of a rotationally invariant system changes, the angular part of the angular momentum eigenkets remain the same, only the radial part changes
     \item The function $\psi_{Em}(r,\phi) = R_{Em}(r) \Phi_m(\phi)$ becomes a common eigenket for both the energy and the angular momentum operators
